@@ -11,8 +11,15 @@ class Constants {
   static String timeout = "Request timed out. Please try again later.";
   static String degree = "\u{00B0}";
 
-  // double constants
+  // Double constants
   static double imageHeight = 240;
-  // Double Constants
   static double inputRadius = 8;
+
+  // Lists
+  static List concertCities = [
+    "Silverstone, UK",
+    "São Paulo, Brazil",
+    "Melbourne, Australia",
+    "Monte Carlo, Monaco"
+  ];
 }
