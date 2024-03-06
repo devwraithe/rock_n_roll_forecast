@@ -7,10 +7,11 @@ class CityCard extends StatefulWidget {
     super.key,
     required this.city,
     required this.note,
+    required this.time,
     this.onPressed,
   });
 
-  final String city, note;
+  final String city, note, time;
   final Function()? onPressed;
 
   @override
@@ -44,7 +45,7 @@ class _CityCardState extends State<CityCard> {
             ),
             const SizedBox(height: 3),
             Text(
-              "10:30 AM",
+              widget.time,
               style: textTheme.bodyMedium?.copyWith(
                 color: AppColors.white,
               ),

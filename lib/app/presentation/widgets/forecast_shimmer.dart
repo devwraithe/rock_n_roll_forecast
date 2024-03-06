@@ -3,8 +3,8 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../core/theme/app_colors.dart';
 
-class OverviewShimmer extends StatelessWidget {
-  const OverviewShimmer({super.key});
+class DailyShimmer extends StatelessWidget {
+  const DailyShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class OverviewShimmer extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(18),
         margin: const EdgeInsets.symmetric(horizontal: 18),
-        height: 1700,
+        height: 423,
         decoration: BoxDecoration(
           color: AppColors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),

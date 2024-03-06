@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/current_weather/current_weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/current_weather/current_weather_state.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/five_days_forecast/five_days_forecast_cubit.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/city_overview_loading.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/daily_forecast.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/forecast_shimmer.dart';
 
 import '../cubits/five_days_forecast/five_days_forecast_state.dart';
 import '../widgets/city_overview.dart';
@@ -16,8 +18,6 @@ class ConcertInfoScreen extends StatefulWidget {
 }
 
 class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
-  Map<String, double> cityCoordinates = {};
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -26,16 +26,13 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
 
   void getCityCoordinates() {
     final arguments = ModalRoute.of(context)?.settings.arguments;
-    cityCoordinates = arguments as Map<String, double>;
-    debugPrint("City coordinates - $cityCoordinates");
-    context.read<CurrentWeatherCubit>().getCurrentWeather(
-          cityCoordinates['latitude'].toString(),
-          cityCoordinates['longitude'].toString(),
-        );
-    context.read<FiveDaysForecastCubit>().getFiveDaysForecast(
-          cityCoordinates['latitude'].toString(),
-          cityCoordinates['longitude'].toString(),
-        );
+    final coordinates = arguments as Map<String, double>;
+    final latitude = coordinates['latitude'].toString();
+    final longitude = coordinates['longitude'].toString();
+    context.read<CurrentWeatherCubit>().getCurrentWeather(latitude, longitude);
+    context
+        .read<FiveDaysForecastCubit>()
+        .getFiveDaysForecast(latitude, longitude);
   }
 
   @override
@@ -55,26 +52,27 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                 BlocBuilder<CurrentWeatherCubit, CurrentWeatherStates>(
                   builder: (context, state) {
                     if (state is CurrentWeatherLoading) {
-                      return const CircularProgressIndicator();
+                      return const OverviewShimmer();
                     } else if (state is CurrentWeatherLoaded) {
-                      return Text("Something here - ${state.result}");
+                      final weather = state.result;
+
+                      return CityOverview(
+                        condition: weather.description,
+                        temp: weather.temperature.toString(),
+                        location: weather.cityName,
+                      );
                     } else {
                       return const Text("Something went wrong");
                     }
                   },
                 ),
-                CityOverview(
-                  condition: "Overcast",
-                  temp: "70",
-                  location: "Silverstone, UK",
-                ),
                 const SizedBox(height: 18),
                 BlocBuilder<FiveDaysForecastCubit, FiveDaysForecastState>(
                   builder: (context, state) {
                     if (state is FiveDaysForecastLoading) {
-                      return const CircularProgressIndicator();
+                      return const DailyShimmer();
                     } else if (state is FiveDaysForecastLoaded) {
-                      return Text("Something here - ${state.result}");
+                      return DailyForecast(forecast: state.result);
                     } else if (state is FiveDaysForecastError) {
                       return Text("Error here - ${state.message}");
                     } else {
@@ -82,7 +80,6 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                     }
                   },
                 ),
-                DailyForecast(),
               ],
             ),
           ),
