@@ -4,7 +4,7 @@ class Constants {
   static String baseUrl = "https://api.nasa.gov";
   static String apiPath = "";
   // "$baseUrl/planetary/apod?api_key=${Env.apiKey}&start_date=2023-06-20";
-  static String serverError = "Error retrieving images";
+  static String serverError = "Error retrieving weathers";
   static String socketError = "No Internet Connection";
   static String unknownError = "Something went wrong";
   static String lostConnection = "Please check your internet connection.";
