@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:rock_n_roll_forecast/app/data/models/current_weather_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/daily_forecast_model.dart';
@@ -50,7 +49,9 @@ class RemoteDatasourceImpl implements RemoteDatasource {
 
   @override
   Future<List<DailyForecastModel>> fiveDaysForecast(
-      String lat, String lon) async {
+    String lat,
+    String lon,
+  ) async {
     try {
       final response = await client.get(
         Uri.parse(ApiUrls.fiveDaysForecast(lat, lon)),

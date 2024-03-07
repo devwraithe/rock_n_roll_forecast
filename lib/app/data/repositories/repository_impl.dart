@@ -6,16 +6,21 @@ import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.d
 
 import '../../core/utilities/errors/failure.dart';
 import '../../domain/repositories/repository.dart';
+import '../datasources/local_datasource.dart';
 
 class RepositoryImpl implements Repository {
-  final RemoteDatasource datasource;
-  RepositoryImpl(this.datasource);
+  final RemoteDatasource remoteDatasource;
+  final LocalDatasource localDatasource;
+
+  RepositoryImpl(this.remoteDatasource, this.localDatasource);
 
   @override
   Future<Either<Failure, CurrentWeatherEntity>> getCurrentWeather(
-      String lat, String lon) async {
+    String lat,
+    String lon,
+  ) async {
     try {
-      final result = await datasource.getCurrentWeather(lat, lon);
+      final result = await remoteDatasource.getCurrentWeather(lat, lon);
       return Right(result.toEntity());
     } on ServerException catch (e) {
       return Left(e.failure);
@@ -32,11 +37,33 @@ class RepositoryImpl implements Repository {
     String lon,
   ) async {
     try {
-      final result = await datasource.fiveDaysForecast(lat, lon);
+      final result = await remoteDatasource.fiveDaysForecast(lat, lon);
       return Right(result.map((f) => f.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(e.failure);
     } on NetworkException catch (e) {
+      return Left(e.failure);
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  @override
+  Future<void> cacheCurrentWeather(
+    CurrentWeatherEntity weather,
+    String city,
+  ) async {
+    await localDatasource.cacheCurrentWeather(weather, city);
+  }
+
+  @override
+  Future<Either<Failure, CurrentWeatherEntity?>> getCachedWeather(
+    String city,
+  ) async {
+    try {
+      final result = await localDatasource.getCachedCurrentWeather(city);
+      return Right(result);
+    } on CacheException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

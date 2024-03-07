@@ -1,9 +1,19 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class LocationHelper {
   static Future<Map<String, double>> cityCoordinates(String city) async {
+    final connectivity = Connectivity();
+    final connectivityResult = await connectivity.checkConnectivity();
+    final hasInternet = connectivityResult != ConnectivityResult.none;
+
+    if (hasInternet)
+      debugPrint("Internet is available!");
+    else
+      debugPrint("Internet is not available");
+
     try {
       List<Location> locations = await locationFromAddress(city);
       if (locations.isNotEmpty) {

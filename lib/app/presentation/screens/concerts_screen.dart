@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
@@ -58,21 +59,36 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   }
 
   Future<void> _getCoordinates(String city) async {
-    loadingStates[city]?.value = true;
+    final connectivity = Connectivity();
+    final connectivityResult = await connectivity.checkConnectivity();
+    final hasInternet = connectivityResult != ConnectivityResult.none;
 
-    final coordinates = await LocationHelper.cityCoordinates(city);
-    debugPrint("Coordinates - $coordinates");
+    if (hasInternet) {
+      loadingStates[city]?.value = true;
+      final coordinates = await LocationHelper.cityCoordinates(city);
+      debugPrint("Coordinates - $coordinates");
 
-    loadingStates[city]?.value = false;
+      loadingStates[city]?.value = false;
 
-    _goToConcertInfo(coordinates);
+      _goToConcertInfo(coordinates, city);
+    } else {
+      loadingStates[city]?.value = true;
+      _goToConcertInfo({}, city);
+      loadingStates[city]?.value = false;
+    }
   }
 
-  void _goToConcertInfo(Map<String, double> coordinates) {
+  void _goToConcertInfo(
+    Map<String, double> coordinates,
+    String city,
+  ) {
     Navigator.pushNamed(
       context,
       Routes.concertInfo,
-      arguments: coordinates,
+      arguments: {
+        'coordinates': coordinates,
+        'city': city,
+      },
     );
   }
 

@@ -9,8 +9,12 @@ abstract class Repository {
     String lat,
     String lon,
   );
+
   Future<Either<Failure, List<DailyForecastEntity>>> fiveDaysForecast(
     String lat,
     String lon,
   );
+
+  Future<void> cacheCurrentWeather(CurrentWeatherEntity weather, String city);
+  Future<Either<Failure, CurrentWeatherEntity?>> getCachedWeather(String city);
 }

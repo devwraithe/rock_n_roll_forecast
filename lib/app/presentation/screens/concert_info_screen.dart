@@ -26,10 +26,13 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
 
   void getCityCoordinates() {
     final arguments = ModalRoute.of(context)?.settings.arguments;
-    final coordinates = arguments as Map<String, double>;
-    final latitude = coordinates['latitude'].toString();
-    final longitude = coordinates['longitude'].toString();
-    context.read<CurrentWeatherCubit>().getCurrentWeather(latitude, longitude);
+    final result = arguments as Map;
+    final latitude = result['coordinates']['latitude'].toString();
+    final longitude = result['coordinates']['longitude'].toString();
+    // city = result['city'];
+    context
+        .read<CurrentWeatherCubit>()
+        .getCurrentWeather(lat: latitude, lon: longitude);
     context
         .read<FiveDaysForecastCubit>()
         .getFiveDaysForecast(latitude, longitude);
@@ -59,8 +62,10 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                       return CityOverview(
                         condition: weather.description,
                         temp: weather.temperature.toString(),
-                        location: weather.cityName,
+                        location: "Gundabad",
                       );
+                    } else if (state is CurrentWeatherError) {
+                      return Text("Error here - ${state.message}");
                     } else {
                       return const Text("Something went wrong");
                     }
