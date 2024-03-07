@@ -27,7 +27,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
 
     // Initialize loading states for each city
     for (final city in Constants.concertCities) {
-      loadingStates[city] = ValueNotifier<bool>(false);
+      loadingStates[city.name] = ValueNotifier<bool>(false);
     }
   }
 
@@ -87,48 +87,39 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
             horizontal: 18,
             vertical: 16,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Upcoming Concerts",
-                  style: AppTextTheme.textTheme.headlineMedium,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Upcoming Concerts",
+                style: AppTextTheme.textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 20),
+              // Search field
+              TextField(
+                controller: searchController,
+                decoration: const InputDecoration(
+                  hintText: 'Search Cities',
+                  prefixIcon: Icon(Icons.search),
                 ),
-                const SizedBox(height: 20),
-                // Search field
-                TextField(
-                  controller: searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Search Cities',
-                    prefixIcon: Icon(Icons.search),
-                  ),
-                  onChanged: _searchCities,
-                ),
-                const SizedBox(height: 20),
-                // Use ListView.builder to create items dynamically
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: filteredCities.length,
-                  itemBuilder: (context, index) {
-                    final city = filteredCities[index];
-
-                    return ValueListenableBuilder(
-                      valueListenable: loadingStates[city]!,
-                      builder: (context, loading, child) {
-                        return CityCard(
-                          city: city,
-                          note: loading
-                              ? "Gathering coordinates"
-                              : "Click for more info",
-                          onPressed: () => _getCoordinates(city),
-                        );
-                      },
+                onChanged: _searchCities,
+              ),
+              const SizedBox(height: 20),
+              for (final city in filteredCities)
+                ValueListenableBuilder(
+                  valueListenable: loadingStates[city.name]!,
+                  builder: (context, loading, child) {
+                    return CityCard(
+                      city: city.name,
+                      image: city.image,
+                      note: loading
+                          ? "Gathering coordinates"
+                          : "Click for more info",
+                      onPressed: () => _getCoordinates(city.name),
                     );
                   },
                 ),
-              ],
-            ),
+            ],
           ),
         ),
       ),

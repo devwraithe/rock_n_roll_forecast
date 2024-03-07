@@ -1,55 +1,77 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 
-class CityCard extends StatefulWidget {
+class CityCard extends StatelessWidget {
   const CityCard({
     super.key,
     required this.city,
     required this.note,
+    required this.image,
     this.onPressed,
   });
 
-  final String city, note;
+  final String city, note, image;
   final Function()? onPressed;
 
-  @override
-  State<CityCard> createState() => _CityCardState();
-}
-
-class _CityCardState extends State<CityCard> {
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
 
     return GestureDetector(
-      onTap: widget.onPressed,
+      onTap: onPressed,
       child: Container(
         height: 120,
         decoration: BoxDecoration(
-          color: AppColors.black,
+          color: AppColors.darkGray,
           borderRadius: BorderRadius.circular(12),
         ),
-        padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(bottom: 18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            Text(
-              widget.city,
-              style: textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: AppColors.white,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: CachedNetworkImage(
+                imageUrl: image,
+                height: 120,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                fadeInDuration: const Duration(milliseconds: 0),
               ),
             ),
-            const Spacer(),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                widget.note,
-                style: textTheme.bodySmall?.copyWith(
-                  color: AppColors.white,
-                ),
+            Container(
+              width: double.infinity,
+              height: 120,
+              decoration: BoxDecoration(
+                color: AppColors.black.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    city,
+                    style: textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  const Spacer(),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      note,
+                      style: textTheme.bodySmall?.copyWith(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
