@@ -4,6 +4,7 @@ import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
+import '../../core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart';
 import '../../core/utilities/constants.dart';
 import '../../core/utilities/errors/failure.dart';
 
@@ -15,45 +16,38 @@ abstract class LocalDatasource {
 }
 
 class LocalDatasourceImpl implements LocalDatasource {
-  final HiveInterface hiveInterface;
-  const LocalDatasourceImpl(this.hiveInterface);
+  final LocalStorageAdapter localStorageAdapter;
+
+  const LocalDatasourceImpl(this.localStorageAdapter);
 
   @override
   Future<void> cacheWeather(WeatherEntity weather, String city) async {
-    final box = await hiveInterface.openBox('weathers');
+    await localStorageAdapter.openBox('weathers');
 
     try {
       debugPrint("Storing weathers for offline...");
-      // if (!box.containsKey(city)) {
-      // If the entry doesn't exist, add it to the box
-      await box.put(city, weather);
-      // } else {
-      //   debugPrint("Weather is cached already!");
-      // }
+      await localStorageAdapter.put(city, weather);
       debugPrint("Weathers stored in offline cache!");
     } on HiveError catch (e) {
-      // Handle Hive-specific errors
       debugPrint("Hive error occurred: $e");
       throw HiveException(Failure(e.message));
     } catch (e) {
-      // Handle other unexpected exceptions
       debugPrint("An error occurred: $e");
       throw UnexpectedException(Failure(e.toString()));
-    } finally {
-      box.close();
     }
   }
 
   @override
   Future<WeatherEntity?> offlineWeather(String city) async {
-    final box = await hiveInterface.openBox('weathers');
+    await localStorageAdapter.openBox('weathers');
 
     try {
+      final containsCity = await localStorageAdapter.containsKey(city);
       debugPrint("Gathering resources...");
 
-      if (box.containsKey(city)) {
+      if (containsCity) {
         // If the entity exists, retrieve it from the box and return it
-        final WeatherEntity weather = await box.get(city);
+        final WeatherEntity weather = await localStorageAdapter.get(city);
         debugPrint("Retrieved from offline cache!");
 
         return weather;
@@ -61,7 +55,7 @@ class LocalDatasourceImpl implements LocalDatasource {
         // If the entity doesn't exist, throw a CacheException
         debugPrint("$city's weather is not found offline!");
         // throw CacheException(Failure(Constants.offlineError));
-        // throw Constants.offlineError;
+        throw Constants.offlineError;
       }
     } on HiveError catch (e) {
       // Handle Hive-specific errors
@@ -71,26 +65,27 @@ class LocalDatasourceImpl implements LocalDatasource {
       // Handle other unexpected exceptions
       debugPrint("An error occurred: $e");
       throw UnexpectedException(Failure(e.toString()));
-    } finally {
-      box.close();
     }
   }
 
   @override
   Future<void> cacheForecast(
-      List<ForecastEntity> forecasts, String city) async {
-    final box = await hiveInterface.openBox('forecasts');
+    List<ForecastEntity> forecasts,
+    String city,
+  ) async {
+    await localStorageAdapter.openBox('forecasts');
 
     try {
+      final containsCity = await localStorageAdapter.containsKey(city);
       debugPrint("Storing forecasts for offline...");
 
       // Remove existing data for the city if it exists
-      if (box.containsKey(city)) {
-        await box.delete(city);
+      if (containsCity) {
+        await localStorageAdapter.delete(city);
       }
 
       // Put the new forecast list for the city into the box
-      await box.put(city, forecasts);
+      await localStorageAdapter.put(city, forecasts);
 
       debugPrint("Forecasts stored in offline cache for $city!");
       for (final forecast in forecasts) {
@@ -104,21 +99,20 @@ class LocalDatasourceImpl implements LocalDatasource {
       // Handle other unexpected exceptions
       debugPrint("An error occurred: $e");
       throw UnexpectedException(Failure(e.toString()));
-    } finally {
-      box.close();
     }
   }
 
   @override
   Future<List<ForecastEntity>> offlineForecasts(String city) async {
-    final box = await hiveInterface.openBox('forecasts');
+    final box = await localStorageAdapter.openBox('forecasts');
 
     try {
+      final containsCity = await localStorageAdapter.containsKey(city);
       debugPrint("Gathering offline forecasts for $city...");
 
-      if (box.containsKey(city)) {
+      if (containsCity) {
         // Retrieve the data from the Hive box
-        final dynamic data = box.get(city);
+        final dynamic data = localStorageAdapter.get(city);
 
         // Check if the retrieved data is of type List<ForecastEntity>
         if (data is List &&
