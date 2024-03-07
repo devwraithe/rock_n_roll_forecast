@@ -2,6 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
+import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_plus_adapter.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource.dart';
 import 'package:rock_n_roll_forecast/app/domain/usecases/five_days_forecase_usecase.dart';
 import 'package:rock_n_roll_forecast/app/domain/usecases/get_weather_usecase.dart';
@@ -39,7 +41,8 @@ void init() {
   regSingleton(() => CacheForecastUsecase(sl()));
   regSingleton(() => OfflineForecastUsecase(sl()));
 
-  regSingleton<Connectivity>(() => Connectivity());
+  regSingleton<ConnectivityAdapter>(() => ConnectivityPlusAdapter(sl()));
+  regSingleton(() => Connectivity());
 
   regSingleton<Repository>(() => RepositoryImpl(sl(), sl()));
 

@@ -1,9 +1,9 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rock_n_roll_forecast/app/domain/usecases/local/cache_weather_usecase.dart';
 import 'package:rock_n_roll_forecast/app/domain/usecases/local/offline_weather_usecase.dart';
 
+import '../../../core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
 import '../../../domain/usecases/get_weather_usecase.dart';
 import 'weather_state.dart';
 
@@ -11,21 +11,20 @@ class WeatherCubit extends Cubit<WeatherStates> {
   final WeatherUsecase _getWeatherUsecase;
   final CacheWeatherUsecase _cacheWeatherUsecase;
   final OfflineWeatherUsecase _offlineWeatherUsecase;
-  final Connectivity connectivity;
+  final ConnectivityAdapter _connectivityAdapter;
 
   WeatherCubit(
     this._getWeatherUsecase,
     this._cacheWeatherUsecase,
     this._offlineWeatherUsecase,
-    this.connectivity,
+    this._connectivityAdapter,
   ) : super(WeatherInitial());
 
   Future<void> getWeather(String lat, String lon, String city) async {
     emit(WeatherLoading());
 
     try {
-      final connectivityResult = await connectivity.checkConnectivity();
-      final hasInternet = connectivityResult != ConnectivityResult.none;
+      final hasInternet = await _connectivityAdapter.isConnected();
 
       if (hasInternet) {
         debugPrint("Internet connection is available!");

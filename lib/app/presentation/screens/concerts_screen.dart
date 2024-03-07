@@ -68,7 +68,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     setState(() {
       // Filter concert cities based on the search query
       filteredCities = Constants.concertCities.where((city) {
-        return city.toLowerCase().contains(query.toLowerCase());
+        return city.name.toLowerCase().contains(query.toLowerCase());
       }).toList();
 
       // Reset the loading states for each city

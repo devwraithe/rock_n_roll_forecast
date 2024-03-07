@@ -3,9 +3,6 @@ import '../../domain/entities/city_entity.dart';
 class Constants {
   // string constants
   static String fontFamily = 'Satoshi';
-  static String baseUrl = "https://api.nasa.gov";
-  static String apiPath = "";
-  // "$baseUrl/planetary/apod?api_key=${Env.apiKey}&start_date=2023-06-20";
   static String serverError = "Error retrieving weathers";
   static String offlineError = "This data is unavailable offline";
   static String socketError = "No Internet Connection";
