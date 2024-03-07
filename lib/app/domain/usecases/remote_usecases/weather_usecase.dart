@@ -4,10 +4,18 @@ import '../../../core/utilities/errors/failure.dart';
 import '../../entities/weather_entity.dart';
 import '../../repositories/remote_repository.dart';
 
-class WeatherUsecase {
-  final RemoteRepository _repo;
-  WeatherUsecase(this._repo);
+abstract class WeatherUsecase {
+  Future<Either<Failure, WeatherEntity>> execute(
+    String lat,
+    String lon,
+  );
+}
 
+class WeatherUsecaseImpl implements WeatherUsecase {
+  final WeatherRemoteRepository _repo;
+  WeatherUsecaseImpl(this._repo);
+
+  @override
   Future<Either<Failure, WeatherEntity>> execute(
     String lat,
     String lon,

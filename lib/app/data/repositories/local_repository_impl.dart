@@ -5,12 +5,12 @@ import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
 import '../../core/utilities/errors/failure.dart';
 import '../../domain/repositories/local_repository.dart';
-import '../datasources/local_datasource/local_datasource_impl.dart';
+import '../datasources/local_datasource/local_datasource.dart';
 
-class LocalRepositoryImpl implements LocalRepository {
-  final LocalDatasource localDatasource;
+class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
+  final WeatherLocalDatasource localDatasource;
 
-  LocalRepositoryImpl(this.localDatasource);
+  WeatherLocalRepositoryImpl(this.localDatasource);
 
   @override
   Future<Either<Failure, void>> cacheWeather(
@@ -44,6 +44,12 @@ class LocalRepositoryImpl implements LocalRepository {
       return Left(Failure(e.toString()));
     }
   }
+}
+
+class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
+  final ForecastLocalDatasource localDatasource;
+
+  ForecastLocalRepositoryImpl(this.localDatasource);
 
   @override
   Future<Either<Failure, void>> cacheForecast(

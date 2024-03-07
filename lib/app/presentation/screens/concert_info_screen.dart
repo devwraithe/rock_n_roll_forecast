@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rock_n_roll_forecast/app/presentation/cubits/five_days_forecast/five_days_forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_state.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/city_overview_loading.dart';
@@ -9,7 +8,8 @@ import 'package:rock_n_roll_forecast/app/presentation/widgets/error_card.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/forecast_shimmer.dart';
 
 import '../../core/theme/text_theme.dart';
-import '../cubits/five_days_forecast/five_days_forecast_state.dart';
+import '../cubits/forecast/forecast_cubit.dart';
+import '../cubits/forecast/forecast_state.dart';
 import '../widgets/city_overview.dart';
 
 class ConcertInfoScreen extends StatefulWidget {

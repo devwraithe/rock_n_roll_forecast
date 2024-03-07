@@ -4,10 +4,18 @@ import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.da
 
 import '../../../core/utilities/errors/failure.dart';
 
-class CacheWeatherUsecase {
-  final LocalRepository _repo;
-  CacheWeatherUsecase(this._repo);
+abstract class CacheWeatherUsecase {
+  Future<Either<Failure, void>> execute(
+    WeatherEntity weather,
+    String city,
+  );
+}
 
+class CacheWeatherUsecaseImpl implements CacheWeatherUsecase {
+  final WeatherLocalRepository _repo;
+  CacheWeatherUsecaseImpl(this._repo);
+
+  @override
   Future<Either<Failure, void>> execute(
     WeatherEntity weather,
     String city,

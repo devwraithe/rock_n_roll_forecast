@@ -2,20 +2,19 @@ import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/daily_forecast_entity.dart';
 
-class DailyForecastModel extends Equatable {
+class ForecastModel extends Equatable {
   final int dailyTime;
   final num dailyMinTemp, dailyMaxTemp;
   final String dailyIcon;
 
-  const DailyForecastModel({
+  const ForecastModel({
     required this.dailyTime,
     required this.dailyMinTemp,
     required this.dailyMaxTemp,
     required this.dailyIcon,
   });
 
-  factory DailyForecastModel.fromJson(Map<String, dynamic> json) =>
-      DailyForecastModel(
+  factory ForecastModel.fromJson(Map<String, dynamic> json) => ForecastModel(
         dailyTime: json["dt"],
         dailyMinTemp: json['main']['temp_min'],
         dailyMaxTemp: json['main']['temp_max'],

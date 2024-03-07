@@ -7,18 +7,12 @@ import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 import '../../../core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart';
 import '../../../core/utilities/constants.dart';
 import '../../../core/utilities/errors/failure.dart';
+import 'local_datasource.dart';
 
-abstract class LocalDatasource {
-  Future<void> cacheWeather(WeatherEntity weather, String city);
-  Future<WeatherEntity?> offlineWeather(String city);
-  Future<void> cacheForecast(List<ForecastEntity> forecasts, String city);
-  Future<List<ForecastEntity>> offlineForecasts(String city);
-}
-
-class LocalDatasourceImpl implements LocalDatasource {
+class WeatherLocalDatasourceImpl implements WeatherLocalDatasource {
   final LocalStorageAdapter localStorageAdapter;
 
-  const LocalDatasourceImpl(this.localStorageAdapter);
+  const WeatherLocalDatasourceImpl(this.localStorageAdapter);
 
   @override
   Future<void> cacheWeather(WeatherEntity weather, String city) async {
@@ -67,6 +61,12 @@ class LocalDatasourceImpl implements LocalDatasource {
       throw UnexpectedException(Failure(e.toString()));
     }
   }
+}
+
+class ForecastLocalDatasourceImpl implements ForecastLocalDatasource {
+  final LocalStorageAdapter localStorageAdapter;
+
+  const ForecastLocalDatasourceImpl(this.localStorageAdapter);
 
   @override
   Future<void> cacheForecast(

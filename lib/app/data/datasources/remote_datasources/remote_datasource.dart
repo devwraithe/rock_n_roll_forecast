@@ -1,7 +1,10 @@
-import '../../models/daily_forecast_model.dart';
+import '../../models/forecast_model.dart';
 import '../../models/weather_model.dart';
 
-abstract class RemoteDatasource {
+abstract class WeatherRemoteDatasource {
   Future<WeatherModel> getWeather(String lat, String lon);
-  Future<List<DailyForecastModel>> forecast(String lat, String lon);
+}
+
+abstract class ForecastRemoteDatasource {
+  Future<List<ForecastModel>> forecast(String lat, String lon);
 }

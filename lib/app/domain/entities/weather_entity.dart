@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class WeatherEntity extends Equatable {
   final num lon, lat;
-  final String? cityName;
+  final String cityName;
   final String main;
   final String description;
   final String iconCode;
@@ -31,7 +31,7 @@ class WeatherEntity extends Equatable {
   List<Object> get props => [
         lon,
         lat,
-        cityName!,
+        cityName,
         main,
         description,
         feelsLike,

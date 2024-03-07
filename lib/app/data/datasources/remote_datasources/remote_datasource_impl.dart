@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:http/http.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource.dart';
-import 'package:rock_n_roll_forecast/app/data/models/daily_forecast_model.dart';
+import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 
 import '../../../core/utilities/api_paths.dart';
@@ -12,9 +12,9 @@ import '../../../core/utilities/constants.dart';
 import '../../../core/utilities/errors/exceptions.dart';
 import '../../../core/utilities/errors/failure.dart';
 
-class RemoteDatasourceImpl implements RemoteDatasource {
+class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   final Client client;
-  const RemoteDatasourceImpl(this.client);
+  const WeatherRemoteDatasourceImpl(this.client);
 
   @override
   Future<WeatherModel> getWeather(String lat, String lon) async {
@@ -42,9 +42,15 @@ class RemoteDatasourceImpl implements RemoteDatasource {
       throw ServerException(Failure(e.toString()));
     }
   }
+}
+
+class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
+  final Client client;
+
+  const ForecastRemoteDatasourceImpl(this.client);
 
   @override
-  Future<List<DailyForecastModel>> forecast(
+  Future<List<ForecastModel>> forecast(
     String lat,
     String lon,
   ) async {
@@ -63,7 +69,7 @@ class RemoteDatasourceImpl implements RemoteDatasource {
         throw ServerException(Failure(Constants.serverError));
       } else {
         final List forecasts = data['list'];
-        return forecasts.map((f) => DailyForecastModel.fromJson(f)).toList();
+        return forecasts.map((f) => ForecastModel.fromJson(f)).toList();
       }
     } on SocketException {
       throw NetworkException(Failure(Constants.lostConnection));

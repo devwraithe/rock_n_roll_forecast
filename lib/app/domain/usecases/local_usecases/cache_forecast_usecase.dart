@@ -4,10 +4,19 @@ import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.da
 import '../../../core/utilities/errors/failure.dart';
 import '../../entities/daily_forecast_entity.dart';
 
-class CacheForecastUsecase {
-  final LocalRepository _repo;
-  CacheForecastUsecase(this._repo);
+abstract class CacheForecastUseCase {
+  Future<Either<Failure, void>> execute(
+    List<ForecastEntity> forecast,
+    String city,
+  );
+}
 
+class CacheForecastUseCaseImpl implements CacheForecastUseCase {
+  final ForecastLocalRepository _repo;
+
+  CacheForecastUseCaseImpl(this._repo);
+
+  @override
   Future<Either<Failure, void>> execute(
     List<ForecastEntity> forecast,
     String city,
