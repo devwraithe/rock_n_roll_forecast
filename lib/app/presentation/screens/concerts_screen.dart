@@ -1,10 +1,9 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_card.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/city_card.dart';
 
 import '../../core/routes/routes.dart';
 
@@ -17,21 +16,19 @@ class ConcertsScreen extends StatefulWidget {
 
 class _ConcertsScreenState extends State<ConcertsScreen> {
   final Map<String, ValueNotifier<bool>> loadingStates = {};
-  final Map<String, String> cityTimes =
-      {}; // Map to store current time for each city
   late TextEditingController searchController;
-  List filteredCities = []; // List to store filtered concert cities
+  List filteredCities = [];
 
   @override
   void initState() {
     super.initState();
+    searchController = TextEditingController();
+    filteredCities = Constants.concertCities;
+
     // Initialize loading states for each city
     for (final city in Constants.concertCities) {
       loadingStates[city] = ValueNotifier<bool>(false);
-      _getCurrentTime(city); // Fetch current time for each city
     }
-    searchController = TextEditingController();
-    filteredCities = Constants.concertCities;
   }
 
   @override
@@ -40,42 +37,17 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     super.dispose();
   }
 
-  Future<void> _getCurrentTime(String city) async {
-    try {
-      // Fetch current time for the city
-      final time = await LocationHelper.getCurrentTimeForCity(city);
-
-      // Format the time as a string
-      final formattedTime =
-          DateFormat('HH:mm').format(time); // Adjust format as needed
-
-      setState(() {
-        cityTimes[city] =
-            formattedTime; // Update cityTimes map with formatted time
-      });
-    } catch (e) {
-      print('Error fetching time for $city: $e');
-    }
-  }
-
   Future<void> _getCoordinates(String city) async {
-    final connectivity = Connectivity();
-    final connectivityResult = await connectivity.checkConnectivity();
-    final hasInternet = connectivityResult != ConnectivityResult.none;
+    loadingStates[city]?.value = true;
 
-    if (hasInternet) {
-      loadingStates[city]?.value = true;
+    if (await MiscHelper.hasInternetConnection() == true) {
       final coordinates = await LocationHelper.cityCoordinates(city);
-      debugPrint("Coordinates - $coordinates");
-
-      loadingStates[city]?.value = false;
-
       _goToConcertInfo(coordinates, city);
     } else {
-      loadingStates[city]?.value = true;
       _goToConcertInfo({}, city);
-      loadingStates[city]?.value = false;
     }
+
+    loadingStates[city]?.value = false;
   }
 
   void _goToConcertInfo(
@@ -92,12 +64,12 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     );
   }
 
-  void _searchConcerts(String query) {
+  void _searchCities(String query) {
     setState(() {
       // Filter concert cities based on the search query
-      filteredCities = Constants.concertCities
-          .where((city) => city.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+      filteredCities = Constants.concertCities.where((city) {
+        return city.toLowerCase().contains(query.toLowerCase());
+      }).toList();
 
       // Reset the loading states for each city
       for (final city in Constants.concertCities) {
@@ -127,31 +99,28 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                 // Search field
                 TextField(
                   controller: searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Search concerts...',
+                  decoration: const InputDecoration(
+                    hintText: 'Search Cities',
                     prefixIcon: Icon(Icons.search),
                   ),
-                  onChanged: _searchConcerts,
+                  onChanged: _searchCities,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 // Use ListView.builder to create items dynamically
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: filteredCities.length,
                   itemBuilder: (context, index) {
                     final city = filteredCities[index];
-                    final time = cityTimes[city] ??
-                        'Unknown'; // Get current time for the city
 
                     return ValueListenableBuilder(
                       valueListenable: loadingStates[city]!,
                       builder: (context, loading, child) {
                         return CityCard(
                           city: city,
-                          time: time, // Pass current time to CityCard
                           note: loading
                               ? "Gathering coordinates"
-                              : "Tap to get weather info",
+                              : "Click for more info",
                           onPressed: () => _getCoordinates(city),
                         );
                       },

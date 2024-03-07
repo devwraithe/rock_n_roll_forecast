@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/current_weather_entity.dart';
+import '../../domain/entities/weather_entity.dart';
 
-class CurrentWeatherModel extends Equatable {
+class WeatherModel extends Equatable {
   final num lon, lat;
   final int sunrise, sunset;
   final String cityName, main, description, iconCode, countryAbbr;
   final dynamic windSpeed, feelsLike;
   final int temperature, pressure, humidity;
 
-  const CurrentWeatherModel({
+  const WeatherModel({
     required this.sunrise,
     required this.sunset,
     required this.lon,
@@ -26,8 +26,8 @@ class CurrentWeatherModel extends Equatable {
     required this.windSpeed,
   });
 
-  factory CurrentWeatherModel.fromJson(Map<String, dynamic> json) {
-    return CurrentWeatherModel(
+  factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    return WeatherModel(
       sunrise: json['sys']['sunrise'],
       sunset: json['sys']['sunset'],
       lat: json['coord']["lat"],
@@ -45,8 +45,8 @@ class CurrentWeatherModel extends Equatable {
     );
   }
 
-  CurrentWeatherEntity toEntity() {
-    return CurrentWeatherEntity(
+  WeatherEntity toEntity() {
+    return WeatherEntity(
       lat: lat,
       lon: lon,
       cityName: cityName,

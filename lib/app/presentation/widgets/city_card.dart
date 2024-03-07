@@ -7,11 +7,10 @@ class CityCard extends StatefulWidget {
     super.key,
     required this.city,
     required this.note,
-    required this.time,
     this.onPressed,
   });
 
-  final String city, note, time;
+  final String city, note;
   final Function()? onPressed;
 
   @override
@@ -40,13 +39,6 @@ class _CityCardState extends State<CityCard> {
               widget.city,
               style: textTheme.bodyLarge?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: AppColors.white,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              widget.time,
-              style: textTheme.bodyMedium?.copyWith(
                 color: AppColors.white,
               ),
             ),

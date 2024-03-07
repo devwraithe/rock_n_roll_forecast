@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 
-import '../../../domain/entities/current_weather_entity.dart';
+import '../../../domain/entities/weather_entity.dart';
 
-class CurrentWeatherEntityAdapter extends TypeAdapter<CurrentWeatherEntity> {
+class WeatherEntityAdapter extends TypeAdapter<WeatherEntity> {
   @override
   final int typeId = 0; // Unique identifier for the adapter
 
   @override
-  CurrentWeatherEntity read(BinaryReader reader) {
+  WeatherEntity read(BinaryReader reader) {
     final lat = reader.read();
     final lon = reader.read();
     final cityName = reader.read();
@@ -23,7 +23,7 @@ class CurrentWeatherEntityAdapter extends TypeAdapter<CurrentWeatherEntity> {
     final humidity = reader.read();
     final windSpeed = reader.read();
 
-    return CurrentWeatherEntity(
+    return WeatherEntity(
       lat: lat,
       lon: lon,
       cityName: cityName,
@@ -42,7 +42,7 @@ class CurrentWeatherEntityAdapter extends TypeAdapter<CurrentWeatherEntity> {
   }
 
   @override
-  void write(BinaryWriter writer, CurrentWeatherEntity obj) {
+  void write(BinaryWriter writer, WeatherEntity obj) {
     writer.write(obj.lat);
     writer.write(obj.lon);
     writer.write(obj.cityName);

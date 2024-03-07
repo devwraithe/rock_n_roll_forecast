@@ -4,15 +4,15 @@ import '../../core/utilities/errors/failure.dart';
 import '../entities/daily_forecast_entity.dart';
 import '../repositories/repository.dart';
 
-class FiveDaysForecastUsecase {
+class ForecastUsecase {
   final Repository _repo;
-  FiveDaysForecastUsecase(this._repo);
+  ForecastUsecase(this._repo);
 
-  Future<Either<Failure, List<DailyForecastEntity>>> execute(
+  Future<Either<Failure, List<ForecastEntity>>> execute(
     String lat,
     String lon,
   ) async {
-    final result = await _repo.fiveDaysForecast(lat, lon);
+    final result = await _repo.getForecast(lat, lon);
     return result.fold(
       (failure) => Left(failure),
       (result) => Right(result),

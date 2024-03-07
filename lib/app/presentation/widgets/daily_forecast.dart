@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -12,14 +13,15 @@ class DailyForecast extends StatelessWidget {
     required this.forecast,
   }) : super(key: key);
 
-  final List<DailyForecastEntity> forecast;
+  final List<ForecastEntity> forecast;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
 
-    // Group forecast data by day
-    final Map<String, List<DailyForecastEntity>> groupedForecast = {};
+    // Group weather forecast data by day
+    final Map<String, List<ForecastEntity>> groupedForecast = {};
+
     for (final day in forecast) {
       final formattedDay = DateFormat('EEEE').format(
         DateTime.fromMillisecondsSinceEpoch(day.dailyTime * 1000),
@@ -40,7 +42,7 @@ class DailyForecast extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "5-Day Forecast",
+            "5 - DAY FORECAST",
             style: textTheme.labelMedium?.copyWith(
               color: Colors.grey,
               letterSpacing: 1.2,
@@ -58,6 +60,7 @@ class DailyForecast extends StatelessWidget {
               final maxTemp = forecastList
                   .map((forecast) => forecast.dailyMaxTemp.round())
                   .reduce((max, temp) => temp > max ? temp : max);
+
               final icon = getCustomIcon(forecastList.first.dailyIcon);
 
               return Padding(
@@ -67,9 +70,7 @@ class DailyForecast extends StatelessWidget {
                     Expanded(
                       child: Text(
                         dayOfWeek,
-                        style: textTheme.bodyText1?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: AppTextTheme.textTheme.bodyLarge,
                       ),
                     ),
                     Image.asset(
@@ -78,12 +79,10 @@ class DailyForecast extends StatelessWidget {
                       width: 36,
                       height: 36,
                     ),
-                    SizedBox(width: 12),
+                    const SizedBox(width: 12),
                     Text(
-                      '$minTemp° - $maxTemp°',
-                      style: textTheme.bodyText1?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                      '$minTemp${Constants.degree} - $maxTemp${Constants.degree}',
+                      style: AppTextTheme.textTheme.bodyLarge,
                     ),
                   ],
                 ),

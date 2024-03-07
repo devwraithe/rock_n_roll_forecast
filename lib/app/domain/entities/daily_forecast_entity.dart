@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class DailyForecastEntity extends Equatable {
+class ForecastEntity extends Equatable {
   final int dailyTime;
   final num dailyMinTemp, dailyMaxTemp;
   final String dailyIcon;
 
-  const DailyForecastEntity({
+  const ForecastEntity({
     required this.dailyTime,
     required this.dailyMinTemp,
     required this.dailyMaxTemp,

@@ -22,7 +22,7 @@ class DailyForecastModel extends Equatable {
         dailyIcon: json["weather"][0]["icon"],
       );
 
-  DailyForecastEntity toEntity() => DailyForecastEntity(
+  ForecastEntity toEntity() => ForecastEntity(
         dailyTime: dailyTime,
         dailyMinTemp: dailyMinTemp,
         dailyMaxTemp: dailyMaxTemp,

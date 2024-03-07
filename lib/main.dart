@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'app/app.dart';
-import 'app/core/utilities/adapters/current_weather_adapter.dart';
+import 'app/core/utilities/adapters/forecast_adapter.dart';
+import 'app/core/utilities/adapters/weather_adapter.dart';
 import 'app/core/utilities/di_service.dart' as di;
 
 void main() async {
@@ -14,7 +15,8 @@ void main() async {
 
   // initialize hive and register adapters - for offline support
   await Hive.initFlutter();
-  Hive.registerAdapter(CurrentWeatherEntityAdapter());
+  Hive.registerAdapter(WeatherEntityAdapter());
+  Hive.registerAdapter(ForecastEntityAdapter());
 
   // initialize screen utils - for responsiveness
   await ScreenUtil.ensureScreenSize();

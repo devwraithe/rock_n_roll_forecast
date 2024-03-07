@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class CurrentWeatherEntity extends Equatable {
+class WeatherEntity extends Equatable {
   final num lon, lat;
   final String? cityName;
   final String main;
@@ -10,7 +10,7 @@ class CurrentWeatherEntity extends Equatable {
   final dynamic windSpeed, feelsLike;
   final int temperature, pressure, humidity, sunrise, sunset;
 
-  const CurrentWeatherEntity({
+  const WeatherEntity({
     required this.lon,
     required this.lat,
     required this.cityName,

@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:rock_n_roll_forecast/app/data/models/current_weather_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/daily_forecast_model.dart';
+import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 
 import '../../core/utilities/api_paths.dart';
 import '../../core/utilities/constants.dart';
@@ -12,8 +12,8 @@ import '../../core/utilities/errors/exceptions.dart';
 import '../../core/utilities/errors/failure.dart';
 
 abstract class RemoteDatasource {
-  Future<CurrentWeatherModel> getCurrentWeather(String lat, String lon);
-  Future<List<DailyForecastModel>> fiveDaysForecast(String lat, String lon);
+  Future<WeatherModel> getWeather(String lat, String lon);
+  Future<List<DailyForecastModel>> Forecast(String lat, String lon);
 }
 
 class RemoteDatasourceImpl implements RemoteDatasource {
@@ -21,10 +21,10 @@ class RemoteDatasourceImpl implements RemoteDatasource {
   const RemoteDatasourceImpl(this.client);
 
   @override
-  Future<CurrentWeatherModel> getCurrentWeather(String lat, String lon) async {
+  Future<WeatherModel> getWeather(String lat, String lon) async {
     try {
       final response = await client.get(
-        Uri.parse(ApiUrls.currentWeather(lat, lon)),
+        Uri.parse(ApiUrls.Weather(lat, lon)),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json',
@@ -36,7 +36,7 @@ class RemoteDatasourceImpl implements RemoteDatasource {
       if (response.statusCode != 200) {
         throw ServerException(Failure(Constants.serverError));
       } else {
-        return CurrentWeatherModel.fromJson(data);
+        return WeatherModel.fromJson(data);
       }
     } on SocketException {
       throw NetworkException(Failure(Constants.lostConnection));
@@ -48,13 +48,13 @@ class RemoteDatasourceImpl implements RemoteDatasource {
   }
 
   @override
-  Future<List<DailyForecastModel>> fiveDaysForecast(
+  Future<List<DailyForecastModel>> Forecast(
     String lat,
     String lon,
   ) async {
     try {
       final response = await client.get(
-        Uri.parse(ApiUrls.fiveDaysForecast(lat, lon)),
+        Uri.parse(ApiUrls.Forecast(lat, lon)),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json',
