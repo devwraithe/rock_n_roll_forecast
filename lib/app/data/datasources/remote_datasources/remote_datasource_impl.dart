@@ -3,18 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart';
+import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource.dart';
 import 'package:rock_n_roll_forecast/app/data/models/daily_forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 
-import '../../core/utilities/api_paths.dart';
-import '../../core/utilities/constants.dart';
-import '../../core/utilities/errors/exceptions.dart';
-import '../../core/utilities/errors/failure.dart';
-
-abstract class RemoteDatasource {
-  Future<WeatherModel> getWeather(String lat, String lon);
-  Future<List<DailyForecastModel>> Forecast(String lat, String lon);
-}
+import '../../../core/utilities/api_paths.dart';
+import '../../../core/utilities/constants.dart';
+import '../../../core/utilities/errors/exceptions.dart';
+import '../../../core/utilities/errors/failure.dart';
 
 class RemoteDatasourceImpl implements RemoteDatasource {
   final Client client;
@@ -48,7 +44,7 @@ class RemoteDatasourceImpl implements RemoteDatasource {
   }
 
   @override
-  Future<List<DailyForecastModel>> Forecast(
+  Future<List<DailyForecastModel>> forecast(
     String lat,
     String lon,
   ) async {

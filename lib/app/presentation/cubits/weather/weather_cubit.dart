@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/local/cache_weather_usecase.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/local/offline_weather_usecase.dart';
 
 import '../../../core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
-import '../../../domain/usecases/get_weather_usecase.dart';
+import '../../../domain/usecases/local_usecases/cache_weather_usecase.dart';
+import '../../../domain/usecases/local_usecases/offline_weather_usecase.dart';
+import '../../../domain/usecases/remote_usecases/weather_usecase.dart';
 import 'weather_state.dart';
 
 class WeatherCubit extends Cubit<WeatherStates> {

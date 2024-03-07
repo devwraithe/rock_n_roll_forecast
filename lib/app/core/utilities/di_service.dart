@@ -4,19 +4,22 @@ import 'package:http/http.dart' as http;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_plus_adapter.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart';
-import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/five_days_forecase_usecase.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/get_weather_usecase.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/local/cache_weather_usecase.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/local/offline_weather_usecase.dart';
+import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource/local_datasource_impl.dart';
+import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.dart';
+import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/forecast_usecase.dart';
+import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/weather_usecase.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/five_days_forecast/five_days_forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 
-import '../../data/datasources/remote_datasource.dart';
-import '../../data/repositories/repository_impl.dart';
-import '../../domain/repositories/repository.dart';
-import '../../domain/usecases/local/cache_forecast_usecase.dart';
-import '../../domain/usecases/local/offline_forecast_usecase.dart';
+import '../../data/datasources/remote_datasources/remote_datasource.dart';
+import '../../data/datasources/remote_datasources/remote_datasource_impl.dart';
+import '../../data/repositories/local_repository_impl.dart';
+import '../../data/repositories/remote_repository_impl.dart';
+import '../../domain/repositories/remote_repository.dart';
+import '../../domain/usecases/local_usecases/cache_forecast_usecase.dart';
+import '../../domain/usecases/local_usecases/cache_weather_usecase.dart';
+import '../../domain/usecases/local_usecases/offline_forecast_usecase.dart';
+import '../../domain/usecases/local_usecases/offline_weather_usecase.dart';
 import 'adapters/local_storage_adapter/hive_local_storage_adapter.dart';
 
 final sl = GetIt.instance; // the service locator(sl)
@@ -42,10 +45,13 @@ void init() {
   regSingleton(() => CacheForecastUsecase(sl()));
   regSingleton(() => OfflineForecastUsecase(sl()));
 
-  regSingleton<ConnectivityAdapter>(() => ConnectivityPlusAdapter(sl()));
-  regSingleton(() => Connectivity());
+  regSingleton<ConnectivityAdapter>(
+    () => ConnectivityPlusAdapter(Connectivity()),
+  );
+  // regSingleton(() => Connectivity());
 
-  regSingleton<Repository>(() => RepositoryImpl(sl(), sl()));
+  regSingleton<LocalRepository>(() => LocalRepositoryImpl(sl()));
+  regSingleton<RemoteRepository>(() => RemoteRepositoryImpl(sl()));
 
   regSingleton<LocalDatasource>(() => LocalDatasourceImpl(sl()));
   regSingleton<RemoteDatasource>(() => RemoteDatasourceImpl(sl()));

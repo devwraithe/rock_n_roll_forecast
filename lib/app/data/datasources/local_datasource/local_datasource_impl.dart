@@ -4,9 +4,9 @@ import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
-import '../../core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart';
-import '../../core/utilities/constants.dart';
-import '../../core/utilities/errors/failure.dart';
+import '../../../core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart';
+import '../../../core/utilities/constants.dart';
+import '../../../core/utilities/errors/failure.dart';
 
 abstract class LocalDatasource {
   Future<void> cacheWeather(WeatherEntity weather, String city);

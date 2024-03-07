@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 
-import '../../core/utilities/errors/failure.dart';
-import '../entities/daily_forecast_entity.dart';
-import '../repositories/repository.dart';
+import '../../../core/utilities/errors/failure.dart';
+import '../../entities/daily_forecast_entity.dart';
+import '../../repositories/remote_repository.dart';
 
 class ForecastUsecase {
-  final Repository _repo;
+  final RemoteRepository _repo;
   ForecastUsecase(this._repo);
 
   Future<Either<Failure, List<ForecastEntity>>> execute(

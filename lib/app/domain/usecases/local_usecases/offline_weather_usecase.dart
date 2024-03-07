@@ -2,15 +2,15 @@ import 'package:dartz/dartz.dart';
 
 import '../../../core/utilities/errors/failure.dart';
 import '../../entities/weather_entity.dart';
-import '../../repositories/repository.dart';
+import '../../repositories/local_repository.dart';
 
 class OfflineWeatherUsecase {
-  final Repository _repo;
+  final LocalRepository _repo;
   OfflineWeatherUsecase(this._repo);
 
   Future<Either<Failure, WeatherEntity?>> execute(String city) async {
-    final result = await _repo.offlineWeather(city);
-    return result.fold(
+    final response = await _repo.offlineWeather(city);
+    return response.fold(
       (failure) => Left(failure),
       (result) => Right(result),
     );

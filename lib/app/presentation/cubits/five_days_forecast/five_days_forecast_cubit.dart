@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
-import '../../../domain/usecases/five_days_forecase_usecase.dart';
-import '../../../domain/usecases/local/cache_forecast_usecase.dart';
-import '../../../domain/usecases/local/offline_forecast_usecase.dart';
+import '../../../domain/usecases/local_usecases/cache_forecast_usecase.dart';
+import '../../../domain/usecases/local_usecases/offline_forecast_usecase.dart';
+import '../../../domain/usecases/remote_usecases/forecast_usecase.dart';
 import 'five_days_forecast_state.dart';
 
 class ForecastCubit extends Cubit<ForecastState> {
