@@ -92,23 +92,30 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
             vertical: 16,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Upcoming Concerts",
-                style: AppTextTheme.textTheme.headlineMedium,
+                style: AppTextTheme.textTheme.headlineLarge,
               ),
               const SizedBox(height: 20),
               // Search field
               TextField(
                 controller: searchController,
-                decoration: const InputDecoration(
-                  hintText: 'Search Cities',
-                  prefixIcon: Icon(Icons.search),
+                decoration: InputDecoration(
+                  label: Container(
+                    margin: const EdgeInsets.only(bottom: 2),
+                    child: Text(
+                      "Search concert cities...",
+                      style: AppTextTheme.textTheme.bodyLarge?.copyWith(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
                 ),
                 onChanged: _searchCities,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 26),
               for (final city in filteredCities)
                 ValueListenableBuilder(
                   valueListenable: loadingStates[city.name]!,
