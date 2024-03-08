@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/text_theme.dart';
 
-class OverviewShimmer extends StatelessWidget {
-  const OverviewShimmer({super.key});
+class OverviewLoading extends StatelessWidget {
+  const OverviewLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: AppColors.grey,
-      highlightColor: AppColors.lightGray,
-      child: Container(
-        padding: const EdgeInsets.all(18),
-        margin: const EdgeInsets.symmetric(horizontal: 18),
-        height: 1700,
-        decoration: BoxDecoration(
-          color: AppColors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(12),
-        ),
+    final textTheme = AppTextTheme.textTheme;
+
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 12),
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+              child: Icon(
+                Icons.arrow_back,
+                color: AppColors.white,
+              ),
+            ),
+          ),
+          const SizedBox(height: 60),
+          Text(
+            "--",
+            textAlign: TextAlign.center,
+            style: textTheme.displayLarge?.copyWith(
+              color: AppColors.white,
+            ),
+          ),
+        ],
       ),
     );
   }

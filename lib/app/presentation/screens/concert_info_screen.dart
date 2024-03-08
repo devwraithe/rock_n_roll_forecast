@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_state.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/city_overview_loading.dart';
@@ -7,6 +9,7 @@ import 'package:rock_n_roll_forecast/app/presentation/widgets/daily_forecast.dar
 import 'package:rock_n_roll_forecast/app/presentation/widgets/error_card.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/forecast_shimmer.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 import '../cubits/forecast/forecast_cubit.dart';
 import '../cubits/forecast/forecast_state.dart';
@@ -20,7 +23,7 @@ class ConcertInfoScreen extends StatefulWidget {
 }
 
 class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
-  String? city;
+  String? city, image;
 
   @override
   void didChangeDependencies() {
@@ -35,6 +38,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
     final longitude = result['coordinates']['longitude'].toString();
 
     city = result['city'];
+    image = result['image'];
 
     context.read<WeatherCubit>().getWeather(latitude, longitude, city!);
     context.read<ForecastCubit>().getForecast(latitude, longitude, city!);
@@ -42,63 +46,85 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // Background image
-          // Overlay
-          SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 18,
-              vertical: 60,
-            ),
-            child: Column(
-              children: [
-                BlocBuilder<WeatherCubit, WeatherStates>(
-                  builder: (context, state) {
-                    if (state is WeatherLoading) {
-                      return const OverviewShimmer();
-                    } else if (state is WeatherLoaded) {
-                      final weather = state.result;
+    final imageHeight = 380.0.sp;
 
-                      return CityOverview(
-                        condition: weather.description,
-                        temp: weather.temperature.toString(),
-                        location: city!,
-                      );
-                    } else if (state is WeatherError) {
-                      return ErrorCard(errorMessage: state.message);
-                    } else {
-                      return Text(
-                        "Something went wrong",
-                        textAlign: TextAlign.center,
-                        style: AppTextTheme.textTheme.bodyLarge,
-                      );
-                    }
-                  },
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: image!,
+                  width: double.infinity,
+                  height: imageHeight,
+                  fit: BoxFit.cover,
+                  fadeInDuration: const Duration(milliseconds: 0),
                 ),
-                const SizedBox(height: 18),
-                BlocBuilder<ForecastCubit, ForecastState>(
-                  builder: (context, state) {
-                    if (state is ForecastLoading) {
-                      return const DailyShimmer();
-                    } else if (state is ForecastLoaded) {
-                      return DailyForecast(forecast: state.result);
-                    } else if (state is ForecastError) {
-                      return ErrorCard(errorMessage: state.message);
-                    } else {
-                      return Text(
-                        "Something went wrong",
-                        textAlign: TextAlign.center,
-                        style: AppTextTheme.textTheme.bodyLarge,
-                      );
-                    }
-                  },
+                Container(
+                  width: double.infinity,
+                  color: AppColors.black.withOpacity(0.65),
+                  height: imageHeight,
+                ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: BlocBuilder<WeatherCubit, WeatherStates>(
+                      builder: (context, state) {
+                        if (state is WeatherLoading) {
+                          return const OverviewLoading();
+                        } else if (state is WeatherLoaded) {
+                          final weather = state.result;
+
+                          return CityOverview(
+                            condition: weather.description,
+                            temperature: weather.temperature.toString(),
+                            location: city!,
+                          );
+                        } else if (state is WeatherError) {
+                          return ErrorCard(errorMessage: state.message);
+                        } else {
+                          return Text(
+                            "Something went wrong",
+                            textAlign: TextAlign.center,
+                            style: AppTextTheme.textTheme.bodyLarge,
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 30),
+            BlocBuilder<ForecastCubit, ForecastState>(
+              builder: (context, state) {
+                if (state is ForecastLoading) {
+                  return const DailyShimmer();
+                } else if (state is ForecastLoaded) {
+                  return DailyForecast(forecast: state.result);
+                } else if (state is ForecastError) {
+                  return ErrorCard(errorMessage: state.message);
+                } else {
+                  return Text(
+                    "Something went wrong",
+                    textAlign: TextAlign.center,
+                    style: AppTextTheme.textTheme.bodyLarge,
+                  );
+                }
+              },
+            ),
+            const SizedBox(height: 22),
+            Text(
+              "Forecast for $city",
+              style: AppTextTheme.textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: AppColors.darkGray,
+              ),
+            ),
+            const SizedBox(height: 32),
+          ],
+        ),
       ),
     );
   }

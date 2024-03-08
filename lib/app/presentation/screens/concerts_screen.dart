@@ -3,6 +3,7 @@ import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/city_entity.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/city_card.dart';
 
 import '../../core/routes/routes.dart';
@@ -37,11 +38,11 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     super.dispose();
   }
 
-  Future<void> _getCoordinates(String city) async {
+  Future<void> _getCoordinates(CityEntity city) async {
     loadingStates[city]?.value = true;
 
     if (await MiscHelper.hasInternetConnection() == true) {
-      final coordinates = await LocationHelper.cityCoordinates(city);
+      final coordinates = await LocationHelper.cityCoordinates(city.name);
       _goToConcertInfo(coordinates, city);
     } else {
       _goToConcertInfo({}, city);
@@ -52,14 +53,15 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
 
   void _goToConcertInfo(
     Map<String, double> coordinates,
-    String city,
+    CityEntity city,
   ) {
     Navigator.pushNamed(
       context,
       Routes.concertInfo,
       arguments: {
         'coordinates': coordinates,
-        'city': city,
+        'city': city.name,
+        'image': city.image,
       },
     );
   }
@@ -115,7 +117,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                       note: loading
                           ? "Gathering coordinates"
                           : "Click for more info",
-                      onPressed: () => _getCoordinates(city.name),
+                      onPressed: () => _getCoordinates(city),
                     );
                   },
                 ),

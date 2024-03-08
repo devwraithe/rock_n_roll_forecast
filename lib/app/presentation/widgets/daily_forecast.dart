@@ -33,22 +33,19 @@ class DailyForecast extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.black.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "5 - DAY FORECAST",
-            style: textTheme.labelMedium?.copyWith(
-              color: Colors.grey,
+            "5-DAYS FORECAST",
+            style: textTheme.bodyMedium?.copyWith(
+              color: AppColors.black,
               letterSpacing: 1.2,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
           Column(
             children: groupedForecast.entries.map((entry) {
               final dayOfWeek = entry.key;
@@ -63,26 +60,84 @@ class DailyForecast extends StatelessWidget {
 
               final icon = getCustomIcon(forecastList.first.dailyIcon);
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   children: [
                     Expanded(
-                      child: Text(
-                        dayOfWeek,
-                        style: AppTextTheme.textTheme.bodyLarge,
+                      flex: 3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: dayOfWeek ==
+                                  DateFormat('EEEE').format(DateTime.now())
+                              ? AppColors.darkGray
+                              : AppColors.lightGray,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        child: Text(
+                          // Check if it's today, display "Today", otherwise display the day of the week
+                          dayOfWeek == DateFormat('EEEE').format(DateTime.now())
+                              ? 'Today'
+                              : dayOfWeek,
+                          textAlign: TextAlign.center,
+                          style: textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: dayOfWeek ==
+                                      DateFormat('EEEE').format(DateTime.now())
+                                  ? AppColors.white
+                                  : AppColors.black),
+                        ),
                       ),
                     ),
+                    const SizedBox(width: 16),
                     Image.asset(
                       icon,
                       filterQuality: FilterQuality.high,
                       width: 36,
                       height: 36,
+                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(width: 12),
-                    Text(
-                      '$minTemp${Constants.degree} - $maxTemp${Constants.degree}',
-                      style: AppTextTheme.textTheme.bodyLarge,
+                    const SizedBox(width: 16),
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        children: [
+                          Text(
+                            '$minTemp${Constants.degree}',
+                            style: AppTextTheme.textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    _getColorForTemp(minTemp),
+                                    _getColorForTemp(maxTemp),
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                              ),
+                              height: 8,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            '$maxTemp${Constants.degree}',
+                            style: AppTextTheme.textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -92,5 +147,17 @@ class DailyForecast extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color _getColorForTemp(int temp) {
+    if (temp < 10) {
+      return Colors.blue;
+    } else if (temp < 20) {
+      return Colors.green;
+    } else if (temp < 30) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
   }
 }

@@ -4,6 +4,9 @@ import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_help
 @immutable
 class AppTextTheme {
   static TextTheme textTheme = TextTheme(
+    displayLarge: TextStyle(
+      fontSize: Responsive.displayLarge,
+    ),
     headlineLarge: TextStyle(
       fontSize: Responsive.headlineLarge,
       fontWeight: FontWeight.w700,

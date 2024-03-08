@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_helper.dart';
 
 import '../../core/theme/text_theme.dart';
@@ -9,40 +10,53 @@ class CityOverview extends StatelessWidget {
     super.key,
     required this.location,
     required this.condition,
-    required this.temp,
+    required this.temperature,
   });
 
-  final String condition, temp, location;
+  final String condition, temperature, location;
 
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
 
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            location,
-            style: textTheme.headlineMedium,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const SizedBox(height: 12),
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Align(
+            alignment: Alignment.centerLeft,
+            child: Icon(
+              Icons.arrow_back,
+              color: AppColors.white,
+            ),
           ),
-          const SizedBox(height: 12),
-          Text(
-            "$temp${Constants.degree}",
-            style: Theme.of(context).textTheme.displayLarge,
+        ),
+        const SizedBox(height: 60),
+        Text(
+          location,
+          style: textTheme.headlineMedium?.copyWith(
+            color: AppColors.white,
           ),
-          const SizedBox(height: 4),
-          Text(
-            TextHelper.capitalizeLetter(condition),
-            style: textTheme.bodyLarge,
+        ),
+        const SizedBox(height: 12),
+        Text(
+          "$temperature${Constants.degree}",
+          style: textTheme.displayLarge?.copyWith(
+            color: AppColors.white,
           ),
-          const SizedBox(height: 4),
-          // Text(
-          //   currentDate(),
-          //   style: textTheme.bodyMedium,
-          // ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          TextHelper.capitalizeLetter(condition),
+          style: textTheme.bodyLarge?.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 4),
+      ],
     );
   }
 }

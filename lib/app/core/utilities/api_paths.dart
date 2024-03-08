@@ -15,7 +15,7 @@ class ApiUrls {
   }
 
   static String Forecast(String lat, String lon) {
-    final url = "$baseUrl/forecast?lat=$lat&lon=$lon&$units&cnt=40&$apiKey";
+    final url = "$baseUrl/forecast?lat=$lat&lon=$lon&$units&cnt=38&$apiKey";
     return url;
   }
 }
