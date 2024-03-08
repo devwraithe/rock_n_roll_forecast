@@ -6,6 +6,7 @@ import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.d
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 import '../../core/utilities/custom_icon.dart';
+import '../../core/utilities/helpers/widget_helper.dart';
 
 class DailyForecast extends StatelessWidget {
   const DailyForecast({
@@ -37,14 +38,7 @@ class DailyForecast extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "5-DAYS FORECAST",
-            style: textTheme.bodyMedium?.copyWith(
-              color: AppColors.black,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          WidgetHelper.forecastTitle(),
           const SizedBox(height: 14),
           Column(
             children: groupedForecast.entries.map((entry) {

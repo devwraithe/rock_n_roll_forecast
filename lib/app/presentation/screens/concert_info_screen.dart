@@ -100,7 +100,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
             BlocBuilder<ForecastCubit, ForecastState>(
               builder: (context, state) {
                 if (state is ForecastLoading) {
-                  return const DailyShimmer();
+                  return const ForecastLoader();
                 } else if (state is ForecastLoaded) {
                   return DailyForecast(forecast: state.result);
                 } else if (state is ForecastError) {

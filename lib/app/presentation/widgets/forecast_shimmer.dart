@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 
-class DailyShimmer extends StatelessWidget {
-  const DailyShimmer({super.key});
+class ForecastLoader extends StatelessWidget {
+  const ForecastLoader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,7 @@ class DailyShimmer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "5-DAYS FORECAST",
-            style: textTheme.bodyMedium?.copyWith(
-              color: AppColors.black,
-              letterSpacing: 1.2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          WidgetHelper.forecastTitle(),
           const SizedBox(height: 14),
           for (int i = 0; i <= 5; i++)
             Container(
