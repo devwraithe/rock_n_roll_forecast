@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
 
 class CityCard extends StatelessWidget {
   const CityCard({
@@ -22,7 +23,6 @@ class CityCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 120,
         decoration: BoxDecoration(
           color: AppColors.darkGray,
           borderRadius: BorderRadius.circular(12),
@@ -34,7 +34,7 @@ class CityCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
                 imageUrl: image,
-                height: 120,
+                height: double.infinity,
                 width: double.infinity,
                 fit: BoxFit.cover,
                 fadeInDuration: const Duration(milliseconds: 0),
@@ -42,14 +42,14 @@ class CityCard extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 120,
+              height: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.black.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(Responsive.isMobile ? 16 : 28),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

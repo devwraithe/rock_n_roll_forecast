@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/city_entity.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/city_card.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
-import '../../core/routes/routes.dart';
+import '../widgets/concerts_grid.dart';
 
 class ConcertsScreen extends StatefulWidget {
   const ConcertsScreen({Key? key}) : super(key: key);
@@ -38,36 +37,6 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     super.dispose();
   }
 
-  Future<void> _getCoordinates(CityEntity city) async {
-    loadingStates[city]?.value = true;
-
-    final hasInternet = await MiscHelper.hasInternetConnection();
-
-    if (hasInternet) {
-      final coordinates = await LocationHelper.cityCoordinates(city.name);
-      _goToConcertInfo(coordinates, city);
-    } else {
-      _goToConcertInfo({}, city);
-    }
-
-    loadingStates[city]?.value = false;
-  }
-
-  void _goToConcertInfo(
-    Map<String, double> coordinates,
-    CityEntity city,
-  ) {
-    Navigator.pushNamed(
-      context,
-      Routes.concertInfo,
-      arguments: {
-        'coordinates': coordinates,
-        'city': city.name,
-        'image': city.image,
-      },
-    );
-  }
-
   void _searchCities(String query) {
     setState(() {
       // Filter concert cities based on the search query
@@ -77,7 +46,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
 
       // Reset the loading states for each city
       for (final city in Constants.concertCities) {
-        loadingStates[city]?.value = false;
+        loadingStates[city.name]?.value = false;
       }
     });
   }
@@ -87,49 +56,49 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 18,
-            vertical: 16,
-          ),
+          padding: Responsive.isMobile
+              ? const EdgeInsets.symmetric(horizontal: 18, vertical: 16)
+              : const EdgeInsets.symmetric(horizontal: 42, vertical: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Upcoming Concerts",
-                style: AppTextTheme.textTheme.headlineLarge,
+                style: AppTextTheme.textTheme.headlineMedium,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: Responsive.isMobile ? 20 : 36),
               // Search field
-              TextField(
-                controller: searchController,
-                decoration: InputDecoration(
-                  label: Container(
-                    margin: const EdgeInsets.only(bottom: 2),
-                    child: Text(
-                      "Search concert cities...",
-                      style: AppTextTheme.textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey,
+              SizedBox(
+                width: Responsive.isMobile ? double.infinity : 0.6.sw,
+                child: TextField(
+                  controller: searchController,
+                  style: AppTextTheme.textTheme.bodyMedium?.copyWith(
+                    fontSize: Responsive.isMobile ? 14.sp : 8.sp,
+                  ),
+                  decoration: InputDecoration(
+                    label: Container(
+                      margin: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        "Search concert cities...",
+                        style: AppTextTheme.textTheme.bodyMedium?.copyWith(
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
+                  onChanged: _searchCities,
                 ),
-                onChanged: _searchCities,
               ),
-              const SizedBox(height: 26),
-              for (final city in filteredCities)
-                ValueListenableBuilder(
-                  valueListenable: loadingStates[city.name]!,
-                  builder: (context, loading, child) {
-                    return CityCard(
-                      city: city.name,
-                      image: city.image,
-                      note: loading
-                          ? "Gathering coordinates"
-                          : "Click for more info",
-                      onPressed: () => _getCoordinates(city),
-                    );
-                  },
-                ),
+              SizedBox(height: Responsive.isMobile ? 26 : 42),
+              Responsive.isMobile
+                  ? ConcertsList(
+                      cities: filteredCities,
+                      loadingStates: loadingStates,
+                    )
+                  : ConcertsGrid(
+                      cities: filteredCities,
+                      loadingStates: loadingStates,
+                    ),
             ],
           ),
         ),
