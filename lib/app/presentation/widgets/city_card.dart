@@ -65,7 +65,7 @@ class CityCard extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: Text(
                       note,
-                      style: textTheme.bodySmall?.copyWith(
+                      style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.white,
                         fontWeight: FontWeight.w500,
                       ),

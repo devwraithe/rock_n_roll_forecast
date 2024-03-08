@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
+import '../../core/utilities/helpers/text_sizing_helper.dart';
 
 class ForecastLoader extends StatelessWidget {
   const ForecastLoader({super.key});
@@ -13,7 +14,9 @@ class ForecastLoader extends StatelessWidget {
     final textTheme = AppTextTheme.textTheme;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 18),
+      padding: EdgeInsets.symmetric(
+        horizontal: Responsive.isMobile ? 18 : 36,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -21,19 +24,21 @@ class ForecastLoader extends StatelessWidget {
           const SizedBox(height: 14),
           for (int i = 0; i <= 5; i++)
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: EdgeInsets.symmetric(
+                vertical: Responsive.isMobile ? 10 : 20,
+              ),
               child: Row(
                 children: [
                   Expanded(
                     flex: 2,
                     child: shimmer(),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: Responsive.isMobile ? 16 : 32),
                   Expanded(
                     flex: 1,
                     child: shimmer(),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: Responsive.isMobile ? 16 : 32),
                   Expanded(
                     flex: 4,
                     child: shimmer(),
@@ -51,7 +56,7 @@ class ForecastLoader extends StatelessWidget {
       baseColor: AppColors.grey,
       highlightColor: AppColors.lightGray,
       child: Container(
-        height: 50,
+        height: Responsive.isMobile ? 50 : 80,
         decoration: BoxDecoration(
           color: AppColors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10),

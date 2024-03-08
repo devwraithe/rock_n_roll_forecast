@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
@@ -26,7 +27,7 @@ class ConcertInfoColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageHeight = 380.0.sp;
+    final imageHeight = Responsive.isMobile ? 380.0.sp : 200.0.sp;
 
     return SingleChildScrollView(
       child: Column(
@@ -47,29 +48,34 @@ class ConcertInfoColumn extends StatelessWidget {
               ),
               SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
-                  child: BlocBuilder<WeatherCubit, WeatherStates>(
-                    builder: (context, state) {
-                      if (state is WeatherLoading) {
-                        return const OverviewLoading();
-                      } else if (state is WeatherLoaded) {
-                        final weather = state.result;
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Responsive.isMobile ? 18 : 36,
+                    vertical: Responsive.isMobile ? 4 : 22,
+                  ),
+                  child: Center(
+                    child: BlocBuilder<WeatherCubit, WeatherStates>(
+                      builder: (context, state) {
+                        if (state is WeatherLoading) {
+                          return const OverviewLoading();
+                        } else if (state is WeatherLoaded) {
+                          final weather = state.result;
 
-                        return CityOverview(
-                          condition: weather.description,
-                          temperature: weather.temperature.toString(),
-                          location: city!,
-                        );
-                      } else if (state is WeatherError) {
-                        return ErrorCard(errorMessage: state.message);
-                      } else {
-                        return Text(
-                          "Something went wrong",
-                          textAlign: TextAlign.center,
-                          style: AppTextTheme.textTheme.bodyLarge,
-                        );
-                      }
-                    },
+                          return CityOverview(
+                            condition: weather.description,
+                            temperature: weather.temperature.toString(),
+                            location: city,
+                          );
+                        } else if (state is WeatherError) {
+                          return ErrorCard(errorMessage: state.message);
+                        } else {
+                          return Text(
+                            "Something went wrong",
+                            textAlign: TextAlign.center,
+                            style: AppTextTheme.textTheme.bodyLarge,
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -93,7 +99,7 @@ class ConcertInfoColumn extends StatelessWidget {
               }
             },
           ),
-          const SizedBox(height: 22),
+          SizedBox(height: Responsive.isMobile ? 22 : 42),
           Text(
             "Forecast for $city",
             style: AppTextTheme.textTheme.bodyLarge?.copyWith(

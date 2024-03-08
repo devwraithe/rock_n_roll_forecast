@@ -58,7 +58,7 @@ class ConcertInfoRow extends StatelessWidget {
                         return CityOverview(
                           condition: weather.description,
                           temperature: weather.temperature.toString(),
-                          location: city!,
+                          location: city,
                         );
                       } else if (state is WeatherError) {
                         return ErrorCard(errorMessage: state.message);

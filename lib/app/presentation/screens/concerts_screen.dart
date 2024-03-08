@@ -89,7 +89,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   onChanged: _searchCities,
                 ),
               ),
-              SizedBox(height: Responsive.isMobile ? 26 : 42),
+              SizedBox(height: Responsive.isMobile ? 26 : 48),
               Responsive.isMobile
                   ? ConcertsList(
                       cities: filteredCities,

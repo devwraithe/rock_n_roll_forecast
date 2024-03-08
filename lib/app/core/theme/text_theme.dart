@@ -27,9 +27,5 @@ class AppTextTheme {
       fontSize: Responsive.bodyMedium,
       fontWeight: FontWeight.w400,
     ),
-    bodySmall: TextStyle(
-      fontSize: Responsive.bodySmall,
-      fontWeight: FontWeight.w400,
-    ),
   );
 }

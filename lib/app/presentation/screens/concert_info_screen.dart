@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concert_info_column.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/concert_info_row.dart';
 
 import '../cubits/forecast/forecast_cubit.dart';
 
@@ -39,15 +37,10 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Responsive.isMobile
-          ? ConcertInfoColumn(
-              image: image!,
-              city: city!,
-            )
-          : ConcertInfoRow(
-              image: image!,
-              city: city!,
-            ),
+      body: ConcertInfoColumn(
+        image: image!,
+        city: city!,
+      ),
     );
   }
 }

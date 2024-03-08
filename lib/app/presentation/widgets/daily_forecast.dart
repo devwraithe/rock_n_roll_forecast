@@ -6,6 +6,7 @@ import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.d
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 import '../../core/utilities/custom_icon.dart';
+import '../../core/utilities/helpers/text_sizing_helper.dart';
 import '../../core/utilities/helpers/widget_helper.dart';
 
 class DailyForecast extends StatelessWidget {
@@ -34,7 +35,9 @@ class DailyForecast extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
+      padding: EdgeInsets.symmetric(
+        horizontal: Responsive.isMobile ? 18 : 36,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,7 +58,9 @@ class DailyForecast extends StatelessWidget {
               final icon = getCustomIcon(forecastList.first.dailyIcon);
 
               return Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
+                margin: EdgeInsets.symmetric(
+                  vertical: Responsive.isMobile ? 10 : 20,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -68,9 +73,9 @@ class DailyForecast extends StatelessWidget {
                               ? AppColors.darkGray
                               : AppColors.lightGray,
                         ),
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                           horizontal: 12,
-                          vertical: 12,
+                          vertical: Responsive.isMobile ? 12 : 22,
                         ),
                         child: Text(
                           // Check if it's today, display "Today", otherwise display the day of the week
@@ -87,15 +92,15 @@ class DailyForecast extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: Responsive.isMobile ? 16 : 32),
                     Image.asset(
                       icon,
                       filterQuality: FilterQuality.high,
-                      width: 36,
-                      height: 36,
+                      width: Responsive.isMobile ? 36 : 62,
+                      height: Responsive.isMobile ? 36 : 62,
                       fit: BoxFit.cover,
                     ),
-                    const SizedBox(width: 16),
+                    SizedBox(width: Responsive.isMobile ? 16 : 32),
                     Expanded(
                       flex: 4,
                       child: Row(
@@ -106,7 +111,7 @@ class DailyForecast extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: Responsive.isMobile ? 10 : 20),
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
@@ -120,10 +125,10 @@ class DailyForecast extends StatelessWidget {
                                   end: Alignment.centerRight,
                                 ),
                               ),
-                              height: 8,
+                              height: Responsive.isMobile ? 8 : 12,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: Responsive.isMobile ? 10 : 20),
                           Text(
                             '$maxTemp${Constants.degree}',
                             style: AppTextTheme.textTheme.bodyLarge?.copyWith(

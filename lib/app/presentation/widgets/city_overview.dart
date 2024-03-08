@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_helper.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
 
 import '../../core/theme/text_theme.dart';
 import '../../core/utilities/constants.dart';
@@ -25,11 +26,12 @@ class CityOverview extends StatelessWidget {
         const SizedBox(height: 12),
         GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: const Align(
+          child: Align(
             alignment: Alignment.centerLeft,
             child: Icon(
               Icons.arrow_back,
               color: AppColors.white,
+              size: Responsive.isMobile ? 24 : 30,
             ),
           ),
         ),
@@ -40,14 +42,14 @@ class CityOverview extends StatelessWidget {
             color: AppColors.white,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: Responsive.isMobile ? 12 : 8),
         Text(
           "$temperature${Constants.degree}",
           style: textTheme.displayLarge?.copyWith(
             color: AppColors.white,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: Responsive.isMobile ? 12 : 18),
         Text(
           TextHelper.capitalizeLetter(condition),
           style: textTheme.bodyLarge?.copyWith(
