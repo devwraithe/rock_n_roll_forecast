@@ -41,7 +41,9 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   Future<void> _getCoordinates(CityEntity city) async {
     loadingStates[city]?.value = true;
 
-    if (await MiscHelper.hasInternetConnection() == true) {
+    final hasInternet = await MiscHelper.hasInternetConnection();
+
+    if (hasInternet) {
       final coordinates = await LocationHelper.cityCoordinates(city.name);
       _goToConcertInfo(coordinates, city);
     } else {

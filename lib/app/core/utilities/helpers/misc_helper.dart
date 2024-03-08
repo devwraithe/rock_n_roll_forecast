@@ -8,10 +8,4 @@ class MiscHelper {
         await connectivity.checkConnectivity();
     return connectivityResult != ConnectivityResult.none;
   }
-
-  static void securePrint(String message) {
-    if (!kReleaseMode) {
-      debugPrint('[DEBUG] $message');
-    }
-  }
 }

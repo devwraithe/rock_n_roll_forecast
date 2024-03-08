@@ -20,7 +20,7 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   Future<WeatherModel> getWeather(String lat, String lon) async {
     try {
       final response = await client.get(
-        Uri.parse(ApiUrls.Weather(lat, lon)),
+        Uri.parse(ApiUrls.weather(lat, lon)),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json',
@@ -56,7 +56,7 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
   ) async {
     try {
       final response = await client.get(
-        Uri.parse(ApiUrls.Forecast(lat, lon)),
+        Uri.parse(ApiUrls.forecast(lat, lon)),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json',

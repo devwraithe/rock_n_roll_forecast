@@ -1,7 +1,7 @@
 import '../../domain/entities/city_entity.dart';
 
 class Constants {
-  // string constants
+  // Strings
   static String fontFamily = 'Satoshi';
   static String serverError = "Error retrieving weathers";
   static String offlineError = "This data is unavailable offline";
@@ -14,10 +14,11 @@ class Constants {
   static String compressor =
       "?q=80&w=2275&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-  // Double constants
+  // Doubles
   static double imageHeight = 240;
   static double inputRadius = 8;
 
+  // Lists
   static List concertCities = [
     CityEntity(
       name: "Silverstone, UK",

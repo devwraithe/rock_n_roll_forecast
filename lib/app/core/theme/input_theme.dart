@@ -13,7 +13,7 @@ class AppInputDecorationTheme {
         ? AppTextTheme.textTheme.bodyMedium?.copyWith(color: gray)
         : AppTextTheme.textTheme.bodyLarge?.copyWith(color: gray),
     contentPadding: Responsive.isMobile
-        ? const EdgeInsets.fromLTRB(20, 24, 20, 14)
+        ? const EdgeInsets.all(14)
         : const EdgeInsets.fromLTRB(30, 36, 30, 26),
     border: InputHelper.inputStyle(AppColors.grey),
     enabledBorder: InputHelper.inputStyle(AppColors.grey),
