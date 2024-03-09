@@ -7,7 +7,7 @@
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Requirements](#requirements)
-- [Configuring Environment Variables](configuring-environment-variables)
+- [Configuring Environment Variables](#configuring-environment-variables)
 - [Getting Started](#getting-started)
 
 ## Screenshots
