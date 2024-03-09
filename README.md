@@ -23,12 +23,6 @@
     <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444031-18a8105b-c5ee-4e80-8b27-6ff03c14faf9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145043Z&X-Amz-Expires=300&X-Amz-Signature=227919e08e272776c4377152a636e8699cd3048de030b36759a91a537c070303&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
 </div>
 
-### iPad Pro
-<div style="display: flex;">
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444044-12ed9b81-6b95-40c5-b578-1dd8fb5f3225.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145153Z&X-Amz-Expires=300&X-Amz-Signature=62cf6ef25750b345b894a37db2c42d159df64ebf80d7fde996913cdc69c06865&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444049-2da7eef2-cf9f-43d7-bb4f-93233d9c03fb.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145235Z&X-Amz-Expires=300&X-Amz-Signature=e66f843e116df4f1673a44b76d61e34b798048b6706d3d56ea15efbfdf866b0b&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
-</div>
-
 ## Features
 
 This application has the following features
