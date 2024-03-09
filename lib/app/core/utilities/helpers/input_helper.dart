@@ -9,7 +9,7 @@ class InputHelper {
         width: 1.2,
       ),
       borderRadius: BorderRadius.circular(
-        Responsive.isMobile ? 10 : 14,
+        Responsive.isMobile ? 10 : 12,
       ),
     );
   }
