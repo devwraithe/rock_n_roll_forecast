@@ -9,8 +9,8 @@ import 'package:rock_n_roll_forecast/app/presentation/screens/concerts_screen.da
 import 'core/theme/app_theme.dart';
 import 'core/utilities/di_service.dart';
 
-class CloudwalkAssessment extends StatelessWidget {
-  const CloudwalkAssessment({super.key});
+class RockAndRoll extends StatelessWidget {
+  const RockAndRoll({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CloudwalkAssessment extends StatelessWidget {
         builder: (context, child) {
           ScreenUtil.init(context);
           return MaterialApp(
-            title: 'Cloudwalk Assessment',
+            title: 'Rock And Roll',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.theme,
             themeMode: ThemeMode.light,

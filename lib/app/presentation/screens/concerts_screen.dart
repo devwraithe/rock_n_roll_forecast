@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
 import '../widgets/concerts_grid.dart';
@@ -53,10 +54,12 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = Responsive.isMobile;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: Responsive.isMobile
+          padding: isMobile
               ? const EdgeInsets.symmetric(horizontal: 18, vertical: 16)
               : const EdgeInsets.symmetric(horizontal: 42, vertical: 32),
           child: Column(
@@ -66,14 +69,13 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                 "Upcoming Concerts",
                 style: AppTextTheme.textTheme.headlineMedium,
               ),
-              SizedBox(height: Responsive.isMobile ? 20 : 36),
-              // Search field
+              SizedBox(height: isMobile ? 20 : 36),
               SizedBox(
-                width: Responsive.isMobile ? double.infinity : 0.6.sw,
+                width: isMobile ? double.infinity : 0.6.sw,
                 child: TextField(
                   controller: searchController,
                   style: AppTextTheme.textTheme.bodyMedium?.copyWith(
-                    fontSize: Responsive.isMobile ? 14.sp : 8.sp,
+                    fontSize: isMobile ? 14.sp : 8.sp,
                   ),
                   decoration: InputDecoration(
                     label: Container(
@@ -89,20 +91,28 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   onChanged: _searchCities,
                 ),
               ),
-              SizedBox(height: Responsive.isMobile ? 26 : 48),
-              Responsive.isMobile
-                  ? ConcertsList(
-                      cities: filteredCities,
-                      loadingStates: loadingStates,
-                    )
-                  : ConcertsGrid(
-                      cities: filteredCities,
-                      loadingStates: loadingStates,
-                    ),
+              SizedBox(height: isMobile ? 26 : 48),
+              filteredCities.isEmpty
+                  ? WidgetHelper.error("Concert city is not found!")
+                  : _showConcerts(isMobile),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _showConcerts(isMobile) {
+    if (isMobile) {
+      return ConcertsList(
+        cities: filteredCities,
+        loadingStates: loadingStates,
+      );
+    } else {
+      return ConcertsGrid(
+        cities: filteredCities,
+        loadingStates: loadingStates,
+      );
+    }
   }
 }

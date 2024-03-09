@@ -4,8 +4,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 import '../../core/utilities/helpers/text_sizing_helper.dart';
 
-class OverviewLoading extends StatelessWidget {
-  const OverviewLoading({super.key});
+class OverviewLoader extends StatelessWidget {
+  const OverviewLoader({super.key});
 
   @override
   Widget build(BuildContext context) {

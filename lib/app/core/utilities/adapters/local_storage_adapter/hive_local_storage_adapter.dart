@@ -11,41 +11,25 @@ class HiveLocalStorageAdapter implements LocalStorageAdapter {
   @override
   Future<void> put(String key, dynamic value) async {
     final box = await openBox(key);
-    try {
-      await box.put(key, value);
-    } finally {
-      await box.close();
-    }
+    await box.put(key, value);
   }
 
   @override
   Future<dynamic> get(String key) async {
     final box = await openBox(key);
-    try {
-      return await box.get(key);
-    } finally {
-      await box.close();
-    }
+    return await box.get(key);
   }
 
   @override
   Future<void> delete(String key) async {
     final box = await openBox(key);
-    try {
-      await box.delete(key);
-    } finally {
-      await box.close();
-    }
+    await box.delete(key);
   }
 
   @override
   Future<bool> containsKey(String key) async {
     final box = await openBox(key);
-    try {
-      return box.containsKey(key);
-    } finally {
-      await box.close();
-    }
+    return box.containsKey(key);
   }
 
   @override

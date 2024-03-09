@@ -9,7 +9,6 @@ import '../datasources/local_datasource/local_datasource.dart';
 
 class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
   final WeatherLocalDatasource localDatasource;
-
   WeatherLocalRepositoryImpl(this.localDatasource);
 
   @override
@@ -20,9 +19,9 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
     try {
       await localDatasource.cacheWeather(weather, city);
       return const Right(null);
-    } on HiveException catch (e) {
+    } on CacheException catch (e) {
       return Left(e.failure);
-    } on UnexpectedException catch (e) {
+    } on HiveException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
@@ -38,8 +37,6 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
       return Left(e.failure);
     } on HiveException catch (e) {
       return Left(e.failure);
-    } on UnexpectedException catch (e) {
-      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -48,7 +45,6 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
 
 class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
   final ForecastLocalDatasource localDatasource;
-
   ForecastLocalRepositoryImpl(this.localDatasource);
 
   @override
@@ -59,9 +55,9 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
     try {
       await localDatasource.cacheForecast(forecast, city);
       return const Right(null);
-    } on HiveException catch (e) {
+    } on CacheException catch (e) {
       return Left(e.failure);
-    } on UnexpectedException catch (e) {
+    } on HiveException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
@@ -70,15 +66,14 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
 
   @override
   Future<Either<Failure, List<ForecastEntity>>> offlineForecast(
-      String city) async {
+    String city,
+  ) async {
     try {
       final result = await localDatasource.offlineForecasts(city);
       return Right(result);
     } on CacheException catch (e) {
       return Left(e.failure);
     } on HiveException catch (e) {
-      return Left(e.failure);
-    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

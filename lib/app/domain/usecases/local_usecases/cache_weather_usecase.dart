@@ -20,10 +20,6 @@ class CacheWeatherUsecaseImpl implements CacheWeatherUsecase {
     WeatherEntity weather,
     String city,
   ) async {
-    final response = await _repo.cacheWeather(weather, city);
-    return response.fold(
-      (failure) => Left(failure),
-      (result) => Right(result),
-    );
+    return await _repo.cacheWeather(weather, city);
   }
 }

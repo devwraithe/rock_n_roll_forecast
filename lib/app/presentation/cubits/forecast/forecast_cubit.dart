@@ -36,7 +36,7 @@ class ForecastCubit extends Cubit<ForecastState> {
       } else {
         debugPrint("Internet connection is unavailable!");
         final result = await _offlineForecastUsecase.execute(city);
-        emitForecastState(result);
+        _emitForecastState(result);
       }
     } catch (error) {
       emit(ForecastError(error.toString()));
@@ -44,8 +44,10 @@ class ForecastCubit extends Cubit<ForecastState> {
   }
 
   void _cacheForecast(
-      Either<Failure, List<ForecastEntity>> result, String city) async {
-    emitForecastState(result);
+    Either<Failure, List<ForecastEntity>> result,
+    String city,
+  ) async {
+    _emitForecastState(result);
 
     result.fold(
       (failure) => ForecastError(failure.message), // Handle failure silently
@@ -53,7 +55,7 @@ class ForecastCubit extends Cubit<ForecastState> {
     );
   }
 
-  void emitForecastState(Either<Failure, List<ForecastEntity>> result) {
+  void _emitForecastState(Either<Failure, List<ForecastEntity>> result) {
     emit(
       result.fold(
         (failure) => ForecastError(failure.message),

@@ -14,10 +14,6 @@ class OfflineForecastUsecaseImpl implements OfflineForecastUsecase {
 
   @override
   Future<Either<Failure, List<ForecastEntity>>> execute(String city) async {
-    final response = await _repo.offlineForecast(city);
-    return response.fold(
-      (failure) => Left(failure),
-      (result) => Right(result),
-    );
+    return await _repo.offlineForecast(city);
   }
 }

@@ -39,7 +39,7 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
     } on TimeoutException {
       throw NetworkException(Failure(Constants.timeout));
     } catch (e) {
-      throw ServerException(Failure(e.toString()));
+      throw UnexpectedException(Failure(e.toString()));
     }
   }
 }
@@ -50,7 +50,7 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
   const ForecastRemoteDatasourceImpl(this.client);
 
   @override
-  Future<List<ForecastModel>> forecast(
+  Future<List<ForecastModel>> getForecast(
     String lat,
     String lon,
   ) async {
@@ -76,7 +76,7 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
     } on TimeoutException {
       throw NetworkException(Failure(Constants.timeout));
     } catch (e) {
-      throw ServerException(Failure(e.toString()));
+      throw UnexpectedException(Failure(e.toString()));
     }
   }
 }

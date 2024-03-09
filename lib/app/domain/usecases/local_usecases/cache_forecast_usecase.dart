@@ -13,7 +13,6 @@ abstract class CacheForecastUseCase {
 
 class CacheForecastUseCaseImpl implements CacheForecastUseCase {
   final ForecastLocalRepository _repo;
-
   CacheForecastUseCaseImpl(this._repo);
 
   @override
@@ -21,10 +20,6 @@ class CacheForecastUseCaseImpl implements CacheForecastUseCase {
     List<ForecastEntity> forecast,
     String city,
   ) async {
-    final response = await _repo.cacheForecast(forecast, city);
-    return response.fold(
-      (failure) => Left(failure),
-      (result) => Right(result),
-    );
+    return await _repo.cacheForecast(forecast, city);
   }
 }

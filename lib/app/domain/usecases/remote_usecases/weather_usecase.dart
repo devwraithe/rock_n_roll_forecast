@@ -20,10 +20,6 @@ class WeatherUsecaseImpl implements WeatherUsecase {
     String lat,
     String lon,
   ) async {
-    final result = await _repo.getWeather(lat, lon);
-    return result.fold(
-      (failure) => Left(failure),
-      (result) => Right(result),
-    );
+    return await _repo.getWeather(lat, lon);
   }
 }

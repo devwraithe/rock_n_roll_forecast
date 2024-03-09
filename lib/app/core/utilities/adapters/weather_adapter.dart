@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 import '../../../domain/entities/weather_entity.dart';
 
-class WeatherEntityAdapter extends TypeAdapter<WeatherEntity> {
+class WeatherAdapter extends TypeAdapter<WeatherEntity> {
   @override
   final int typeId = 0; // Unique identifier for the adapter
 

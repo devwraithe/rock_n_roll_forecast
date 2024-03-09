@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/routes/routes.dart';
+import '../../core/utilities/constants.dart';
 import '../../core/utilities/helpers/location_helper.dart';
 import '../../core/utilities/helpers/misc_helper.dart';
 import '../../domain/entities/city_entity.dart';
@@ -41,7 +42,9 @@ class _ConcertsGridState extends State<ConcertsGrid> {
               return CityCard(
                 city: city.name,
                 image: city.image,
-                note: loading ? "Gathering coordinates" : "Click for more info",
+                note: loading
+                    ? Constants.gatheringCoordinates
+                    : Constants.clickForMore,
                 onPressed: () => _getCoordinates(city),
               );
             },

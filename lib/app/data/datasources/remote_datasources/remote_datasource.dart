@@ -6,5 +6,5 @@ abstract class WeatherRemoteDatasource {
 }
 
 abstract class ForecastRemoteDatasource {
-  Future<List<ForecastModel>> forecast(String lat, String lon);
+  Future<List<ForecastModel>> getForecast(String lat, String lon);
 }

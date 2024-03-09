@@ -20,10 +20,6 @@ class ForecastUsecaseImpl implements ForecastUsecase {
     String lat,
     String lon,
   ) async {
-    final result = await _repo.getForecast(lat, lon);
-    return result.fold(
-      (failure) => Left(failure),
-      (result) => Right(result),
-    );
+    return await _repo.getForecast(lat, lon);
   }
 }

@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
-abstract class WeatherStates extends Equatable {
-  const WeatherStates();
+abstract class WeatherState extends Equatable {
+  const WeatherState();
   @override
   List<Object> get props => [];
 }
 
-class WeatherInitial extends WeatherStates {}
+class WeatherInitial extends WeatherState {}
 
-class WeatherLoading extends WeatherStates {}
+class WeatherLoading extends WeatherState {}
 
-class WeatherLoaded extends WeatherStates {
+class WeatherLoaded extends WeatherState {
   final WeatherEntity result;
   const WeatherLoaded(this.result);
 
@@ -19,7 +19,7 @@ class WeatherLoaded extends WeatherStates {
   List<Object> get props => [result];
 }
 
-class WeatherError extends WeatherStates {
+class WeatherError extends WeatherState {
   final String message;
   const WeatherError(this.message);
 

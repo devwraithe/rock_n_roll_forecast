@@ -41,7 +41,7 @@ class ForecastRemoteRepositoryImpl implements ForecastRemoteRepository {
     String lon,
   ) async {
     try {
-      final result = await remoteDatasource.forecast(lat, lon);
+      final result = await remoteDatasource.getForecast(lat, lon);
       return Right(result.map((f) => f.toEntity()).toList());
     } on ServerException catch (e) {
       return Left(e.failure);

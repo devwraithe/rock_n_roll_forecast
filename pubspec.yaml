@@ -28,6 +28,8 @@ dependencies:
   connectivity_plus: ^2.3.8
   hive_flutter: ^1.1.0
   path_provider: ^2.1.2
+  mockito: ^5.4.4
+  bloc_test: ^9.1.6
 
 dev_dependencies:
   flutter_test:

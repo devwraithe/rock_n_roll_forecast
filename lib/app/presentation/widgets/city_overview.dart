@@ -12,9 +12,11 @@ class CityOverview extends StatelessWidget {
     required this.location,
     required this.condition,
     required this.temperature,
+    required this.humidity,
+    required this.pressure,
   });
 
-  final String condition, temperature, location;
+  final String condition, temperature, location, humidity, pressure;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,14 @@ class CityOverview extends StatelessWidget {
         SizedBox(height: Responsive.isMobile ? 12 : 18),
         Text(
           TextHelper.capitalizeLetter(condition),
+          style: textTheme.bodyLarge?.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 2),
+        Text(
+          "H:$humidity${Constants.degree} P:$pressure${Constants.degree}",
           style: textTheme.bodyLarge?.copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.w500,

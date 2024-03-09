@@ -15,11 +15,11 @@ void main() async {
 
   // initialize hive and register adapters - for offline support
   await Hive.initFlutter();
-  Hive.registerAdapter(WeatherEntityAdapter());
-  Hive.registerAdapter(ForecastEntityAdapter());
+  Hive.registerAdapter(WeatherAdapter());
+  Hive.registerAdapter(ForecastAdapter());
 
   // initialize screen utils - for responsiveness
   await ScreenUtil.ensureScreenSize();
 
-  runApp(const CloudwalkAssessment());
+  runApp(const RockAndRoll());
 }

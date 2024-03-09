@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
-import '../../core/utilities/custom_icon.dart';
 import '../../core/utilities/helpers/text_sizing_helper.dart';
 import '../../core/utilities/helpers/widget_helper.dart';
+import '../../domain/entities/daily_forecast_entity.dart';
 
 class DailyForecast extends StatelessWidget {
   const DailyForecast({
@@ -21,13 +21,27 @@ class DailyForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
 
-    // Group weather forecast data by day
+    // Group weather forecast data by day, starting from tomorrow
     final Map<String, List<ForecastEntity>> groupedForecast = {};
 
+    final now = DateTime.now();
+    final tomorrow = now.add(const Duration(days: 1));
+
     for (final day in forecast) {
-      final formattedDay = DateFormat('EEEE').format(
-        DateTime.fromMillisecondsSinceEpoch(day.dailyTime * 1000),
+      final forecastDate = DateTime.fromMillisecondsSinceEpoch(
+        day.dailyTime * 1000,
       );
+      final formattedDay = DateFormat('EEEE').format(forecastDate);
+
+      // Skip today's forecast
+      if (forecastDate.day == now.day) continue;
+
+      // Use "tomorrow" instead of the actual day for the next day's forecast
+      if (forecastDate.day == tomorrow.day) {
+        groupedForecast['Tomorrow'] = [day];
+        continue;
+      }
+
       if (!groupedForecast.containsKey(formattedDay)) {
         groupedForecast[formattedDay] = [];
       }
@@ -55,7 +69,9 @@ class DailyForecast extends StatelessWidget {
                   .map((forecast) => forecast.dailyMaxTemp.round())
                   .reduce((max, temp) => temp > max ? temp : max);
 
-              final icon = getCustomIcon(forecastList.first.dailyIcon);
+              final icon = MiscHelper.getCustomIcon(
+                forecastList.first.dailyIcon,
+              );
 
               return Container(
                 margin: EdgeInsets.symmetric(
@@ -68,8 +84,7 @@ class DailyForecast extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: dayOfWeek ==
-                                  DateFormat('EEEE').format(DateTime.now())
+                          color: dayOfWeek == "Tomorrow"
                               ? AppColors.darkGray
                               : AppColors.lightGray,
                         ),
@@ -78,17 +93,14 @@ class DailyForecast extends StatelessWidget {
                           vertical: Responsive.isMobile ? 12 : 22,
                         ),
                         child: Text(
-                          // Check if it's today, display "Today", otherwise display the day of the week
-                          dayOfWeek == DateFormat('EEEE').format(DateTime.now())
-                              ? 'Today'
-                              : dayOfWeek,
+                          dayOfWeek,
                           textAlign: TextAlign.center,
                           style: textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: dayOfWeek ==
-                                      DateFormat('EEEE').format(DateTime.now())
-                                  ? AppColors.white
-                                  : AppColors.black),
+                            fontWeight: FontWeight.w500,
+                            color: dayOfWeek == "Tomorrow"
+                                ? AppColors.white
+                                : AppColors.darkGray,
+                          ),
                         ),
                       ),
                     ),
@@ -118,8 +130,8 @@ class DailyForecast extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(100),
                                 gradient: LinearGradient(
                                   colors: [
-                                    _getColorForTemp(minTemp),
-                                    _getColorForTemp(maxTemp),
+                                    MiscHelper.getColorForTemp(minTemp),
+                                    MiscHelper.getColorForTemp(maxTemp),
                                   ],
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
@@ -146,17 +158,5 @@ class DailyForecast extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Color _getColorForTemp(int temp) {
-    if (temp < 10) {
-      return Colors.blue;
-    } else if (temp < 20) {
-      return Colors.green;
-    } else if (temp < 30) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
   }
 }

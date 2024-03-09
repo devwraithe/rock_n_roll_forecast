@@ -4,7 +4,6 @@ import 'connectivity_adapter.dart';
 
 class ConnectivityPlusAdapter implements ConnectivityAdapter {
   final Connectivity _connectivity;
-
   ConnectivityPlusAdapter(this._connectivity);
 
   @override

@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 import '../../../domain/entities/daily_forecast_entity.dart';
 
-class ForecastEntityAdapter extends TypeAdapter<ForecastEntity> {
+class ForecastAdapter extends TypeAdapter<ForecastEntity> {
   @override
   final int typeId = 1; // Unique identifier for the adapter
 
