@@ -12,23 +12,22 @@
 
 ## Screenshots
 ### Android
-| Cities Screen | Details Screen |
-| -------------------- | -------------------- |
-| ![rr_android](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/a7b3e934-7f71-40ec-8a04-c242e203af65) | 
-![rr_android-2](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/c0dd898e-47dd-4ca1-b84c-984089a22b4a) 
+<div style="display: flex;">
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311443864-a7b3e934-7f71-40ec-8a04-c242e203af65.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144324Z&X-Amz-Expires=300&X-Amz-Signature=48fdde9054b0376ea4692af95dfa9fc55d8ed9c71f4d329b85b4897055075820&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311443873-c0dd898e-47dd-4ca1-b84c-984089a22b4a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144438Z&X-Amz-Expires=300&X-Amz-Signature=d1d5fc0227a9214d600a3d5c983e4b20a24dfafcff279c32ca6bbbf47cb49c7c&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
+</div>
 
 ### iOS
-| Concerts Cities List | Concert City Info |
-| -------------------- | -------------------- |
-| ![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 29](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/74b3bbd3-0c56-4b50-ba3f-4d235edfeb93)|
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 51](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/18a8105b-c5ee-4e80-8b27-6ff03c14faf9)|
+<div style="display: flex;">
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444024-74b3bbd3-0c56-4b50-ba3f-4d235edfeb93.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144659Z&X-Amz-Expires=300&X-Amz-Signature=428fe6b0b810a340bd7aee6f18f6b336404e464bfc23fa55bbdfa96d31fd2d04&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444031-18a8105b-c5ee-4e80-8b27-6ff03c14faf9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145043Z&X-Amz-Expires=300&X-Amz-Signature=227919e08e272776c4377152a636e8699cd3048de030b36759a91a537c070303&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
+</div>
 
 ### iPad Pro
-| Concerts Cities List | Concert City Info |
-| -------------------- | -------------------- |
-| ![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 02](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/12ed9b81-6b95-40c5-b578-1dd8fb5f3225)|
-![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 27](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/2da7eef2-cf9f-43d7-bb4f-93233d9c03fb)|
-
+<div style="display: flex;">
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444044-12ed9b81-6b95-40c5-b578-1dd8fb5f3225.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145153Z&X-Amz-Expires=300&X-Amz-Signature=62cf6ef25750b345b894a37db2c42d159df64ebf80d7fde996913cdc69c06865&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444049-2da7eef2-cf9f-43d7-bb4f-93233d9c03fb.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145235Z&X-Amz-Expires=300&X-Amz-Signature=e66f843e116df4f1673a44b76d61e34b798048b6706d3d56ea15efbfdf866b0b&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
+</div>
 
 ## Features
 
