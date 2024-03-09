@@ -12,16 +12,22 @@
 
 ## Screenshots
 ### Android
-![rr_android](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/a7b3e934-7f71-40ec-8a04-c242e203af65)
-![rr_android-2](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/c0dd898e-47dd-4ca1-b84c-984089a22b4a)
+| Cities Screen | Details Screen |
+| -------------------- | -------------------- |
+| ![rr_android](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/a7b3e934-7f71-40ec-8a04-c242e203af65) | 
+![rr_android-2](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/c0dd898e-47dd-4ca1-b84c-984089a22b4a) 
 
 ### iOS
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 29](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/74b3bbd3-0c56-4b50-ba3f-4d235edfeb93)
-![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 51](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/18a8105b-c5ee-4e80-8b27-6ff03c14faf9)
+| Concerts Cities List | Concert City Info |
+| -------------------- | -------------------- |
+| ![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 29](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/74b3bbd3-0c56-4b50-ba3f-4d235edfeb93)|
+![Simulator Screenshot - iPhone 15 Pro - 2024-03-09 at 15 17 51](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/18a8105b-c5ee-4e80-8b27-6ff03c14faf9)|
 
 ### iPad Pro
-![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 02](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/12ed9b81-6b95-40c5-b578-1dd8fb5f3225)
-![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 27](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/2da7eef2-cf9f-43d7-bb4f-93233d9c03fb)
+| Concerts Cities List | Concert City Info |
+| -------------------- | -------------------- |
+| ![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 02](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/12ed9b81-6b95-40c5-b578-1dd8fb5f3225)|
+![Simulator Screenshot - iPad Pro (12 9-inch) (6th generation) - 2024-03-09 at 15 23 27](https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/2da7eef2-cf9f-43d7-bb4f-93233d9c03fb)|
 
 
 ## Features
