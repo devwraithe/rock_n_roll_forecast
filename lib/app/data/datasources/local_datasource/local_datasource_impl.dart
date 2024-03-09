@@ -85,9 +85,6 @@ class ForecastLocalDatasourceImpl implements ForecastLocalDatasource {
       localStorage.put(city, forecasts);
 
       debugPrint("Forecasts stored in offline cache for $city!");
-      for (final forecast in forecasts) {
-        debugPrint("Forecast - $forecast");
-      }
     } on HiveError catch (e) {
       // Handle Hive-specific errors
       debugPrint("Hive error occurred: $e");
