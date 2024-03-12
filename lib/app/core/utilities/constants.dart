@@ -5,7 +5,7 @@ class Constants {
   static String fontFamily = 'Satoshi';
   static String serverError = "Error retrieving weathers";
   static String gatheringCoordinates = "Gathering coordinates";
-  static String clickForMore = "Click for more info";
+  static String clickForMore = "Tap for more";
   static String offlineError = "This data is unavailable offline";
   static String invalidError = "Invalid data type in Hive box";
   static String socketError = "No Internet Connection";

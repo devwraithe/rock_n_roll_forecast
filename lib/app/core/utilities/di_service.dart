@@ -21,7 +21,7 @@ import '../../domain/usecases/local_usecases/cache_weather_usecase.dart';
 import '../../domain/usecases/local_usecases/offline_forecast_usecase.dart';
 import '../../domain/usecases/local_usecases/offline_weather_usecase.dart';
 import '../../presentation/cubits/forecast/forecast_cubit.dart';
-import 'adapters/local_storage_adapter/hive_local_storage_adapter.dart';
+import 'adapters/local_storage_adapter/local_storage_adapter_impl.dart';
 
 final sl = GetIt.instance; // the service locator(sl)
 

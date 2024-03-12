@@ -7,7 +7,7 @@ import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cub
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
-import '../../core/utilities/helpers/text_sizing_helper.dart';
+import '../../core/utilities/helpers/responsive_helper.dart';
 import '../../core/utilities/helpers/widget_helper.dart';
 import '../cubits/forecast/forecast_cubit.dart';
 import '../cubits/forecast/forecast_state.dart';

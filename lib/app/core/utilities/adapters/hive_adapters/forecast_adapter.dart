@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../../../domain/entities/daily_forecast_entity.dart';
+import '../../../../domain/entities/daily_forecast_entity.dart';
 
 class ForecastAdapter extends TypeAdapter<ForecastEntity> {
   @override

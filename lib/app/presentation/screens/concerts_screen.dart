@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helper.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
@@ -10,7 +10,6 @@ import '../widgets/concerts_grid.dart';
 
 class ConcertsScreen extends StatefulWidget {
   const ConcertsScreen({Key? key}) : super(key: key);
-
   @override
   State<ConcertsScreen> createState() => _ConcertsScreenState();
 }
@@ -91,7 +90,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   onChanged: _searchCities,
                 ),
               ),
-              SizedBox(height: isMobile ? 26 : 48),
+              SizedBox(height: isMobile ? 24 : 48),
               filteredCities.isEmpty
                   ? WidgetHelper.error("Concert city is not found!")
                   : _showConcerts(isMobile),

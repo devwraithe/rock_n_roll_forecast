@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../../../domain/entities/weather_entity.dart';
+import '../../../../domain/entities/weather_entity.dart';
 
 class WeatherAdapter extends TypeAdapter<WeatherEntity> {
   @override

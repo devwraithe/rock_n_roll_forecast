@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/input_helper.dart';
 
-import '../utilities/helpers/text_sizing_helper.dart';
+import '../utilities/helpers/responsive_helper.dart';
 import 'app_colors.dart';
 
 class AppInputDecorationTheme {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helper.dart';
 
 class InputHelper {
   static inputStyle(Color color) {

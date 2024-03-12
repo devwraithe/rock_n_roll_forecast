@@ -5,7 +5,7 @@ import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
-import '../../core/utilities/helpers/text_sizing_helper.dart';
+import '../../core/utilities/helpers/responsive_helper.dart';
 import '../../core/utilities/helpers/widget_helper.dart';
 import '../../domain/entities/daily_forecast_entity.dart';
 

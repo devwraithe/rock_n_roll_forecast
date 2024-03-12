@@ -51,7 +51,6 @@ class _ConcertsListState extends State<ConcertsList> {
 
   Future<void> _getCoordinates(CityEntity city) async {
     final hasInternet = await MiscHelper.hasInternetConnection();
-
     widget.loadingStates[city.name]?.value = true;
 
     if (hasInternet) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
-import '../../core/utilities/helpers/text_sizing_helper.dart';
+import '../../core/utilities/helpers/responsive_helper.dart';
 
 class OverviewLoader extends StatelessWidget {
   const OverviewLoader({super.key});
