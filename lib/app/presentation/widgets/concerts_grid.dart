@@ -4,17 +4,17 @@ import '../../core/routes/routes.dart';
 import '../../core/utilities/constants.dart';
 import '../../core/utilities/helpers/location_helper.dart';
 import '../../core/utilities/helpers/misc_helper.dart';
-import '../../domain/entities/city_entity.dart';
+import '../../domain/entities/location_entity.dart';
 import 'city_card.dart';
 
 class ConcertsGrid extends StatefulWidget {
   const ConcertsGrid({
     super.key,
-    required this.cities,
+    required this.locations,
     required this.loadingStates,
   });
 
-  final List cities;
+  final List locations;
   final Map<String, ValueNotifier<bool>> loadingStates;
 
   @override
@@ -32,20 +32,20 @@ class _ConcertsGridState extends State<ConcertsGrid> {
           mainAxisSpacing: 22,
         ),
         physics: const BouncingScrollPhysics(),
-        itemCount: widget.cities.length,
+        itemCount: widget.locations.length,
         itemBuilder: (context, index) {
-          final city = widget.cities[index];
+          final location = widget.locations[index];
 
           return ValueListenableBuilder(
-            valueListenable: widget.loadingStates[city.name]!,
+            valueListenable: widget.loadingStates[location.city]!,
             builder: (context, loading, child) {
               return CityCard(
-                city: city.name,
-                image: city.image,
+                city: location.city,
+                image: location.image,
                 note: loading
                     ? Constants.gatheringCoordinates
                     : Constants.clickForMore,
-                onPressed: () => _getCoordinates(city),
+                onPressed: () => _getCoordinates(location),
               );
             },
           );
@@ -54,29 +54,30 @@ class _ConcertsGridState extends State<ConcertsGrid> {
     );
   }
 
-  Future<void> _getCoordinates(CityEntity city) async {
+  Future<void> _getCoordinates(LocationEntity location) async {
     final hasInternet = await MiscHelper.hasInternetConnection();
 
-    widget.loadingStates[city.name]?.value = true;
+    widget.loadingStates[location.city]?.value = true;
 
     if (hasInternet) {
-      final coordinates = await LocationHelper.cityCoordinates(city.name);
-      _goToConcertInfo(coordinates, city);
+      final coordinates = await LocationHelper.cityCoordinates(location.city);
+      _goToConcertInfo(coordinates, location);
     } else {
-      _goToConcertInfo({}, city);
+      _goToConcertInfo({}, location);
     }
 
-    widget.loadingStates[city.name]?.value = false;
+    widget.loadingStates[location.city]?.value = false;
   }
 
-  void _goToConcertInfo(Map<String, double> coordinates, CityEntity city) {
+  void _goToConcertInfo(
+      Map<String, double> coordinates, LocationEntity location) {
     Navigator.pushNamed(
       context,
       Routes.concertInfo,
       arguments: {
         'coordinates': coordinates,
-        'city': city.name,
-        'image': city.image,
+        'city': location.city,
+        'image': location.city,
       },
     );
   }

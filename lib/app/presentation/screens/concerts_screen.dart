@@ -17,17 +17,17 @@ class ConcertsScreen extends StatefulWidget {
 class _ConcertsScreenState extends State<ConcertsScreen> {
   final Map<String, ValueNotifier<bool>> loadingStates = {};
   late TextEditingController searchController;
-  List filteredCities = [];
+  List filteredLocations = [];
 
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
-    filteredCities = Constants.concertCities;
+    filteredLocations = Constants.concertCities;
 
     // Initialize loading states for each city
-    for (final city in Constants.concertCities) {
-      loadingStates[city.name] = ValueNotifier<bool>(false);
+    for (final location in Constants.concertCities) {
+      loadingStates[location.city] = ValueNotifier<bool>(false);
     }
   }
 
@@ -40,13 +40,16 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   void _searchCities(String query) {
     setState(() {
       // Filter concert cities based on the search query
-      filteredCities = Constants.concertCities.where((city) {
-        return city.name.toLowerCase().contains(query.toLowerCase());
+      filteredLocations = Constants.concertCities.where((location) {
+        final searchQuery =
+            location.city.toLowerCase().contains(query.toLowerCase()) ||
+                location.country.toLowerCase().contains(query.toLowerCase());
+        return searchQuery;
       }).toList();
 
       // Reset the loading states for each city
-      for (final city in Constants.concertCities) {
-        loadingStates[city.name]?.value = false;
+      for (final location in Constants.concertCities) {
+        loadingStates[location.city]?.value = false;
       }
     });
   }
@@ -66,11 +69,11 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
             children: [
               Text(
                 "Concerts Cities",
-                style: AppTextTheme.textTheme.headlineSmall?.copyWith(
+                style: AppTextTheme.textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(height: isMobile ? 18 : 36),
+              SizedBox(height: isMobile ? 24 : 36),
               SizedBox(
                 width: isMobile ? double.infinity : 0.6.sw,
                 child: TextField(
@@ -92,8 +95,8 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   onChanged: _searchCities,
                 ),
               ),
-              SizedBox(height: isMobile ? 24 : 48),
-              filteredCities.isEmpty
+              SizedBox(height: isMobile ? 26 : 48),
+              filteredLocations.isEmpty
                   ? WidgetHelper.error("Concert city is not found!")
                   : _showConcerts(isMobile),
             ],
@@ -106,12 +109,12 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   Widget _showConcerts(isMobile) {
     if (isMobile) {
       return ConcertsList(
-        cities: filteredCities,
+        locations: filteredLocations,
         loadingStates: loadingStates,
       );
     } else {
       return ConcertsGrid(
-        cities: filteredCities,
+        locations: filteredLocations,
         loadingStates: loadingStates,
       );
     }

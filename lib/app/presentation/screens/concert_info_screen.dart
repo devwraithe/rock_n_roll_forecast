@@ -23,7 +23,7 @@ class ConcertInfoScreen extends StatefulWidget {
 }
 
 class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
-  String? city, image;
+  String? location, image;
 
   @override
   void didChangeDependencies() {
@@ -37,11 +37,10 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
     final latitude = result['coordinates']['latitude'].toString();
     final longitude = result['coordinates']['longitude'].toString();
 
-    city = result['city'];
-    image = result['image'];
+    location = result['location'];
 
-    context.read<WeatherCubit>().getWeather(latitude, longitude, city!);
-    context.read<ForecastCubit>().getForecast(latitude, longitude, city!);
+    context.read<WeatherCubit>().getWeather(latitude, longitude, location!);
+    context.read<ForecastCubit>().getForecast(latitude, longitude, location!);
   }
 
   @override
@@ -54,7 +53,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
           padding: EdgeInsets.all(isMobile ? 18 : 36),
           child: Column(
             children: [
-              ConcertTitle(city: city!),
+              ConcertTitle(city: location!),
               const SizedBox(height: 26),
               BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
@@ -67,7 +66,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                       icon: weather.iconCode,
                       condition: weather.description,
                       temperature: weather.temperature.toString(),
-                      location: city!,
+                      location: location!,
                       humidity: weather.humidity.toString(),
                       wind: weather.wind,
                       feelsLike: weather.feelsLike,
@@ -95,7 +94,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
               ),
               const SizedBox(height: 2),
               Text(
-                "Weather for $city",
+                "Weather for $location",
                 style: AppTextTheme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   color: AppColors.grey,

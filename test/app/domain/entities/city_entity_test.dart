@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/city_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/location_entity.dart';
 
 void main() {
   group('CityEntity', () {
