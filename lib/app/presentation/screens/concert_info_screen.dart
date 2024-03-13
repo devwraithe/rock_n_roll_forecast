@@ -11,10 +11,10 @@ import '../../core/utilities/helpers/widget_helper.dart';
 import '../cubits/forecast/forecast_cubit.dart';
 import '../cubits/forecast/forecast_state.dart';
 import '../cubits/weather/weather_state.dart';
-import '../widgets/city_overview_loader.dart';
-import '../widgets/forecast_loader.dart';
 import '../widgets/weather_forecast.dart';
+import '../widgets/weather_forecast_loader.dart';
 import '../widgets/weather_overview.dart';
+import '../widgets/weather_overview_loader.dart';
 
 class ConcertInfoScreen extends StatefulWidget {
   const ConcertInfoScreen({super.key});
@@ -59,7 +59,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
               BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
                   if (state is WeatherLoading) {
-                    return const OverviewLoader();
+                    return const WeatherOverviewLoader();
                   } else if (state is WeatherLoaded) {
                     final weather = state.result;
 
@@ -83,7 +83,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
               BlocBuilder<ForecastCubit, ForecastState>(
                 builder: (context, state) {
                   if (state is ForecastLoading) {
-                    return const ForecastLoader();
+                    return const WeatherForecastLoader();
                   } else if (state is ForecastLoaded) {
                     return WeatherForecast(forecast: state.result);
                   } else if (state is ForecastError) {
