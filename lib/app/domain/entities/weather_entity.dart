@@ -5,7 +5,7 @@ class WeatherEntity extends Equatable {
   final String main;
   final String description;
   final String iconCode;
-  final int temperature, pressure, humidity;
+  final int temperature, humidity;
 
   const WeatherEntity({
     required this.lon,
@@ -15,7 +15,6 @@ class WeatherEntity extends Equatable {
     required this.description,
     required this.iconCode,
     required this.temperature,
-    required this.pressure,
     required this.humidity,
     required this.feelsLike,
   });
@@ -29,7 +28,6 @@ class WeatherEntity extends Equatable {
         description,
         iconCode,
         temperature,
-        pressure,
         humidity,
         feelsLike,
       ];

@@ -11,7 +11,7 @@ void main() {
     expect(Constants.unknownError, equals('Something went wrong'));
     expect(Constants.lostConnection,
         equals('Please check your internet connection.'));
-    expect(Constants.timeout,
+    expect(Constants.connectionTimeout,
         equals('Request timed out. Please try again later.'));
     expect(Constants.degree, equals('\u{00B0}'));
     expect(Constants.unsplashUrl, equals('https://images.unsplash.com'));

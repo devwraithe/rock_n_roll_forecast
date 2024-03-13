@@ -5,7 +5,7 @@ import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
 import 'package:rock_n_roll_forecast/app/data/repositories/local_repository_impl.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';

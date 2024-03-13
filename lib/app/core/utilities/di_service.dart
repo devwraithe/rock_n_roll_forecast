@@ -35,38 +35,65 @@ void regSingleton<T extends Object>(T Function() factFunc) {
 
 void init() {
   // can have a separate methods as app scales
-  regSingleton(() => WeatherCubit(sl(), sl(), sl(), sl()));
-  regSingleton<WeatherUsecase>(() => WeatherUsecaseImpl(sl()));
-  regSingleton<CacheWeatherUsecase>(() => CacheWeatherUsecaseImpl(sl()));
-  regSingleton<OfflineWeatherUsecase>(() => OfflineWeatherUsecaseImpl(sl()));
+  regSingleton(
+    () => WeatherCubit(sl(), sl(), sl(), sl()),
+  );
+  regSingleton<WeatherUsecase>(
+    () => WeatherUsecaseImpl(sl()),
+  );
+  regSingleton<CacheWeatherUsecase>(
+    () => CacheWeatherUsecaseImpl(sl()),
+  );
+  regSingleton<OfflineWeatherUsecase>(
+    () => OfflineWeatherUsecaseImpl(sl()),
+  );
 
-  // can have a separate methods as app scales
-  regSingleton(() => ForecastCubit(sl(), sl(), sl(), sl()));
-  regSingleton<ForecastUsecase>(() => ForecastUsecaseImpl(sl()));
-  regSingleton<CacheForecastUseCase>(() => CacheForecastUseCaseImpl(sl()));
-  regSingleton<OfflineForecastUsecase>(() => OfflineForecastUsecaseImpl(sl()));
+  regSingleton(
+    () => ForecastCubit(sl(), sl(), sl(), sl()),
+  );
+  regSingleton<ForecastUsecase>(
+    () => ForecastUsecaseImpl(sl()),
+  );
+  regSingleton<CacheForecastUseCase>(
+    () => CacheForecastUseCaseImpl(sl()),
+  );
+  regSingleton<OfflineForecastUsecase>(
+    () => OfflineForecastUsecaseImpl(sl()),
+  );
 
   regSingleton<ConnectivityAdapter>(
     () => ConnectivityPlusAdapter(Connectivity()),
   );
-  // regSingleton(() => Connectivity());
 
-  regSingleton<WeatherLocalRepository>(() => WeatherLocalRepositoryImpl(sl()));
+  regSingleton<WeatherLocalRepository>(
+    () => WeatherLocalRepositoryImpl(sl()),
+  );
   regSingleton<ForecastLocalRepository>(
-      () => ForecastLocalRepositoryImpl(sl()));
+    () => ForecastLocalRepositoryImpl(sl()),
+  );
   regSingleton<ForecastRemoteRepository>(
-      () => ForecastRemoteRepositoryImpl(sl()));
+    () => ForecastRemoteRepositoryImpl(sl()),
+  );
   regSingleton<WeatherRemoteRepository>(
-      () => WeatherRemoteRepositoryImpl(sl()));
+    () => WeatherRemoteRepositoryImpl(sl()),
+  );
 
-  regSingleton<WeatherLocalDatasource>(() => WeatherLocalDatasourceImpl(sl()));
+  regSingleton<WeatherLocalDatasource>(
+    () => WeatherLocalDatasourceImpl(sl()),
+  );
   regSingleton<ForecastLocalDatasource>(
-      () => ForecastLocalDatasourceImpl(sl()));
+    () => ForecastLocalDatasourceImpl(sl()),
+  );
   regSingleton<WeatherRemoteDatasource>(
-      () => WeatherRemoteDatasourceImpl(sl()));
+    () => WeatherRemoteDatasourceImpl(sl()),
+  );
   regSingleton<ForecastRemoteDatasource>(
-      () => ForecastRemoteDatasourceImpl(sl()));
-
-  regSingleton<LocalStorageAdapter>(() => HiveLocalStorageAdapter());
-  regSingleton(() => http.Client());
+    () => ForecastRemoteDatasourceImpl(sl()),
+  );
+  regSingleton<LocalStorageAdapter>(
+    () => HiveLocalStorageAdapter(),
+  );
+  regSingleton(
+    () => http.Client(),
+  );
 }

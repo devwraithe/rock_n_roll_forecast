@@ -92,7 +92,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                   }
                 },
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 14),
               Text(
                 "Weather for $location",
                 style: AppTextTheme.textTheme.bodyMedium?.copyWith(

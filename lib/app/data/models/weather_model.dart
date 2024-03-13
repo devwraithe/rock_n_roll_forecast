@@ -5,7 +5,7 @@ import '../../domain/entities/weather_entity.dart';
 class WeatherModel extends Equatable {
   final num lon, lat, wind, feelsLike;
   final String main, description, iconCode;
-  final int temperature, pressure, humidity;
+  final int temperature, humidity;
 
   const WeatherModel({
     required this.lon,
@@ -16,7 +16,6 @@ class WeatherModel extends Equatable {
     required this.description,
     required this.iconCode,
     required this.temperature,
-    required this.pressure,
     required this.humidity,
   });
 
@@ -30,7 +29,6 @@ class WeatherModel extends Equatable {
       description: json['weather'][0]['description'],
       iconCode: json['weather'][0]['icon'],
       temperature: json['main']['temp'].round(),
-      pressure: json['main']['pressure'],
       humidity: json['main']['humidity'],
     );
   }
@@ -45,7 +43,6 @@ class WeatherModel extends Equatable {
       description: description,
       iconCode: iconCode,
       temperature: temperature,
-      pressure: pressure,
       humidity: humidity,
     );
   }
@@ -60,7 +57,6 @@ class WeatherModel extends Equatable {
         description,
         iconCode,
         temperature,
-        pressure,
         humidity,
       ];
 }

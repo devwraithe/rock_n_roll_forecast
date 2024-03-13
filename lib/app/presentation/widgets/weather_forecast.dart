@@ -6,7 +6,7 @@ import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/text_theme.dart';
 import '../../core/utilities/helpers/responsive_helper.dart';
-import '../../domain/entities/daily_forecast_entity.dart';
+import '../../domain/entities/forecast_entity.dart';
 
 class WeatherForecast extends StatelessWidget {
   const WeatherForecast({
@@ -91,9 +91,9 @@ class WeatherForecast extends StatelessWidget {
                         color: AppColors.grey,
                       ),
                     ),
-                    SizedBox(width: Responsive.isMobile ? 16 : 20),
+                    SizedBox(width: Responsive.isMobile ? 16 : 32),
                     _indicator(minTemp, maxTemp),
-                    SizedBox(width: Responsive.isMobile ? 16 : 20),
+                    SizedBox(width: Responsive.isMobile ? 16 : 32),
                     Text(
                       '$maxTemp${Constants.degree}',
                       style: AppTextTheme.textTheme.bodyLarge?.copyWith(

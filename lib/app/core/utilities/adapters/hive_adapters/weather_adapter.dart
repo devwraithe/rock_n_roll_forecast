@@ -14,7 +14,6 @@ class WeatherAdapter extends TypeAdapter<WeatherEntity> {
     final description = reader.read();
     final iconCode = reader.read();
     final temperature = reader.read();
-    final pressure = reader.read();
     final humidity = reader.read();
     final wind = reader.read();
     final feelsLike = reader.read();
@@ -26,7 +25,6 @@ class WeatherAdapter extends TypeAdapter<WeatherEntity> {
       description: description,
       iconCode: iconCode,
       temperature: temperature,
-      pressure: pressure,
       humidity: humidity,
       wind: wind,
       feelsLike: feelsLike,
@@ -41,7 +39,6 @@ class WeatherAdapter extends TypeAdapter<WeatherEntity> {
     writer.write(obj.description);
     writer.write(obj.iconCode);
     writer.write(obj.temperature);
-    writer.write(obj.pressure);
     writer.write(obj.humidity);
     writer.write(obj.wind);
     writer.write(obj.feelsLike);

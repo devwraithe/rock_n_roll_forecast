@@ -37,7 +37,7 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
     } on SocketException {
       throw NetworkException(Failure(Constants.lostConnection));
     } on TimeoutException {
-      throw NetworkException(Failure(Constants.timeout));
+      throw NetworkException(Failure(Constants.connectionTimeout));
     } catch (e) {
       throw UnexpectedException(Failure(e.toString()));
     }
@@ -74,7 +74,7 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
     } on SocketException {
       throw NetworkException(Failure(Constants.lostConnection));
     } on TimeoutException {
-      throw NetworkException(Failure(Constants.timeout));
+      throw NetworkException(Failure(Constants.connectionTimeout));
     } catch (e) {
       throw UnexpectedException(Failure(e.toString()));
     }

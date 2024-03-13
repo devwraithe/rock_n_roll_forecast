@@ -49,7 +49,7 @@ import 'package:rock_n_roll_forecast/app/data/repositories/local_repository_impl
     as _i32;
 import 'package:rock_n_roll_forecast/app/data/repositories/remote_repository_impl.dart'
     as _i34;
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart'
+import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart'
     as _i6;
 import 'package:rock_n_roll_forecast/app/domain/entities/location_entity.dart'
     as _i29;

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/daily_forecast_entity.dart';
+import '../../../domain/entities/forecast_entity.dart';
 
 abstract class ForecastState extends Equatable {
   const ForecastState();

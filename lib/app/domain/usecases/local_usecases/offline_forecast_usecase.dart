@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/utilities/errors/failure.dart';
-import '../../entities/daily_forecast_entity.dart';
+import '../../entities/forecast_entity.dart';
 import '../../repositories/local_repository.dart';
 
 abstract class OfflineForecastUsecase {

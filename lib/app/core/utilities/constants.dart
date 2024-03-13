@@ -5,14 +5,18 @@ class Constants {
   static String fontFamily = 'Satoshi';
   static String serverError = "Error retrieving weathers";
   static String gatheringCoordinates = "Gathering coordinates";
+  static String coordRetrieveError = "Error getting coordinates";
+  static String failedCoordinates = "Failed to get coordinates";
   static String clickForMore = "View";
   static String offlineError = "This data is unavailable offline";
-  static String invalidError = "Invalid data type in Hive box";
-  static String socketError = "No Internet Connection";
+  static String invalidError = "Invalid data type in cache";
   static String unknownError = "Something went wrong";
+  static String localUnknownError = "Something went wrong in local storage";
   static String lostConnection = "Please check your internet connection.";
-  static String timeout = "Request timed out. Please try again later.";
+  static String connectionTimeout = "Request timed out";
   static String degree = "\u{00B0}";
+  static String weathersBox = "weathers";
+  static String forecastsBox = "forecasts";
 
   // Doubles
   static double inputRadius = 8;
