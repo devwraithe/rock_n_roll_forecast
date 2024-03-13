@@ -16,27 +16,25 @@ class ConcertTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 18, 18, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(
-              Icons.arrow_back,
-              color: AppColors.white,
-              size: Responsive.isMobile ? 24 : 30,
-            ),
-            Text(
-              city,
-              style: textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(width: Responsive.isMobile ? 24 : 30),
-          ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Icon(
+            Icons.arrow_back,
+            color: AppColors.white,
+            size: Responsive.isMobile ? 24 : 30,
+          ),
         ),
-      ),
+        Text(
+          city,
+          style: textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(width: Responsive.isMobile ? 24 : 30),
+      ],
     );
   }
 }
