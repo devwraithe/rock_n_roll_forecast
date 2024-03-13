@@ -6,8 +6,6 @@ import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helpe
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
-import '../widgets/concerts_grid.dart';
-
 class ConcertsScreen extends StatefulWidget {
   const ConcertsScreen({Key? key}) : super(key: key);
   @override
@@ -63,9 +61,9 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
         child: Padding(
           padding: isMobile
               ? const EdgeInsets.symmetric(horizontal: 18, vertical: 16)
-              : const EdgeInsets.symmetric(horizontal: 42, vertical: 32),
+              : const EdgeInsets.symmetric(horizontal: 46, vertical: 38),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Concerts Cities",
@@ -73,7 +71,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(height: isMobile ? 24 : 36),
+              SizedBox(height: isMobile ? 24 : 34),
               SizedBox(
                 width: isMobile ? double.infinity : 0.6.sw,
                 child: TextField(
@@ -95,28 +93,17 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   onChanged: _searchCities,
                 ),
               ),
-              SizedBox(height: isMobile ? 26 : 48),
+              SizedBox(height: isMobile ? 26 : 46),
               filteredLocations.isEmpty
                   ? WidgetHelper.error("Concert city is not found!")
-                  : _showConcerts(isMobile),
+                  : ConcertsList(
+                      locations: filteredLocations,
+                      loadingStates: loadingStates,
+                    ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Widget _showConcerts(isMobile) {
-    if (isMobile) {
-      return ConcertsList(
-        locations: filteredLocations,
-        loadingStates: loadingStates,
-      );
-    } else {
-      return ConcertsGrid(
-        locations: filteredLocations,
-        loadingStates: loadingStates,
-      );
-    }
   }
 }

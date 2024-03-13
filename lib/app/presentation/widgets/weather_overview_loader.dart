@@ -28,7 +28,7 @@ class WeatherOverviewLoader extends StatelessWidget {
           baseColor: AppColors.grey,
           highlightColor: AppColors.lightGray,
           child: Container(
-            height: Responsive.isMobile ? 80 : 80,
+            height: Responsive.isMobile ? 80 : 120,
             decoration: BoxDecoration(
               color: AppColors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),

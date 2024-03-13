@@ -19,6 +19,7 @@ class WeatherForecast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
+    final isMobile = Responsive.isMobile;
 
     // Group weather forecast data by day, starting from tomorrow
     final Map<String, List<ForecastEntity>> groupedForecast = {};
@@ -66,12 +67,12 @@ class WeatherForecast extends StatelessWidget {
 
         return Container(
           margin: EdgeInsets.only(
-            bottom: Responsive.isMobile ? 32 : 20,
+            bottom: isMobile ? 32 : 56,
           ),
           child: Row(
             children: [
               Expanded(
-                flex: 3,
+                flex: isMobile ? 3 : 2,
                 child: Text(
                   dayOfWeek,
                   style: textTheme.bodyLarge?.copyWith(
@@ -102,7 +103,7 @@ class WeatherForecast extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: Responsive.isMobile ? 28 : 32),
+              SizedBox(width: Responsive.isMobile ? 28 : 48),
               Image.asset(
                 icon,
                 filterQuality: FilterQuality.high,

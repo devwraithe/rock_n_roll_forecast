@@ -15,7 +15,7 @@ class WeatherForecastLoader extends StatelessWidget {
         for (int i = 0; i <= 5; i++)
           Container(
             margin: EdgeInsets.only(
-              bottom: Responsive.isMobile ? 32 : 20,
+              bottom: Responsive.isMobile ? 32 : 56,
             ),
             child: Row(
               children: [
@@ -44,7 +44,7 @@ class WeatherForecastLoader extends StatelessWidget {
       baseColor: AppColors.grey,
       highlightColor: AppColors.lightGray,
       child: Container(
-        height: Responsive.isMobile ? 18 : 80,
+        height: Responsive.isMobile ? 18 : 22,
         decoration: BoxDecoration(
           color: AppColors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(10),

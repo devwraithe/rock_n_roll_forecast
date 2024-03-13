@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 
+import '../../core/utilities/helpers/responsive_helper.dart';
+
 class ConcertLocation extends StatelessWidget {
   const ConcertLocation({
     super.key,
@@ -17,9 +19,10 @@ class ConcertLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
+    final isMobile = Responsive.isMobile;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 38),
+      margin: EdgeInsets.only(bottom: isMobile ? 38 : 56),
       child: InkWell(
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,

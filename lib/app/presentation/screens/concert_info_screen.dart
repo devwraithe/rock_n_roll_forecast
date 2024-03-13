@@ -50,11 +50,11 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(isMobile ? 18 : 36),
+          padding: EdgeInsets.all(isMobile ? 18 : 56),
           child: Column(
             children: [
               ConcertTitle(city: location!),
-              const SizedBox(height: 26),
+              SizedBox(height: isMobile ? 26 : 46),
               BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
                   if (state is WeatherLoading) {
@@ -78,7 +78,7 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                   }
                 },
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: isMobile ? 32 : 48),
               BlocBuilder<ForecastCubit, ForecastState>(
                 builder: (context, state) {
                   if (state is ForecastLoading) {

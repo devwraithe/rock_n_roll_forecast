@@ -25,6 +25,7 @@ class WeatherOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = AppTextTheme.textTheme;
+    final isMobile = Responsive.isMobile;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +37,7 @@ class WeatherOverview extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(height: Responsive.isMobile ? 28 : 18),
+        SizedBox(height: Responsive.isMobile ? 28 : 48),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,11 +48,11 @@ class WeatherOverview extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(width: 4),
+            SizedBox(width: isMobile ? 4 : 10),
             Image.asset(
               MiscHelper.getCustomIcon(icon),
-              width: 30,
-              height: 30,
+              width: isMobile ? 30 : 48,
+              height: isMobile ? 30 : 48,
             ),
           ],
         ),
@@ -60,8 +61,8 @@ class WeatherOverview extends StatelessWidget {
             color: AppColors.darkGray10,
             borderRadius: BorderRadius.circular(14),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          margin: const EdgeInsets.only(top: 30),
+          padding: EdgeInsets.symmetric(vertical: isMobile ? 16 : 32),
+          margin: EdgeInsets.only(top: isMobile ? 30 : 50),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -89,12 +90,14 @@ class WeatherOverview extends StatelessWidget {
   }
 
   Column _weatherMetric(String icon, String key, String value) {
+    final isMobile = Responsive.isMobile;
+
     return Column(
       children: [
         Image.asset(
           "assets/icons/$icon.png",
-          width: 36,
-          height: 36,
+          width: isMobile ? 36 : 48,
+          height: isMobile ? 36 : 48,
         ),
         const SizedBox(height: 2),
         Text(
