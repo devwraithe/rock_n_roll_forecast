@@ -62,13 +62,15 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
               ? const EdgeInsets.symmetric(horizontal: 18, vertical: 16)
               : const EdgeInsets.symmetric(horizontal: 42, vertical: 32),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Upcoming Concerts",
-                style: AppTextTheme.textTheme.headlineMedium,
+                "Concerts Cities",
+                style: AppTextTheme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              SizedBox(height: isMobile ? 20 : 36),
+              SizedBox(height: isMobile ? 18 : 36),
               SizedBox(
                 width: isMobile ? double.infinity : 0.6.sw,
                 child: TextField(

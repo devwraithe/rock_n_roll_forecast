@@ -49,8 +49,8 @@ class CityCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.black.withOpacity(0.8),
-                    AppColors.black.withOpacity(0.1),
+                    AppColors.black.withOpacity(0.6),
+                    AppColors.black.withOpacity(0),
                   ],
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,

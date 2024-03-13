@@ -11,11 +11,11 @@ class AppInputDecorationTheme {
   static final inputDecoration = InputDecorationTheme(
     hintStyle: AppTextTheme.textTheme.bodyMedium?.copyWith(color: gray),
     contentPadding: Responsive.isMobile
-        ? const EdgeInsets.symmetric(horizontal: 18, vertical: 15)
+        ? const EdgeInsets.symmetric(horizontal: 18, vertical: 14)
         : const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
     border: InputHelper.inputStyle(AppColors.grey),
     enabledBorder: InputHelper.inputStyle(AppColors.grey),
-    focusedBorder: InputHelper.inputStyle(AppColors.black),
+    focusedBorder: InputHelper.inputStyle(AppColors.grey),
     floatingLabelBehavior: FloatingLabelBehavior.never,
     isDense: true,
   );

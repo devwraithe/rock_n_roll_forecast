@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/city_overview.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_overview.dart';
 
 void main() {
   group('CityOverview Tests', () {
