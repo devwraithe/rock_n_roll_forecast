@@ -23,6 +23,8 @@ class WeatherRemoteRepositoryImpl implements WeatherRemoteRepository {
       return Left(e.failure);
     } on NetworkException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -44,6 +46,8 @@ class ForecastRemoteRepositoryImpl implements ForecastRemoteRepository {
     } on ServerException catch (e) {
       return Left(e.failure);
     } on NetworkException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

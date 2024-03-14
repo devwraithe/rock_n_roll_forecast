@@ -17,7 +17,7 @@ void main() {
   const String city = 'Silverstone, UK';
   final weather = MockWeatherEntity();
 
-  test('should cache the weather info', () async {
+  test('Should cache the weather info', () async {
     // "On the fly" implementation of the Repository using the Mockito package.
     when(mockWeatherLocalRepository.cacheWeather(any, any)).thenAnswer(
       (_) async => const Right(null),

@@ -4,7 +4,20 @@ import 'package:rock_n_roll_forecast/app/presentation/screens/concert_info_scree
 
 import '../../presentation/screens/concerts_screen.dart';
 
-final routesBuilder = <String, WidgetBuilder>{
-  Routes.concerts: (context) => const ConcertsScreen(),
-  Routes.concertInfo: (context) => const ConcertInfoScreen(),
-};
+Route<dynamic> routesController(RouteSettings settings) {
+  switch (settings.name) {
+    case Routes.concerts:
+      return MaterialPageRoute(
+        builder: (context) => const ConcertsScreen(),
+      );
+    case Routes.concertInfo:
+      final arguments = settings.arguments as Map<String, dynamic>;
+      return MaterialPageRoute(
+        builder: (context) => ConcertInfoScreen(
+          arguments: arguments,
+        ),
+      );
+    default:
+      throw ('the specified route is unavailable!');
+  }
+}

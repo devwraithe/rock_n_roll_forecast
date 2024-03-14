@@ -3,7 +3,8 @@ import '../../domain/entities/location_entity.dart';
 class Constants {
   // Strings
   static String fontFamily = 'Satoshi';
-  static String serverError = "Error retrieving weathers";
+  static String weatherServerError = "Error retrieving weather";
+  static String forecastsServerError = "Error retrieving forecasts";
   static String gatheringCoordinates = "Gathering coordinates";
   static String coordRetrieveError = "Error getting coordinates";
   static String failedCoordinates = "Failed to get coordinates";

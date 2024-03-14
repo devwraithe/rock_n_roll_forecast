@@ -17,13 +17,19 @@ import '../widgets/weather_overview.dart';
 import '../widgets/weather_overview_loader.dart';
 
 class ConcertInfoScreen extends StatefulWidget {
-  const ConcertInfoScreen({super.key});
+  const ConcertInfoScreen({
+    super.key,
+    required this.arguments,
+  });
+
+  final Map<String, dynamic> arguments;
+
   @override
   State<ConcertInfoScreen> createState() => _ConcertInfoScreenState();
 }
 
 class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
-  String? location, image;
+  String? location;
 
   @override
   void didChangeDependencies() {
@@ -32,12 +38,11 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
   }
 
   void getWeatherData() {
-    final arguments = ModalRoute.of(context)?.settings.arguments;
-    final result = arguments as Map;
-    final latitude = result['coordinates']['latitude'].toString();
-    final longitude = result['coordinates']['longitude'].toString();
+    final arguments = widget.arguments;
+    final latitude = arguments['coordinates']['latitude'].toString();
+    final longitude = arguments['coordinates']['longitude'].toString();
 
-    location = result['location'];
+    location = arguments['location'];
 
     context.read<WeatherCubit>().getWeather(latitude, longitude, location!);
     context.read<ForecastCubit>().getForecast(latitude, longitude, location!);
@@ -66,7 +71,6 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
                       icon: weather.iconCode,
                       condition: weather.description,
                       temperature: weather.temperature.toString(),
-                      location: location!,
                       humidity: weather.humidity.toString(),
                       wind: weather.wind,
                       feelsLike: weather.feelsLike,

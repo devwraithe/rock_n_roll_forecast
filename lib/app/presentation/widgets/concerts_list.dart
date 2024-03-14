@@ -32,7 +32,8 @@ class _ConcertsListState extends State<ConcertsList> {
           final LocationEntity location = widget.locations[index];
 
           return ValueListenableBuilder(
-            valueListenable: widget.loadingStates[location.city]!,
+            valueListenable:
+                widget.loadingStates[location.city] ?? ValueNotifier(false),
             builder: (context, loading, child) {
               return ConcertLocation(
                 country: location.country,
@@ -40,7 +41,7 @@ class _ConcertsListState extends State<ConcertsList> {
                 note: loading
                     ? Constants.gatheringCoordinates
                     : Constants.clickForMore,
-                onPressed: () => _getCoordinates(location),
+                onPressed: () => getCoordinates(location),
               );
             },
           );
@@ -49,7 +50,7 @@ class _ConcertsListState extends State<ConcertsList> {
     );
   }
 
-  Future<void> _getCoordinates(LocationEntity location) async {
+  Future<void> getCoordinates(LocationEntity location) async {
     final hasInternet = await MiscHelper.hasInternetConnection();
     widget.loadingStates[location.city]?.value = true;
 

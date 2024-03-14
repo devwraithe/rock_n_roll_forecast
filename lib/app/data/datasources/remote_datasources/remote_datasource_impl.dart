@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource.dart';
 import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
@@ -17,7 +18,10 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   const WeatherRemoteDatasourceImpl(this.client);
 
   @override
-  Future<WeatherModel> getWeather(String lat, String lon) async {
+  Future<WeatherModel> getWeather(
+    String lat,
+    String lon,
+  ) async {
     try {
       final response = await client.get(
         Uri.parse(ApiUrls.weather(lat, lon)),
@@ -30,7 +34,8 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
       final data = json.decode(response.body);
 
       if (response.statusCode != 200) {
-        throw ServerException(Failure(Constants.serverError));
+        debugPrint(response.body.toString());
+        throw ServerException(Failure(Constants.weatherServerError));
       } else {
         return WeatherModel.fromJson(data);
       }
@@ -38,6 +43,8 @@ class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
       throw NetworkException(Failure(Constants.lostConnection));
     } on TimeoutException {
       throw NetworkException(Failure(Constants.connectionTimeout));
+    } on ServerException catch (_) {
+      rethrow;
     } catch (e) {
       throw UnexpectedException(Failure(e.toString()));
     }
@@ -66,7 +73,7 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
       final data = json.decode(response.body);
 
       if (response.statusCode != 200) {
-        throw ServerException(Failure(Constants.serverError));
+        throw ServerException(Failure(Constants.forecastsServerError));
       } else {
         final List forecasts = data['list'];
         return forecasts.map((f) => ForecastModel.fromJson(f)).toList();
@@ -75,6 +82,8 @@ class ForecastRemoteDatasourceImpl implements ForecastRemoteDatasource {
       throw NetworkException(Failure(Constants.lostConnection));
     } on TimeoutException {
       throw NetworkException(Failure(Constants.connectionTimeout));
+    } on ServerException catch (_) {
+      rethrow;
     } catch (e) {
       throw UnexpectedException(Failure(e.toString()));
     }

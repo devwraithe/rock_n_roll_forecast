@@ -5,7 +5,7 @@ void main() {
   group('Failure', () {
     test('props should contain the message', () {
       // Arrange
-      final failure = Failure('Test message');
+      const failure = Failure('Test message');
 
       // Act
       final props = failure.props;
@@ -16,7 +16,7 @@ void main() {
 
     test('props should not contain other messages', () {
       // Arrange
-      final failure = Failure('Test message');
+      const failure = Failure('Test message');
 
       // Act
       final props = failure.props;

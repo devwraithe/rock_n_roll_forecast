@@ -23,6 +23,8 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
       return Left(e.failure);
     } on HiveException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -36,6 +38,8 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
     } on CacheException catch (e) {
       return Left(e.failure);
     } on HiveException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
@@ -59,6 +63,8 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
       return Left(e.failure);
     } on HiveException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -74,6 +80,8 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
     } on CacheException catch (e) {
       return Left(e.failure);
     } on HiveException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

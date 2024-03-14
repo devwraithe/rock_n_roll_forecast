@@ -10,7 +10,6 @@ import '../../core/utilities/constants.dart';
 class WeatherOverview extends StatelessWidget {
   const WeatherOverview({
     super.key,
-    required this.location,
     required this.condition,
     required this.temperature,
     required this.humidity,
@@ -19,7 +18,7 @@ class WeatherOverview extends StatelessWidget {
     required this.feelsLike,
   });
 
-  final String condition, temperature, location, humidity, icon;
+  final String condition, temperature, humidity, icon;
   final num wind, feelsLike;
 
   @override

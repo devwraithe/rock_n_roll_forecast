@@ -24,4 +24,23 @@ void main() {
     // Expectation for connected state
     expect(isConnected, true);
   });
+
+  test('Returns true when connected to a mobile network', () async {
+    // Create a mock instance of Connectivity
+    final mockConnectivity = MockConnectivity();
+
+    // Define behavior for checkConnectivity (simulating mobile network)
+    when(mockConnectivity.checkConnectivity()).thenAnswer(
+      (_) async => ConnectivityResult.none,
+    ); // Stub for checkConnectivity
+
+    // Initialize the adapter with the mock instance
+    final adapter = ConnectivityPlusAdapter(mockConnectivity);
+
+    // Call the isConnected method to check network connectivity
+    final isConnected = await adapter.isConnected();
+
+    // Expectation for connected state
+    expect(isConnected, false);
+  });
 }

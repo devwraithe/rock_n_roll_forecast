@@ -19,7 +19,7 @@ void main() {
 
   final forecasts = MockWeatherEntity();
 
-  test('should return the weather info', () async {
+  test('Should return the weather info', () async {
     // "On the fly" implementation of the Repository using the Mockito package.
     when(mockWeatherRemoteRepository.getWeather(any, any)).thenAnswer(
       (_) async => Right(forecasts),

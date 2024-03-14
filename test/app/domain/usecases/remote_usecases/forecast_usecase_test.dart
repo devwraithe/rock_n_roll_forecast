@@ -27,7 +27,7 @@ void main() {
     ),
   ];
 
-  test('should return list of forecast entities', () async {
+  test('Should return list of forecast entities', () async {
     // "On the fly" implementation of the Repository using the Mockito package.
     when(mockForecastRemoteRepository.getForecast(any, any)).thenAnswer(
       (_) async => Right(forecasts),

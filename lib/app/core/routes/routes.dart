@@ -1,4 +1,4 @@
 class Routes {
-  static String concerts = '/concerts';
-  static String concertInfo = '/concert/info';
+  static const String concerts = '/concerts';
+  static const String concertInfo = '/concert/info';
 }

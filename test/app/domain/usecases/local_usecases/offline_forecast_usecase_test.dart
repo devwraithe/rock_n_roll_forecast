@@ -17,7 +17,7 @@ void main() {
   const String city = 'Silverstone, UK';
   final forecast = [MockForecastEntity()];
 
-  test('should return the cached forecast info', () async {
+  test('Should return the cached forecast info', () async {
     // "On the fly" implementation of the Repository using the Mockito package.
     when(mockForecastLocalRepository.offlineForecast(any)).thenAnswer(
       (_) async => Right(forecast),

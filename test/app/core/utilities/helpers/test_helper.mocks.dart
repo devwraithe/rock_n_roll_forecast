@@ -11,9 +11,9 @@ import 'package:connectivity_plus/connectivity_plus.dart' as _i46;
 import 'package:dartz/dartz.dart' as _i4;
 import 'package:flutter/cupertino.dart' as _i16;
 import 'package:flutter/foundation.dart' as _i17;
+import 'package:flutter/services.dart' as _i41;
 import 'package:flutter/src/services/binary_messenger.dart' as _i15;
 import 'package:flutter/src/services/message_codec.dart' as _i14;
-import 'package:flutter/src/services/platform_channel.dart' as _i41;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i20;
 import 'package:hive/hive.dart' as _i13;
 import 'package:hive/src/box/default_compaction_strategy.dart' as _i43;
@@ -985,6 +985,18 @@ class MockWeatherEntity extends _i1.Mock implements _i5.WeatherEntity {
       ) as num);
 
   @override
+  num get wind => (super.noSuchMethod(
+        Invocation.getter(#wind),
+        returnValue: 0,
+      ) as num);
+
+  @override
+  num get feelsLike => (super.noSuchMethod(
+        Invocation.getter(#feelsLike),
+        returnValue: 0,
+      ) as num);
+
+  @override
   String get main => (super.noSuchMethod(
         Invocation.getter(#main),
         returnValue: _i28.dummyValue<String>(
@@ -1014,12 +1026,6 @@ class MockWeatherEntity extends _i1.Mock implements _i5.WeatherEntity {
   @override
   int get temperature => (super.noSuchMethod(
         Invocation.getter(#temperature),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  int get pressure => (super.noSuchMethod(
-        Invocation.getter(#pressure),
         returnValue: 0,
       ) as int);
 
@@ -1078,29 +1084,29 @@ class MockForecastEntity extends _i1.Mock implements _i6.ForecastEntity {
       ) as List<Object?>);
 }
 
-/// A class which mocks [CityEntity].
+/// A class which mocks [LocationEntity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCityEntity extends _i1.Mock implements _i29.CityEntity {
-  MockCityEntity() {
+class MockLocationEntity extends _i1.Mock implements _i29.LocationEntity {
+  MockLocationEntity() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  String get name => (super.noSuchMethod(
-        Invocation.getter(#name),
+  String get city => (super.noSuchMethod(
+        Invocation.getter(#city),
         returnValue: _i28.dummyValue<String>(
           this,
-          Invocation.getter(#name),
+          Invocation.getter(#city),
         ),
       ) as String);
 
   @override
-  String get image => (super.noSuchMethod(
-        Invocation.getter(#image),
+  String get country => (super.noSuchMethod(
+        Invocation.getter(#country),
         returnValue: _i28.dummyValue<String>(
           this,
-          Invocation.getter(#image),
+          Invocation.getter(#country),
         ),
       ) as String);
 }
@@ -1122,6 +1128,18 @@ class MockWeatherModel extends _i1.Mock implements _i11.WeatherModel {
   @override
   num get lat => (super.noSuchMethod(
         Invocation.getter(#lat),
+        returnValue: 0,
+      ) as num);
+
+  @override
+  num get wind => (super.noSuchMethod(
+        Invocation.getter(#wind),
+        returnValue: 0,
+      ) as num);
+
+  @override
+  num get feelsLike => (super.noSuchMethod(
+        Invocation.getter(#feelsLike),
         returnValue: 0,
       ) as num);
 
@@ -1155,12 +1173,6 @@ class MockWeatherModel extends _i1.Mock implements _i11.WeatherModel {
   @override
   int get temperature => (super.noSuchMethod(
         Invocation.getter(#temperature),
-        returnValue: 0,
-      ) as int);
-
-  @override
-  int get pressure => (super.noSuchMethod(
-        Invocation.getter(#pressure),
         returnValue: 0,
       ) as int);
 
@@ -3123,4 +3135,113 @@ class MockConnectivity extends _i1.Mock implements _i46.Connectivity {
         returnValue: _i19.Future<_i46.ConnectivityResult>.value(
             _i46.ConnectivityResult.bluetooth),
       ) as _i19.Future<_i46.ConnectivityResult>);
+}
+
+/// A class which mocks [NavigatorObserver].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNavigatorObserver extends _i1.Mock implements _i16.NavigatorObserver {
+  MockNavigatorObserver() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void didPush(
+    _i16.Route<dynamic>? route,
+    _i16.Route<dynamic>? previousRoute,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didPush,
+          [
+            route,
+            previousRoute,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didPop(
+    _i16.Route<dynamic>? route,
+    _i16.Route<dynamic>? previousRoute,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didPop,
+          [
+            route,
+            previousRoute,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didRemove(
+    _i16.Route<dynamic>? route,
+    _i16.Route<dynamic>? previousRoute,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didRemove,
+          [
+            route,
+            previousRoute,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didReplace({
+    _i16.Route<dynamic>? newRoute,
+    _i16.Route<dynamic>? oldRoute,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didReplace,
+          [],
+          {
+            #newRoute: newRoute,
+            #oldRoute: oldRoute,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didStartUserGesture(
+    _i16.Route<dynamic>? route,
+    _i16.Route<dynamic>? previousRoute,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didStartUserGesture,
+          [
+            route,
+            previousRoute,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void didStopUserGesture() => super.noSuchMethod(
+        Invocation.method(
+          #didStopUserGesture,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [RouteSettings].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockRouteSettings extends _i1.Mock implements _i16.RouteSettings {
+  MockRouteSettings() {
+    _i1.throwOnMissingStub(this);
+  }
 }

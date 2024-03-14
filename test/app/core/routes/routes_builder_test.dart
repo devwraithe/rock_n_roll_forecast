@@ -1,49 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:rock_n_roll_forecast/app/core/routes/routes.dart';
 import 'package:rock_n_roll_forecast/app/core/routes/routes_builder.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concert_info_screen.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concerts_screen.dart';
 
+import '../utilities/helpers/test_helper.mocks.dart';
+
 void main() {
-  // test case: should contain correct routes and widget builders
-  test('should contain correct routes and widget builders', () {
-    // define the expected routes and their corresponding widget builders
-    final expectedRoutes = <String, WidgetBuilder>{
-      Routes.concerts: (context) => const ConcertsScreen(),
-      Routes.concertInfo: (context) => const ConcertInfoScreen(),
-    };
+  group('routesController', () {
+    test('returns MaterialPageRoute for concerts route', () {
+      // Create a mock RouteSettings with the desired name
+      final settings = MockRouteSettings();
+      when(settings.name).thenReturn(Routes.concerts);
 
-    // assert that the routesBuilder map has the same number of keys as the expectedRoutes map
-    expect(routesBuilder.keys.length, equals(expectedRoutes.keys.length));
+      // Call the routesController function
+      final route = routesController(settings);
 
-    // iterate through each entry in routesBuilder
-    for (final entry in routesBuilder.entries) {
-      final route = entry.key;
-      final widgetBuilder = entry.value;
+      // Verify that it returns a MaterialPageRoute with ConcertsScreen
+      expect(route, isA<MaterialPageRoute>());
+      expect((route as MaterialPageRoute).builder(MockBuildContext()),
+          isA<ConcertsScreen>());
+    });
 
-      // assert that the expectedRoutes contains the current route key
-      expect(expectedRoutes.containsKey(route), isTrue);
+    test('returns MaterialPageRoute for concertInfo route', () {
+      // Create a mock RouteSettings with the desired name and arguments
+      final settings = MockRouteSettings();
+      when(settings.name).thenReturn(Routes.concertInfo);
+      when(settings.arguments)
+          .thenReturn({'example_argument': 'example_value'});
 
-      // assert that the widgetBuilder is of type WidgetBuilder
-      expect(widgetBuilder, isA<WidgetBuilder>());
+      // Call the routesController function
+      final route = routesController(settings);
 
-      // assert that the runtime types of widgetBuilder and the corresponding expectedRoutes widget builder match
-      expect(
-        widgetBuilder.runtimeType,
-        equals(
-          expectedRoutes[route]!.runtimeType,
-        ),
-      );
-
-      // additional assertions specific to each route
-      if (widgetBuilder == expectedRoutes[Routes.concerts]) {
-        final homeScreen = widgetBuilder;
-        expect(homeScreen, isA<ConcertsScreen>());
-      } else if (widgetBuilder == expectedRoutes[Routes.concertInfo]) {
-        final detailScreen = widgetBuilder;
-        expect(detailScreen, isA<ConcertInfoScreen>());
-      }
-    }
+      // Verify that it returns a MaterialPageRoute with ConcertInfoScreen and arguments
+      expect(route, isA<MaterialPageRoute>());
+      expect((route as MaterialPageRoute).builder(MockBuildContext()),
+          isA<ConcertInfoScreen>());
+      expect((route.builder(MockBuildContext()) as ConcertInfoScreen).arguments,
+          {'example_argument': 'example_value'});
+    });
   });
 }
