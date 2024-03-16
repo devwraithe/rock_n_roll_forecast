@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/routes/routes.dart';
 import '../../core/utilities/constants.dart';
 import '../../core/utilities/helpers/location_helper.dart';
-import '../../core/utilities/helpers/misc_helper.dart';
 import '../../domain/entities/location_entity.dart';
 import 'concert_location.dart';
 
@@ -41,42 +39,16 @@ class _ConcertsListState extends State<ConcertsList> {
                 note: loading
                     ? Constants.gatheringCoordinates
                     : Constants.clickForMore,
-                onPressed: () => getCoordinates(location),
+                onPressed: () => LocationHelper.getCoordinates(
+                  context,
+                  location,
+                  widget.loadingStates,
+                ),
               );
             },
           );
         },
       ),
-    );
-  }
-
-  Future<void> getCoordinates(LocationEntity location) async {
-    final hasInternet = await MiscHelper.hasInternetConnection();
-    widget.loadingStates[location.city]?.value = true;
-
-    if (hasInternet) {
-      final coordinates = await LocationHelper.cityCoordinates(
-        "${location.city}, ${location.country}",
-      );
-      _goToConcertInfo(coordinates, location);
-    } else {
-      _goToConcertInfo({}, location);
-    }
-
-    widget.loadingStates[location.city]?.value = false;
-  }
-
-  void _goToConcertInfo(
-    Map<String, double> coordinates,
-    LocationEntity location,
-  ) {
-    Navigator.pushNamed(
-      context,
-      Routes.concertInfo,
-      arguments: {
-        'coordinates': coordinates,
-        'location': "${location.city}, ${location.country}",
-      },
     );
   }
 }

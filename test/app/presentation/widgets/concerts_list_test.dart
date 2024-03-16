@@ -6,7 +6,7 @@ import 'package:rock_n_roll_forecast/app/presentation/widgets/concert_location.d
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
 void main() {
-  const locationEntity = LocationEntity(
+  const location = LocationEntity(
     city: "Melbourne",
     country: "Australia",
   );
@@ -15,7 +15,7 @@ void main() {
     'Should build the ConcertsList widget',
     (WidgetTester tester) async {
       final List<LocationEntity> locations = [
-        locationEntity,
+        location,
       ];
 
       final loadingStates = {
@@ -41,11 +41,47 @@ void main() {
         ),
       );
 
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       expect(find.byType(Expanded), findsOneWidget);
       expect(find.byType(ListView), findsOneWidget);
       expect(find.byType(ConcertLocation), findsNWidgets(locations.length));
     },
   );
+
+  // test(
+  //   'getCoordinates should call cityCoordinates when there is internet connection',
+  //   () async {
+  //     final coordinates = {'latitude': 37.7749, 'longitude': -122.4194};
+  //
+  //     when(MiscHelper.hasInternetConnection()).thenAnswer((_) async => true);
+  //     when(
+  //       LocationHelper.cityCoordinates(
+  //         location.city,
+  //       ),
+  //     ).thenAnswer(
+  //       (_) async => coordinates,
+  //     );
+  //
+  //     await widget.getCoordinates(location);
+  //
+  //     verify(
+  //       mockWidget.loadingStates[location.city]?.value = true,
+  //     ).called(1);
+  //     verify(
+  //       LocationHelper.cityCoordinates(
+  //         "${location.city}, ${location.country}",
+  //       ),
+  //     ).called(1);
+  //     verify(
+  //       mockWidget._goToConcertInfo(
+  //         coordinates,
+  //         location,
+  //       ),
+  //     ).called(1);
+  //     verify(
+  //       mockWidget.loadingStates[location.city]?.value = false,
+  //     ).called(1);
+  //   },
+  // );
 }

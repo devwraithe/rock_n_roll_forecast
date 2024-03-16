@@ -30,8 +30,12 @@ import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/forecas
 import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/weather_usecase.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
 @GenerateMocks([
+  // Widgets
+  ConcertsList,
+
   // Cubits
   WeatherCubit,
   ForecastCubit,
@@ -99,6 +103,5 @@ import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cub
   Connectivity,
   NavigatorObserver,
   RouteSettings,
-  // BuildContext,
 ])
 void main() {}
