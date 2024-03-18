@@ -38,10 +38,9 @@ class WeatherLocalDatasourceImpl implements WeatherLocalDatasource {
     } finally {
       try {
         await localStorage.close();
-        debugPrint("Weathers box closed!");
+        debugPrint("Forecasts box closed!");
       } catch (e) {
-        debugPrint("Error occurred while closing weathers box: $e");
-        throw CacheException(Failure(Constants.localUnknownError));
+        debugPrint("Error closing weathers box: $e");
       }
     }
   }
@@ -79,10 +78,9 @@ class WeatherLocalDatasourceImpl implements WeatherLocalDatasource {
     } finally {
       try {
         await localStorage.close();
-        debugPrint("Weathers box closed!");
+        debugPrint("Forecasts box closed!");
       } catch (e) {
-        debugPrint("Error occurred while closing weathers box: $e");
-        throw CacheException(Failure(Constants.localUnknownError));
+        debugPrint("Error closing weathers box: $e");
       }
     }
   }
@@ -119,8 +117,7 @@ class ForecastLocalDatasourceImpl implements ForecastLocalDatasource {
         await localStorage.close();
         debugPrint("Forecasts box closed!");
       } catch (e) {
-        debugPrint("Error occurred while closing forecasts box: $e");
-        throw CacheException(Failure(Constants.localUnknownError));
+        debugPrint("Error closing forecasts box: $e");
       }
     }
   }
@@ -163,8 +160,7 @@ class ForecastLocalDatasourceImpl implements ForecastLocalDatasource {
         await localStorage.close();
         debugPrint("Forecasts box closed!");
       } catch (e) {
-        debugPrint("Error occurred while closing forecasts box: $e");
-        throw CacheException(Failure(Constants.localUnknownError));
+        debugPrint("Error closing forecasts box: $e");
       }
     }
   }
