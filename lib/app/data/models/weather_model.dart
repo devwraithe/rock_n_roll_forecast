@@ -3,8 +3,9 @@ import 'package:equatable/equatable.dart';
 import '../../domain/entities/weather_entity.dart';
 
 class WeatherModel extends Equatable {
-  final num lon, lat, wind, feelsLike;
-  final String main, description, iconCode;
+  final double lon, lat, wind, feelsLike;
+  final String main, iconCode;
+  final String description;
   final int temperature, humidity;
 
   const WeatherModel({

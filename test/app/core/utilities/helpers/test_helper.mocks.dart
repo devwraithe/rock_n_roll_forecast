@@ -1176,28 +1176,28 @@ class MockWeatherEntity extends _i2.Mock implements _i7.WeatherEntity {
   }
 
   @override
-  num get lon => (super.noSuchMethod(
+  double get lon => (super.noSuchMethod(
         Invocation.getter(#lon),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get lat => (super.noSuchMethod(
+  double get lat => (super.noSuchMethod(
         Invocation.getter(#lat),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get wind => (super.noSuchMethod(
+  double get wind => (super.noSuchMethod(
         Invocation.getter(#wind),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get feelsLike => (super.noSuchMethod(
+  double get feelsLike => (super.noSuchMethod(
         Invocation.getter(#feelsLike),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
   String get main => (super.noSuchMethod(
@@ -1323,28 +1323,28 @@ class MockWeatherModel extends _i2.Mock implements _i13.WeatherModel {
   }
 
   @override
-  num get lon => (super.noSuchMethod(
+  double get lon => (super.noSuchMethod(
         Invocation.getter(#lon),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get lat => (super.noSuchMethod(
+  double get lat => (super.noSuchMethod(
         Invocation.getter(#lat),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get wind => (super.noSuchMethod(
+  double get wind => (super.noSuchMethod(
         Invocation.getter(#wind),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
-  num get feelsLike => (super.noSuchMethod(
+  double get feelsLike => (super.noSuchMethod(
         Invocation.getter(#feelsLike),
-        returnValue: 0,
-      ) as num);
+        returnValue: 0.0,
+      ) as double);
 
   @override
   String get main => (super.noSuchMethod(
@@ -1356,20 +1356,20 @@ class MockWeatherModel extends _i2.Mock implements _i13.WeatherModel {
       ) as String);
 
   @override
-  String get description => (super.noSuchMethod(
-        Invocation.getter(#description),
-        returnValue: _i19.dummyValue<String>(
-          this,
-          Invocation.getter(#description),
-        ),
-      ) as String);
-
-  @override
   String get iconCode => (super.noSuchMethod(
         Invocation.getter(#iconCode),
         returnValue: _i19.dummyValue<String>(
           this,
           Invocation.getter(#iconCode),
+        ),
+      ) as String);
+
+  @override
+  String get description => (super.noSuchMethod(
+        Invocation.getter(#description),
+        returnValue: _i19.dummyValue<String>(
+          this,
+          Invocation.getter(#description),
         ),
       ) as String);
 

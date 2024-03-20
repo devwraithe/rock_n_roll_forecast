@@ -8,15 +8,15 @@ class WeatherAdapter extends TypeAdapter<WeatherEntity> {
 
   @override
   WeatherEntity read(BinaryReader reader) {
-    final lat = reader.read();
-    final lon = reader.read();
-    final main = reader.read();
-    final description = reader.read();
-    final iconCode = reader.read();
-    final temperature = reader.read();
-    final humidity = reader.read();
-    final wind = reader.read();
-    final feelsLike = reader.read();
+    final lat = reader.readDouble();
+    final lon = reader.readDouble();
+    final main = reader.readString();
+    final description = reader.readString();
+    final iconCode = reader.readString();
+    final temperature = reader.readInt();
+    final humidity = reader.readInt();
+    final wind = reader.readDouble();
+    final feelsLike = reader.readDouble();
 
     return WeatherEntity(
       lat: lat,
@@ -33,14 +33,14 @@ class WeatherAdapter extends TypeAdapter<WeatherEntity> {
 
   @override
   void write(BinaryWriter writer, WeatherEntity obj) {
-    writer.write(obj.lat);
-    writer.write(obj.lon);
-    writer.write(obj.main);
-    writer.write(obj.description);
-    writer.write(obj.iconCode);
-    writer.write(obj.temperature);
-    writer.write(obj.humidity);
-    writer.write(obj.wind);
-    writer.write(obj.feelsLike);
+    writer.writeDouble(obj.lat);
+    writer.writeDouble(obj.lon);
+    writer.writeString(obj.main);
+    writer.writeString(obj.description);
+    writer.writeString(obj.iconCode);
+    writer.writeInt(obj.temperature);
+    writer.writeInt(obj.humidity);
+    writer.writeDouble(obj.wind);
+    writer.writeDouble(obj.feelsLike);
   }
 }

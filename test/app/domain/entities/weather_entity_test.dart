@@ -9,8 +9,8 @@ void main() {
     const description = 'Partly cloudy';
     const iconCode = '03d';
     const temperature = 25;
-    const feelsLike = 25;
-    const wind = 2;
+    const feelsLike = 25.0;
+    const wind = 2.0;
     const humidity = 70;
 
     const weatherEntity = WeatherEntity(
@@ -43,8 +43,8 @@ void main() {
     const description = 'Partly cloudy';
     const iconCode = '03d';
     const temperature = 25;
-    const feelsLike = 25;
-    const wind = 2;
+    const feelsLike = 25.0;
+    const wind = 2.0;
     const humidity = 70;
 
     const weatherEntity1 = WeatherEntity(
@@ -81,8 +81,8 @@ void main() {
     const description1 = 'Partly cloudy';
     const iconCode1 = '03d';
     const temperature1 = 25;
-    const feelsLike1 = 25;
-    const wind1 = 2;
+    const feelsLike1 = 25.0;
+    const wind1 = 2.0;
     const humidity1 = 70;
 
     const lon2 = 150.0;
@@ -91,8 +91,8 @@ void main() {
     const description2 = 'Clear sky';
     const iconCode2 = '01d';
     const temperature2 = 30;
-    const feelsLike2 = 30;
-    const wind2 = 4;
+    const feelsLike2 = 30.0;
+    const wind2 = 4.0;
     const humidity2 = 75;
 
     const weatherEntity1 = WeatherEntity(

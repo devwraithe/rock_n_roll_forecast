@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource/local_datasource_impl.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';
@@ -63,6 +64,75 @@ void main() {
       );
 
       test(
+        'throws UnexpectedException when weather data is not found in the offline cache',
+        () async {
+          when(
+            mockLocalStorageAdapter.openBox(
+              Constants.weathersBox,
+            ),
+          ).thenAnswer(
+            (_) async => mockBox,
+          );
+          when(
+            mockBox.put(any, any),
+          ).thenThrow(Exception(""));
+
+          expect(
+            () => weatherDatasource.cacheWeather(weather, city),
+            throwsA(
+              isA<UnexpectedException>(),
+            ),
+          );
+        },
+      );
+
+      test(
+        'throws UnexpectedException when weather data is not found in the offline cache',
+        () async {
+          when(
+            mockLocalStorageAdapter.openBox(
+              Constants.weathersBox,
+            ),
+          ).thenAnswer(
+            (_) async => mockBox,
+          );
+          when(
+            mockBox.put(any, any),
+          ).thenThrow(HiveError(""));
+
+          expect(
+            () => weatherDatasource.cacheWeather(weather, city),
+            throwsA(
+              isA<HiveException>(),
+            ),
+          );
+        },
+      );
+
+      test(
+        'throws UnexpectedException when weather data is not found in the offline cache',
+        () async {
+          when(
+            mockLocalStorageAdapter.openBox(
+              Constants.weathersBox,
+            ),
+          ).thenAnswer(
+            (_) async => mockBox,
+          );
+          when(
+            mockBox.put(any, any),
+          ).thenThrow(const CacheException(Failure("")));
+
+          expect(
+            () => weatherDatasource.cacheWeather(weather, city),
+            throwsA(
+              isA<CacheException>(),
+            ),
+          );
+        },
+      );
+
+      test(
         'throws HiveException when forecasts data is not found in the offline cache',
         () async {
           when(
@@ -86,7 +156,7 @@ void main() {
       );
 
       test(
-        'throws UnexpectedException when forecasts data is not found in the offline cache',
+        'throws UnexpectedException when weather data is not found in the offline cache',
         () async {
           when(
             mockLocalStorageAdapter.openBox(

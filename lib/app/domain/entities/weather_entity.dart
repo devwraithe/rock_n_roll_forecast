@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class WeatherEntity extends Equatable {
-  final num lon, lat, wind, feelsLike;
+  final double lon, lat, wind, feelsLike;
   final String main;
   final String description;
   final String iconCode;

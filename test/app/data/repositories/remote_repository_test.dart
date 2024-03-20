@@ -51,11 +51,11 @@ void main() {
         ],
         "main": {
           "temp": 283,
-          "feels_like": 283,
+          "feels_like": 283.0,
           "humidity": 70,
         },
         "wind": {
-          "speed": 2,
+          "speed": 2.0,
         },
       });
 
