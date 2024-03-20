@@ -92,7 +92,7 @@ $ flutter run
 
 
 ### Testing
-The `test` folder is similar to the `lib` folder in addition to some test utilities. Here are some of the packages used for testing:
+The `test` folder is similar to the `lib` folder in addition to some test utilities. More tests are being added.
 
 [`mockito`](https://pub.dev/packages/mockito) is used for creating mocks and stubs in unit tests to isolate and emulate dependencies.
 
