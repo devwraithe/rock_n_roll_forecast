@@ -89,3 +89,29 @@ To run and use the application, ensure you have either an emulator or a mobile d
 ```sh
 $ flutter run
 ```
+
+
+### Testing
+The `test` folder is similar to the `lib` folder in addition to some test utilities. Here are some of the packages used for testing:
+
+[`mockito`](https://pub.dev/packages/mockito) is used for creating mocks and stubs in unit tests to isolate and emulate dependencies.
+
+[`bloc_test`](https://pub.dev/packages/bloc_test) is used for testing BLoC implementations by providing utilities for mocking events, states, and blocs.
+  
+To explore the test coverage, run tests with the --coverage argument
+
+```sh
+$ flutter test --coverage
+```
+
+To generate coverage files for the test (You might need to install `lcov`, run `brew install lcov` to install on MacOS)
+
+```sh
+$ genhtml coverage/lcov.info -o coverage/html
+```
+
+To open the generated html file
+
+```sh
+$ open coverage/html/index.html
+```
