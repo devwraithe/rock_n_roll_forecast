@@ -96,7 +96,7 @@ The `test` folder is similar to the `lib` folder in addition to some test utilit
 
 [`mockito`](https://pub.dev/packages/mockito) is used for creating mocks and stubs in unit tests to isolate and emulate dependencies.
 
-[`bloc_test`](https://pub.dev/packages/bloc_test) is used for testing BLoC implementations by providing utilities for mocking events, states, and blocs.
+[`bloc_test`](https://pub.dev/packages/bloc_test) is used for testing BLoC implementations by providing utilities for mocking.
   
 To explore the test coverage, run tests with the --coverage argument
 
