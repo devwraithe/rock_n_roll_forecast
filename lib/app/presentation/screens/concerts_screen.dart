@@ -6,6 +6,8 @@ import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helpe
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
+import '../../core/services/location_service.dart';
+
 class ConcertsScreen extends StatefulWidget {
   const ConcertsScreen({Key? key}) : super(key: key);
   @override
@@ -16,6 +18,9 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   final Map<String, ValueNotifier<bool>> loadingStates = {};
   late TextEditingController searchController;
   List filteredLocations = [];
+
+  // Instantiate the LocationService
+  final LocationService locationService = const LocationServiceImpl();
 
   @override
   void initState() {
@@ -99,6 +104,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                   : ConcertsList(
                       locations: filteredLocations,
                       loadingStates: loadingStates,
+                      locationService: locationService,
                     ),
             ],
           ),
