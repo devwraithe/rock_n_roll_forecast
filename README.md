@@ -92,7 +92,7 @@ $ flutter run
 
 
 ### Testing
-The `test` folder is similar to the `lib` folder in addition to some test utilities. More tests are being added.
+The `test` folder is similar to the `lib` folder with the addition of some utilities for testing. More tests are being added.
 
 [`mockito`](https://pub.dev/packages/mockito) is used for creating mocks and stubs in unit tests to isolate and emulate dependencies.
 
@@ -104,7 +104,7 @@ To explore the test coverage, run tests with the --coverage argument
 $ flutter test --coverage
 ```
 
-To generate coverage files for the test (You might need to install `lcov`, run `brew install lcov` to install on MacOS)
+To generate coverage files for the test, you might need to install `lcov` if you don't have it installed already. To install on **MacOS** & **Linux**, run `brew install lcov` and to install on **Windows**, run `choco install lcov`, then you should run the following code to generate the test coverage:
 
 ```sh
 $ genhtml coverage/lcov.info -o coverage/html
