@@ -21,7 +21,7 @@ import '../../domain/usecases/local_usecases/cache_weather_usecase.dart';
 import '../../domain/usecases/local_usecases/offline_forecast_usecase.dart';
 import '../../domain/usecases/local_usecases/offline_weather_usecase.dart';
 import '../../presentation/cubits/forecast/forecast_cubit.dart';
-import 'adapters/local_storage_adapter/hive_local_storage_adapter.dart';
+import 'adapters/local_storage_adapter/local_storage_adapter_impl.dart';
 
 final sl = GetIt.instance; // the service locator(sl)
 
@@ -35,38 +35,65 @@ void regSingleton<T extends Object>(T Function() factFunc) {
 
 void init() {
   // can have a separate methods as app scales
-  regSingleton(() => WeatherCubit(sl(), sl(), sl(), sl()));
-  regSingleton<WeatherUsecase>(() => WeatherUsecaseImpl(sl()));
-  regSingleton<CacheWeatherUsecase>(() => CacheWeatherUsecaseImpl(sl()));
-  regSingleton<OfflineWeatherUsecase>(() => OfflineWeatherUsecaseImpl(sl()));
+  regSingleton(
+    () => WeatherCubit(sl(), sl(), sl(), sl()),
+  );
+  regSingleton<WeatherUsecase>(
+    () => WeatherUsecaseImpl(sl()),
+  );
+  regSingleton<CacheWeatherUsecase>(
+    () => CacheWeatherUsecaseImpl(sl()),
+  );
+  regSingleton<OfflineWeatherUsecase>(
+    () => OfflineWeatherUsecaseImpl(sl()),
+  );
 
-  // can have a separate methods as app scales
-  regSingleton(() => ForecastCubit(sl(), sl(), sl(), sl()));
-  regSingleton<ForecastUsecase>(() => ForecastUsecaseImpl(sl()));
-  regSingleton<CacheForecastUseCase>(() => CacheForecastUseCaseImpl(sl()));
-  regSingleton<OfflineForecastUsecase>(() => OfflineForecastUsecaseImpl(sl()));
+  regSingleton(
+    () => ForecastCubit(sl(), sl(), sl(), sl()),
+  );
+  regSingleton<ForecastUsecase>(
+    () => ForecastUsecaseImpl(sl()),
+  );
+  regSingleton<CacheForecastUseCase>(
+    () => CacheForecastUseCaseImpl(sl()),
+  );
+  regSingleton<OfflineForecastUsecase>(
+    () => OfflineForecastUsecaseImpl(sl()),
+  );
 
   regSingleton<ConnectivityAdapter>(
     () => ConnectivityPlusAdapter(Connectivity()),
   );
-  // regSingleton(() => Connectivity());
 
-  regSingleton<WeatherLocalRepository>(() => WeatherLocalRepositoryImpl(sl()));
+  regSingleton<WeatherLocalRepository>(
+    () => WeatherLocalRepositoryImpl(sl()),
+  );
   regSingleton<ForecastLocalRepository>(
-      () => ForecastLocalRepositoryImpl(sl()));
+    () => ForecastLocalRepositoryImpl(sl()),
+  );
   regSingleton<ForecastRemoteRepository>(
-      () => ForecastRemoteRepositoryImpl(sl()));
+    () => ForecastRemoteRepositoryImpl(sl()),
+  );
   regSingleton<WeatherRemoteRepository>(
-      () => WeatherRemoteRepositoryImpl(sl()));
+    () => WeatherRemoteRepositoryImpl(sl()),
+  );
 
-  regSingleton<WeatherLocalDatasource>(() => WeatherLocalDatasourceImpl(sl()));
+  regSingleton<WeatherLocalDatasource>(
+    () => WeatherLocalDatasourceImpl(sl()),
+  );
   regSingleton<ForecastLocalDatasource>(
-      () => ForecastLocalDatasourceImpl(sl()));
+    () => ForecastLocalDatasourceImpl(sl()),
+  );
   regSingleton<WeatherRemoteDatasource>(
-      () => WeatherRemoteDatasourceImpl(sl()));
+    () => WeatherRemoteDatasourceImpl(sl()),
+  );
   regSingleton<ForecastRemoteDatasource>(
-      () => ForecastRemoteDatasourceImpl(sl()));
-
-  regSingleton<LocalStorageAdapter>(() => HiveLocalStorageAdapter());
-  regSingleton(() => http.Client());
+    () => ForecastRemoteDatasourceImpl(sl()),
+  );
+  regSingleton<LocalStorageAdapter>(
+    () => HiveLocalStorageAdapter(),
+  );
+  regSingleton(
+    () => http.Client(),
+  );
 }

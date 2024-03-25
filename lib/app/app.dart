@@ -29,9 +29,9 @@ class RockAndRoll extends StatelessWidget {
             title: 'Rock And Roll',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.theme,
-            themeMode: ThemeMode.light,
+            themeMode: ThemeMode.dark,
             home: const ConcertsScreen(),
-            routes: routesBuilder,
+            onGenerateRoute: routesController,
           );
         },
         child: const ConcertsScreen(),

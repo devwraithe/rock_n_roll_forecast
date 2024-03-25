@@ -9,9 +9,9 @@ class AppTheme {
   static final theme = ThemeData(
     fontFamily: Constants.fontFamily,
     textTheme: AppTextTheme.textTheme,
-    colorScheme: AppColorScheme.light,
+    colorScheme: AppColorScheme.dark,
     inputDecorationTheme: AppInputDecorationTheme.inputDecoration,
-    scaffoldBackgroundColor: AppColorScheme.light.background,
+    scaffoldBackgroundColor: AppColorScheme.dark.background,
     useMaterial3: true,
   );
 }

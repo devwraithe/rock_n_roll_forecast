@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
 import '../../core/utilities/errors/failure.dart';
@@ -23,6 +23,8 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
       return Left(e.failure);
     } on HiveException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -36,6 +38,8 @@ class WeatherLocalRepositoryImpl implements WeatherLocalRepository {
     } on CacheException catch (e) {
       return Left(e.failure);
     } on HiveException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
@@ -59,6 +63,8 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
       return Left(e.failure);
     } on HiveException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -74,6 +80,8 @@ class ForecastLocalRepositoryImpl implements ForecastLocalRepository {
     } on CacheException catch (e) {
       return Left(e.failure);
     } on HiveException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

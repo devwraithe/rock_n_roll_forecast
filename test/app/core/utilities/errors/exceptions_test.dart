@@ -6,7 +6,7 @@ void main() {
   group('CacheException', () {
     test('props should contain the provided failure', () {
       // Arrange
-      final failure = Failure('Test message');
+      final failure = const Failure('Test message');
       final exception = CacheException(failure);
 
       // Act
@@ -20,7 +20,7 @@ void main() {
   group('HiveException', () {
     test('props should contain the provided failure', () {
       // Arrange
-      final failure = Failure('Test message');
+      final failure = const Failure('Test message');
       final exception = HiveException(failure);
 
       // Act
@@ -34,7 +34,7 @@ void main() {
   group('UnexpectedException', () {
     test('props should contain the provided failure', () {
       // Arrange
-      final failure = Failure('Test message');
+      final failure = const Failure('Test message');
       final exception = UnexpectedException(failure);
 
       // Act
@@ -48,7 +48,7 @@ void main() {
   group('ServerException', () {
     test('props should contain the provided failure', () {
       // Arrange
-      final failure = Failure('Test message');
+      final failure = const Failure('Test message');
       final exception = ServerException(failure);
 
       // Act
@@ -62,7 +62,7 @@ void main() {
   group('NetworkException', () {
     test('props should contain the provided failure', () {
       // Arrange
-      final failure = Failure('Test message');
+      final failure = const Failure('Test message');
       final exception = NetworkException(failure);
 
       // Act

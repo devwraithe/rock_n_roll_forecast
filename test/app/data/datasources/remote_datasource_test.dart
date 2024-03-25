@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
@@ -15,10 +17,8 @@ import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 import '../../core/utilities/helpers/test_helper.mocks.dart';
 
 void main() {
-  const String city = "Silverstone, UK";
-  const String lat = "52.0915";
-  const String lon = "1.0281";
-  const String long = "1.0281";
+  const String lat = "0.0";
+  const String lon = "0.0";
 
   late MockClient mockClient;
   late WeatherRemoteDatasource weatherDatasource;
@@ -30,23 +30,36 @@ void main() {
     forecastDatasource = ForecastRemoteDatasourceImpl(mockClient);
   });
 
-  final weatherJson = jsonEncode({
-    "coord": {"lat": 37.7749, "lon": -122.4194},
-    "weather": [
-      {"main": "Clear", "description": "clear sky", "icon": "01d"}
-    ],
-    "main": {"temp": 25.6, "pressure": 1013, "humidity": 60}
-  });
+  final weatherJson = jsonEncode(
+    {
+      "coord": {"lat": 51.51, "lon": -0.13},
+      "weather": [
+        {
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d",
+        }
+      ],
+      "main": {
+        "temp": 283,
+        "feels_like": 283.0,
+        "humidity": 70,
+      },
+      "wind": {
+        "speed": 2.0,
+      },
+    },
+  );
 
   final weatherModel = WeatherModel.fromJson(json.decode(weatherJson));
 
   final forecastJson = jsonEncode({
     "list": [
       {
-        "dt": 1621252800,
+        "dt": 1615377600,
         "main": {
-          "temp_min": 12,
-          "temp_max": 25,
+          "temp_min": 20,
+          "temp_max": 30,
         },
         "weather": [
           {
@@ -56,26 +69,30 @@ void main() {
       }
     ]
   });
+
   final List dataList = json.decode(forecastJson)['list'];
   final List<ForecastModel> forecastModel =
       dataList.map((e) => ForecastModel.fromJson(e)).toList();
 
   group('should run tests for the WeatherRemoteDatasource', () {
     test(
-      'should preform a GET request on a URL with number being the endpoint and with application/json header',
+      'Should return WeatherModel if http call completes successfully',
       () {
-        // Arrange
-        when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenAnswer(
           (_) async => Response(
             weatherJson,
             200,
           ),
         );
 
-        // act
-        weatherDatasource.getWeather(lat, lon);
+        final result = weatherDatasource.getWeather(lat, lon);
 
-        // assert
+        expect(result, isA<Future<WeatherModel>>());
         verify(
           mockClient.get(
             Uri.parse(ApiUrls.weather(lat, lon)),
@@ -89,60 +106,119 @@ void main() {
     );
 
     test(
-      'should preform a GET request on a URL with number being the endpoint and with application/json header',
+      'Should get the WeatherEntity from remote',
       () async {
-        // arrange
         when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
           (_) async => Response(weatherJson, 200),
         );
-        // act
         final result = await weatherDatasource.getWeather(lat, lon);
-        // assert
         expect(result, equals(weatherModel));
       },
     );
 
     test(
-      'should throw a UnexpectedException when the response code is 404 or other',
+      'throws an ServerException for other exceptions',
       () async {
-        // arrange
-        when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
-          (_) async => Response('Something went wrong', 404),
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenThrow(
+          ServerException(
+            Failure(
+              Constants.unknownError,
+            ),
+          ),
         );
-        // act
-        final call = weatherDatasource.getWeather(lat, lon);
-        // assert
+
+        final call = weatherDatasource.getWeather('lat', 'lon');
+
         expect(
           () => call,
           throwsA(
-            const TypeMatcher<UnexpectedException>(),
+            isA<ServerException>(),
           ),
         );
       },
     );
 
-    test('getWeather should throw a UnexpectedException on error', () async {
-      // Arrange
+    test(
+      'throws a NetworkException if there is no internet connection',
+      () async {
+        when(mockClient.get(any, headers: anyNamed('headers'))).thenThrow(
+          SocketException(
+            Constants.lostConnection,
+          ),
+        );
+
+        final call = weatherDatasource.getWeather('lat', 'lon');
+
+        // Assert
+        expect(
+          () => call,
+          throwsA(
+            isA<NetworkException>(),
+          ),
+        );
+      },
+    );
+
+    test('throws a NetworkException if internet connection times out',
+        () async {
       when(
         mockClient.get(
           any,
           headers: anyNamed('headers'),
         ),
-      ).thenAnswer((_) async => Response('Something', 500));
+      ).thenThrow(
+        TimeoutException(
+          Constants.connectionTimeout,
+        ),
+      );
 
-      // Act & Assert
+      final call = weatherDatasource.getWeather('lat', 'lon');
+
       expect(
-        () => weatherDatasource.getWeather(lat, long),
-        throwsA(isA<UnexpectedException>()),
+        () => call,
+        throwsA(
+          isA<NetworkException>(),
+        ),
       );
     });
+
+    test(
+      'throws an UnexpectedException for other exceptions',
+      () async {
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenThrow(
+          UnexpectedException(
+            Failure(
+              Constants.unknownError,
+            ),
+          ),
+        );
+
+        final call = weatherDatasource.getWeather('lat', 'lon');
+
+        expect(
+          () => call,
+          throwsA(
+            isA<UnexpectedException>(),
+          ),
+        );
+      },
+    );
   });
 
   group('should run tests for the ForecastRemoteDatasource', () {
     test(
       'should preform a GET request on a URL with number being the endpoint and with application/json header',
       () {
-        // Arrange
         when(mockClient.get(any, headers: anyNamed('headers'))).thenAnswer(
           (_) async => Response(
             forecastJson,
@@ -150,10 +226,9 @@ void main() {
           ),
         );
 
-        // act
-        forecastDatasource.getForecast(lat, lon);
+        final result = forecastDatasource.getForecast(lat, lon);
 
-        // assert
+        expect(result, isA<Future<List<ForecastModel>>>());
         verify(
           mockClient.get(
             Uri.parse(ApiUrls.forecast(lat, lon)),
@@ -180,21 +255,104 @@ void main() {
       },
     );
 
-    test('getForecast should throw a UnexpectedException on error', () async {
-      // Arrange
-      when(
-        mockClient.get(
-          any,
-          headers: anyNamed('headers'),
-        ),
-      ).thenThrow(
-          (_) async => UnexpectedException(Failure(Constants.serverError)));
+    test(
+      'throws an ServerException for other exceptions',
+      () async {
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenThrow(
+          ServerException(
+            Failure(
+              Constants.unknownError,
+            ),
+          ),
+        );
 
-      // Act & Assert
-      expect(
-        () => forecastDatasource.getForecast(lat, long),
-        throwsA(isA<UnexpectedException>()),
-      );
-    });
+        final call = forecastDatasource.getForecast(lat, lon);
+
+        expect(
+          () => call,
+          throwsA(
+            isA<ServerException>(),
+          ),
+        );
+      },
+    );
+
+    test(
+      'throws a NetworkException if there is no internet connection',
+      () async {
+        when(mockClient.get(any, headers: anyNamed('headers'))).thenThrow(
+          SocketException(
+            Constants.lostConnection,
+          ),
+        );
+
+        final call = forecastDatasource.getForecast('lat', 'lon');
+
+        // Assert
+        expect(
+          () => call,
+          throwsA(
+            isA<NetworkException>(),
+          ),
+        );
+      },
+    );
+
+    test(
+      'throws a NetworkException if there is no internet connection',
+      () async {
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenThrow(
+          TimeoutException(
+            Constants.connectionTimeout,
+          ),
+        );
+
+        final call = forecastDatasource.getForecast(lat, lon);
+
+        expect(
+          () => call,
+          throwsA(
+            isA<NetworkException>(),
+          ),
+        );
+      },
+    );
+
+    test(
+      'throws an UnexpectedException for other exceptions',
+      () async {
+        when(
+          mockClient.get(
+            any,
+            headers: anyNamed('headers'),
+          ),
+        ).thenThrow(
+          UnexpectedException(
+            Failure(
+              Constants.unknownError,
+            ),
+          ),
+        );
+
+        final call = forecastDatasource.getForecast(lat, lon);
+
+        expect(
+          () => call,
+          throwsA(
+            isA<UnexpectedException>(),
+          ),
+        );
+      },
+    );
   });
 }

@@ -17,8 +17,8 @@ import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 import 'package:rock_n_roll_forecast/app/data/repositories/local_repository_impl.dart';
 import 'package:rock_n_roll_forecast/app/data/repositories/remote_repository_impl.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/city_entity.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/location_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.dart';
 import 'package:rock_n_roll_forecast/app/domain/repositories/remote_repository.dart';
@@ -30,8 +30,12 @@ import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/forecas
 import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/weather_usecase.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
+import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
 @GenerateMocks([
+  // Widgets
+  ConcertsList,
+
   // Cubits
   WeatherCubit,
   ForecastCubit,
@@ -53,7 +57,7 @@ import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cub
   // Entities
   WeatherEntity,
   ForecastEntity,
-  CityEntity,
+  LocationEntity,
 
   // Models
   WeatherModel,
@@ -97,5 +101,7 @@ import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cub
   LocationHelper,
   BuildContext,
   Connectivity,
+  NavigatorObserver,
+  RouteSettings,
 ])
 void main() {}

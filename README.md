@@ -1,7 +1,8 @@
 # Rock 'n' Roll Band Weather Track
 
-**Rock 'n' Roll Band Weather Track** is a cross-platform mobile application (Android and iOS) to track the weather fashionably for a rock'n'roll band staff. Note that the `master` branch is the most up-to-date.
+**Rock 'n' Roll Band Weather Track** is a cross-platform mobile application (Android and iOS) to track the weather fashionably for a rock'n'roll band staff. Note that the `develop` branch is the most up-to-date, I've been making regular changes to improve the product.
 
+🧪 **Unit & Widget Tests! (90% coverage!)**
 
 ## Table of Contents
 - [Features](#features)
@@ -13,14 +14,14 @@
 ## Screenshots
 ### Android
 <div style="display: flex;">
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311443864-a7b3e934-7f71-40ec-8a04-c242e203af65.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144324Z&X-Amz-Expires=300&X-Amz-Signature=48fdde9054b0376ea4692af95dfa9fc55d8ed9c71f4d329b85b4897055075820&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311443873-c0dd898e-47dd-4ca1-b84c-984089a22b4a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144438Z&X-Amz-Expires=300&X-Amz-Signature=d1d5fc0227a9214d600a3d5c983e4b20a24dfafcff279c32ca6bbbf47cb49c7c&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
+    <img src="assets/images/github/android_1.png" alt="Image 1" width="32%"/>
+    <img src="assets/images/github/android_2.png" alt="Image 2" width="32%"/>
 </div>
 
 ### iOS
 <div style="display: flex;">
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444024-74b3bbd3-0c56-4b50-ba3f-4d235edfeb93.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T144659Z&X-Amz-Expires=300&X-Amz-Signature=428fe6b0b810a340bd7aee6f18f6b336404e464bfc23fa55bbdfa96d31fd2d04&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 1" width="32%"/>
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/39105147/311444031-18a8105b-c5ee-4e80-8b27-6ff03c14faf9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240309%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240309T145043Z&X-Amz-Expires=300&X-Amz-Signature=227919e08e272776c4377152a636e8699cd3048de030b36759a91a537c070303&X-Amz-SignedHeaders=host&actor_id=39105147&key_id=0&repo_id=767949330" alt="Image 2" width="32%"/>
+    <img src="assets/images/github/ios_1.png" alt="Image 1" width="32%"/>
+    <img src="assets/images/github/ios_2.png" alt="Image 2" width="32%"/>
 </div>
 
 ## Features
@@ -87,4 +88,30 @@ To run and use the application, ensure you have either an emulator or a mobile d
 
 ```sh
 $ flutter run
+```
+
+
+### Testing
+The `test` folder is similar to the `lib` folder with the addition of some utilities for testing. More tests are being added.
+
+[`mockito`](https://pub.dev/packages/mockito) is used for creating mocks and stubs in unit tests to isolate and emulate dependencies.
+
+[`bloc_test`](https://pub.dev/packages/bloc_test) is used for testing BLoC implementations by providing utilities for mocking.
+  
+To explore the test coverage, run tests with the --coverage argument
+
+```sh
+$ flutter test --coverage
+```
+
+To generate coverage files for the test, you might need to install `lcov` if you don't have it installed already. To install on **MacOS** & **Linux**, run `brew install lcov` and to install on **Windows**, run `choco install lcov`, then you should run the following code to generate the test coverage:
+
+```sh
+$ genhtml coverage/lcov.info -o coverage/html
+```
+
+To open the generated html file
+
+```sh
+$ open coverage/html/index.html
 ```

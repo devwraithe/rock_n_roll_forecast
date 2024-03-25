@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_sizing_helper.dart';
+import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helper.dart';
 
 @immutable
 class AppTextTheme {
@@ -25,6 +25,10 @@ class AppTextTheme {
     ),
     bodyMedium: TextStyle(
       fontSize: Responsive.bodyMedium,
+      fontWeight: FontWeight.w400,
+    ),
+    bodySmall: TextStyle(
+      fontSize: Responsive.bodySmall,
       fontWeight: FontWeight.w400,
     ),
   );

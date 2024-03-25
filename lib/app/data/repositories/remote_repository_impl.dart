@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
-import 'package:rock_n_roll_forecast/app/domain/entities/daily_forecast_entity.dart';
+import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
 import '../../core/utilities/errors/failure.dart';
@@ -9,7 +9,6 @@ import '../datasources/remote_datasources/remote_datasource.dart';
 
 class WeatherRemoteRepositoryImpl implements WeatherRemoteRepository {
   final WeatherRemoteDatasource remoteDatasource;
-
   WeatherRemoteRepositoryImpl(this.remoteDatasource);
 
   @override
@@ -24,6 +23,8 @@ class WeatherRemoteRepositoryImpl implements WeatherRemoteRepository {
       return Left(e.failure);
     } on NetworkException catch (e) {
       return Left(e.failure);
+    } on UnexpectedException catch (e) {
+      return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
     }
@@ -32,7 +33,6 @@ class WeatherRemoteRepositoryImpl implements WeatherRemoteRepository {
 
 class ForecastRemoteRepositoryImpl implements ForecastRemoteRepository {
   final ForecastRemoteDatasource remoteDatasource;
-
   ForecastRemoteRepositoryImpl(this.remoteDatasource);
 
   @override
@@ -46,6 +46,8 @@ class ForecastRemoteRepositoryImpl implements ForecastRemoteRepository {
     } on ServerException catch (e) {
       return Left(e.failure);
     } on NetworkException catch (e) {
+      return Left(e.failure);
+    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));
