@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/text_theme.dart';
 import '../../core/utilities/helpers/responsive_helper.dart';
+import '../theme/app_colors.dart';
+import '../theme/text_theme.dart';
 
 class WeatherOverviewLoader extends StatelessWidget {
   const WeatherOverviewLoader({super.key});

@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/errors/failure.dart';
 import '../../../core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
-import '../../../core/utilities/errors/failure.dart';
 import '../../../domain/entities/forecast_entity.dart';
 import '../../../domain/usecases/local_usecases/cache_forecast_usecase.dart';
 import '../../../domain/usecases/local_usecases/offline_forecast_usecase.dart';

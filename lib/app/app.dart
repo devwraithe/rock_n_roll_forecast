@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rock_n_roll_forecast/app/core/routes/routes_builder.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
+import 'package:rock_n_roll_forecast/app/presentation/routes/routes_builder.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concerts_screen.dart';
 
-import 'core/theme/app_theme.dart';
 import 'core/utilities/di_service.dart';
+import 'presentation/theme/app_theme.dart';
 
 class RockAndRoll extends StatelessWidget {
   const RockAndRoll({super.key});

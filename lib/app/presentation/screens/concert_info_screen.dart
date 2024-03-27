@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concert_title.dart';
 
-import '../../core/theme/text_theme.dart';
 import '../../core/utilities/helpers/responsive_helper.dart';
 import '../../core/utilities/helpers/widget_helper.dart';
 import '../cubits/forecast/forecast_cubit.dart';
 import '../cubits/forecast/forecast_state.dart';
 import '../cubits/weather/weather_state.dart';
+import '../theme/app_colors.dart';
+import '../theme/text_theme.dart';
 import '../widgets/weather_forecast.dart';
 import '../widgets/weather_forecast_loader.dart';
 import '../widgets/weather_overview.dart';

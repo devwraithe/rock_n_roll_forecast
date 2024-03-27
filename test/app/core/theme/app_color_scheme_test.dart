@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/app_color_scheme.dart';
 import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
+import 'package:rock_n_roll_forecast/app/presentation/theme/app_color_scheme.dart';
 
 void main() {
   test('AppColorScheme should have correct color scheme', () {

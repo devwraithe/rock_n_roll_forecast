@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helper.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/text_helper.dart';
 
-import '../../core/theme/text_theme.dart';
 import '../../core/utilities/constants.dart';
+import '../theme/app_colors.dart';
+import '../theme/text_theme.dart';
 
 class WeatherOverview extends StatelessWidget {
   const WeatherOverview({

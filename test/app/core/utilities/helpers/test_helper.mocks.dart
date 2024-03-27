@@ -21,14 +21,12 @@ import 'package:hive/src/box/default_key_comparator.dart' as _i43;
 import 'package:http/http.dart' as _i12;
 import 'package:mockito/mockito.dart' as _i2;
 import 'package:mockito/src/dummies.dart' as _i19;
+import 'package:rock_n_roll_forecast/app/core/errors/exceptions.dart' as _i38;
+import 'package:rock_n_roll_forecast/app/core/errors/failure.dart' as _i14;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart'
     as _i39;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart'
     as _i9;
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart'
-    as _i38;
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart'
-    as _i14;
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart'
     as _i46;
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart'

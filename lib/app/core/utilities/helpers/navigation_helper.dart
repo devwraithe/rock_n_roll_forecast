@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rock_n_roll_forecast/app/core/services/location_service.dart';
 
 import '../../../domain/entities/location_entity.dart';
-import '../../routes/routes.dart';
+import '../../../presentation/routes/routes.dart';
 import 'misc_helper.dart';
 
 class NavigationHelper {

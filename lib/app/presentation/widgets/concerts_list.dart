@@ -25,7 +25,7 @@ class ConcertsList extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: locations.length,
         itemBuilder: (context, index) {
-          final LocationEntity location = locations[index];
+          final LocationEntity location = locations.elementAt(index);
 
           return ValueListenableBuilder(
             valueListenable:

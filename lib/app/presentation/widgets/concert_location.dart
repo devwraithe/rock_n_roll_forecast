@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
+import 'package:rock_n_roll_forecast/app/presentation/theme/text_theme.dart';
 
 import '../../core/utilities/helpers/responsive_helper.dart';
+import '../theme/app_colors.dart';
 
 class ConcertLocation extends StatelessWidget {
   const ConcertLocation({

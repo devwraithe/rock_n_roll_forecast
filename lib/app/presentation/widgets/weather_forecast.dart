@@ -3,10 +3,10 @@ import 'package:intl/intl.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/text_theme.dart';
 import '../../core/utilities/helpers/responsive_helper.dart';
 import '../../domain/entities/forecast_entity.dart';
+import '../theme/app_colors.dart';
+import '../theme/text_theme.dart';
 
 class WeatherForecast extends StatelessWidget {
   const WeatherForecast({

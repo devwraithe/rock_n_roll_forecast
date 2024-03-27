@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/errors/failure.dart';
 import '../../../core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart';
-import '../../../core/utilities/errors/failure.dart';
 import '../../../domain/entities/weather_entity.dart';
 import '../../../domain/usecases/local_usecases/cache_weather_usecase.dart';
 import '../../../domain/usecases/local_usecases/offline_weather_usecase.dart';

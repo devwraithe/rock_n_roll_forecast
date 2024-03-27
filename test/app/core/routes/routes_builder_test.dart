@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/core/routes/routes.dart';
 import 'package:rock_n_roll_forecast/app/core/routes/routes_builder.dart';
+import 'package:rock_n_roll_forecast/app/presentation/routes/routes.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concert_info_screen.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concerts_screen.dart';
 

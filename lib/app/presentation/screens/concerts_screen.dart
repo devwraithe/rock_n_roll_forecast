@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/responsive_helper.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/widget_helper.dart';
+import 'package:rock_n_roll_forecast/app/presentation/theme/text_theme.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart';
 
 import '../../core/services/location_service.dart';
@@ -88,7 +88,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                     label: Container(
                       margin: const EdgeInsets.only(bottom: 2),
                       child: Text(
-                        "Search concert cities...",
+                        "Search for concert cities...",
                         style: AppTextTheme.textTheme.bodyMedium?.copyWith(
                           color: Colors.grey,
                         ),

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
+import 'package:rock_n_roll_forecast/app/core/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
 
-import '../../core/utilities/errors/failure.dart';
+import '../../core/errors/failure.dart';
 import '../../domain/repositories/remote_repository.dart';
 import '../datasources/remote_datasources/remote_datasource.dart';
 

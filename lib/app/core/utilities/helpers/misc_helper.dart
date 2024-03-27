@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/core/theme/app_colors.dart';
+
+import '../../../presentation/theme/app_colors.dart';
 
 class MiscHelper {
   static Future<bool> hasInternetConnection() async {

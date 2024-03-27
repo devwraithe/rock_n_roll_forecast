@@ -8,10 +8,10 @@ import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/rem
 import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
 
+import '../../../core/errors/exceptions.dart';
+import '../../../core/errors/failure.dart';
 import '../../../core/utilities/api_paths.dart';
 import '../../../core/utilities/constants.dart';
-import '../../../core/utilities/errors/exceptions.dart';
-import '../../../core/utilities/errors/failure.dart';
 
 class WeatherRemoteDatasourceImpl implements WeatherRemoteDatasource {
   final Client client;

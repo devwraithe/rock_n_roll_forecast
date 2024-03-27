@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
+import 'package:rock_n_roll_forecast/app/core/errors/exceptions.dart';
+import 'package:rock_n_roll_forecast/app/core/errors/failure.dart';
 
 void main() {
   group('CacheException', () {

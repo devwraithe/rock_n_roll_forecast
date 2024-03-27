@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/utilities/errors/failure.dart';
+import '../../../core/errors/failure.dart';
 import '../../entities/weather_entity.dart';
 import '../../repositories/remote_repository.dart';
 
