@@ -5,16 +5,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart';
-import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/forecast/forecast_cubit.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/weather_forecast.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/weather_overview_loader.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_state.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_state.dart';
 import 'package:rock_n_roll_forecast/app/presentation/screens/concert_info_screen.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/concert_title.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_forecast.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_forecast_loader.dart';
 import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_overview.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_overview_loader.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';
 

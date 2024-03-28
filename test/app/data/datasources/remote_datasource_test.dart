@@ -5,14 +5,14 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/core/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/api_paths.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource.dart';
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource_impl.dart';
-import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/data/models/forecast_model.dart';
+import 'package:rock_n_roll_forecast/app/shared/errors/exceptions.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';
 

@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mockito/mockito.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/local_storage_adapter_impl.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/adapters/local_storage_adapter/local_storage_adapter_impl.dart';
 
 import '../helpers/test_helper.mocks.dart';
 

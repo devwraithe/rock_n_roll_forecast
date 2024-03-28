@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/core/errors/exceptions.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
-import 'package:rock_n_roll_forecast/app/data/repositories/local_repository_impl.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
 import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/local_repository_impl.dart';
+import 'package:rock_n_roll_forecast/app/shared/errors/exceptions.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';
 

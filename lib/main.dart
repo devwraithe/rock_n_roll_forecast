@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'app/app.dart';
-import 'app/core/utilities/adapters/hive_adapters/forecast_adapter.dart';
-import 'app/core/utilities/adapters/hive_adapters/weather_adapter.dart';
-import 'app/core/utilities/di_service.dart' as di;
+import 'app/shared/utilities/adapters/hive_adapters/forecast_adapter.dart';
+import 'app/shared/utilities/adapters/hive_adapters/weather_adapter.dart';
+import 'app/shared/utilities/di_service.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

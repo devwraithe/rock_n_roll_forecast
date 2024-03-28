@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/data/models/forecast_model.dart';
 
 void main() {
   test('fromJson should parse JSON correctly', () {

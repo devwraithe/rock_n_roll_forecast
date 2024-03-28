@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_plus_adapter.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/adapters/connectivity_adapter/connectivity_plus_adapter.dart';
 
 import '../helpers/test_helper.mocks.dart'; // Adjust the import based on your project structure
 
