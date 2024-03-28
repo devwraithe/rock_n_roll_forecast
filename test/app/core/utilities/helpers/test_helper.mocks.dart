@@ -21,66 +21,64 @@ import 'package:hive/src/box/default_key_comparator.dart' as _i43;
 import 'package:http/http.dart' as _i12;
 import 'package:mockito/mockito.dart' as _i2;
 import 'package:mockito/src/dummies.dart' as _i19;
+import 'package:rock_n_roll_forecast/app/core/errors/failure.dart' as _i14;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart'
     as _i39;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart'
     as _i9;
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/exceptions.dart'
-    as _i38;
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart'
-    as _i14;
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart'
     as _i46;
-import 'package:rock_n_roll_forecast/app/core/utilities/helpers/misc_helper.dart'
-    as _i45;
 import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource/local_datasource.dart'
     as _i10;
-import 'package:rock_n_roll_forecast/app/data/datasources/local_datasource/local_datasource_impl.dart'
-    as _i32;
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource.dart'
     as _i11;
 import 'package:rock_n_roll_forecast/app/data/datasources/remote_datasources/remote_datasource_impl.dart'
     as _i37;
-import 'package:rock_n_roll_forecast/app/data/models/forecast_model.dart'
-    as _i31;
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart'
     as _i13;
-import 'package:rock_n_roll_forecast/app/data/repositories/local_repository_impl.dart'
-    as _i33;
-import 'package:rock_n_roll_forecast/app/data/repositories/remote_repository_impl.dart'
-    as _i35;
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart'
     as _i8;
 import 'package:rock_n_roll_forecast/app/domain/entities/location_entity.dart'
     as _i30;
 import 'package:rock_n_roll_forecast/app/domain/entities/weather_entity.dart'
     as _i7;
-import 'package:rock_n_roll_forecast/app/domain/repositories/local_repository.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/data/datasources/local_datasource/local_datasource_impl.dart'
+    as _i32;
+import 'package:rock_n_roll_forecast/app/modules/weather/data/models/forecast_model.dart'
+    as _i31;
+import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/local_repository_impl.dart'
+    as _i33;
+import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/remote_repository_impl.dart'
+    as _i35;
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/local_repository.dart'
     as _i34;
-import 'package:rock_n_roll_forecast/app/domain/repositories/remote_repository.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/remote_repository.dart'
     as _i36;
-import 'package:rock_n_roll_forecast/app/domain/usecases/local_usecases/cache_forecast_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/cache_forecast_usecase.dart'
     as _i24;
-import 'package:rock_n_roll_forecast/app/domain/usecases/local_usecases/cache_weather_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/cache_weather_usecase.dart'
     as _i25;
-import 'package:rock_n_roll_forecast/app/domain/usecases/local_usecases/offline_forecast_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/offline_forecast_usecase.dart'
     as _i26;
-import 'package:rock_n_roll_forecast/app/domain/usecases/local_usecases/offline_weather_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/offline_weather_usecase.dart'
     as _i27;
-import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/forecast_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/remote_usecases/forecast_usecase.dart'
     as _i28;
-import 'package:rock_n_roll_forecast/app/domain/usecases/remote_usecases/weather_usecase.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/remote_usecases/weather_usecase.dart'
     as _i29;
-import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/forecast/forecast_cubit.dart'
     as _i23;
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/weather/weather_cubit.dart'
+    as _i20;
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/concerts_list.dart'
+    as _i18;
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_state.dart'
     as _i5;
-import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart'
-    as _i20;
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_state.dart'
     as _i4;
-import 'package:rock_n_roll_forecast/app/presentation/widgets/concerts_list.dart'
-    as _i18;
+import 'package:rock_n_roll_forecast/app/shared/errors/exceptions.dart' as _i38;
+import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/misc_helper.dart'
+    as _i45;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

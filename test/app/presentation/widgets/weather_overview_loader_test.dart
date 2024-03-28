@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_overview_loader.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/weather_overview_loader.dart';
 import 'package:shimmer/shimmer.dart';
 
 void main() {

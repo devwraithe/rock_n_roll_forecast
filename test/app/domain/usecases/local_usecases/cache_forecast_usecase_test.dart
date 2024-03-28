@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/domain/usecases/local_usecases/cache_forecast_usecase.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/cache_forecast_usecase.dart';
 
 import '../../../core/utilities/helpers/test_helper.mocks.dart';
 

@@ -2,9 +2,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:rock_n_roll_forecast/app/core/utilities/errors/failure.dart';
+import 'package:rock_n_roll_forecast/app/core/errors/failure.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
-import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/forecast/forecast_cubit.dart';
 import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_state.dart';
 
 import '../../core/utilities/helpers/test_helper.mocks.dart';

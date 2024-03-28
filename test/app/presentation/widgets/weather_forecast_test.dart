@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rock_n_roll_forecast/app/domain/entities/forecast_entity.dart';
-import 'package:rock_n_roll_forecast/app/presentation/widgets/weather_forecast.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/weather_forecast.dart';
 
 void main() {
   const forecastEntity = ForecastEntity(
