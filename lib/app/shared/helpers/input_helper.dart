@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/responsive_helper.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/responsive.dart';
 
 class InputHelper {
-  static inputStyle(Color color) {
+  static OutlineInputBorder inputStyle(Color color) {
     return OutlineInputBorder(
       borderSide: BorderSide(
         color: color,

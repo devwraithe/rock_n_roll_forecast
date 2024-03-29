@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../shared/theme/app_colors.dart';
-import '../../../../shared/utilities/helpers/responsive_helper.dart';
+import '../../../../shared/utilities/responsive.dart';
 
 class WeatherForecastLoader extends StatelessWidget {
   const WeatherForecastLoader({super.key});

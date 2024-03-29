@@ -14,19 +14,19 @@ void main() {
   late MockForecastUsecase mockForecastUsecase;
   late MockCacheForecastUseCase mockCacheForecastUseCase;
   late MockOfflineForecastUsecase mockOfflineForecastUsecase;
-  late MockConnectivityAdapter mockConnectivityAdapter;
+  late MockConnectivityService mockConnectivityService;
 
   setUp(() {
     mockForecastUsecase = MockForecastUsecase();
     mockCacheForecastUseCase = MockCacheForecastUseCase();
     mockOfflineForecastUsecase = MockOfflineForecastUsecase();
-    mockConnectivityAdapter = MockConnectivityAdapter();
+    mockConnectivityService = MockConnectivityService();
 
     cubit = ForecastCubit(
       mockForecastUsecase,
       mockCacheForecastUseCase,
       mockOfflineForecastUsecase,
-      mockConnectivityAdapter,
+      mockConnectivityService,
     );
   });
 
@@ -58,7 +58,7 @@ void main() {
   blocTest<ForecastCubit, ForecastState>(
     'Should emit ForecastError when an error occurs',
     setUp: () {
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => true,
       );
       when(mockForecastUsecase.execute(any, any)).thenAnswer(
@@ -82,7 +82,7 @@ void main() {
       when(mockCacheForecastUseCase.execute(any, any)).thenAnswer(
         (_) async => const Right(null),
       );
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => true,
       );
     },
@@ -100,7 +100,7 @@ void main() {
       when(mockOfflineForecastUsecase.execute(any)).thenAnswer(
         (_) async => const Right([forecastEntity]),
       );
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => false,
       );
     },

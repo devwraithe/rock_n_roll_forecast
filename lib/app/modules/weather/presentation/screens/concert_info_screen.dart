@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/concert_title.dart';
 
+import '../../../../shared/helpers/widget_helper.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/theme/text_theme.dart';
 import '../../../../shared/utilities/constants.dart';
-import '../../../../shared/utilities/helpers/responsive_helper.dart';
-import '../../../../shared/utilities/helpers/widget_helper.dart';
+import '../../../../shared/utilities/responsive.dart';
 import '../cubits/forecast/forecast_cubit.dart';
 import '../cubits/forecast/forecast_state.dart';
 import '../cubits/weather/weather_cubit.dart';
@@ -39,13 +39,10 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
 
   void getWeatherData() {
     final arguments = widget.arguments;
-    final latitude = arguments['coordinates']['latitude'].toString();
-    final longitude = arguments['coordinates']['longitude'].toString();
-
     location = arguments['location'];
 
-    context.read<WeatherCubit>().getWeather(latitude, longitude, location!);
-    context.read<ForecastCubit>().getForecast(latitude, longitude, location!);
+    context.read<WeatherCubit>().getWeather(location!);
+    context.read<ForecastCubit>().getForecast(location!);
   }
 
   @override

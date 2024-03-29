@@ -16,7 +16,7 @@ void main() {
     ); // Stub for checkConnectivity
 
     // Initialize the adapter with the mock instance
-    final adapter = ConnectivityPlusAdapter(mockConnectivity);
+    final adapter = ConnectivityServiceImpl(mockConnectivity);
 
     // Call the isConnected method to check network connectivity
     final isConnected = await adapter.isConnected();
@@ -35,7 +35,7 @@ void main() {
     ); // Stub for checkConnectivity
 
     // Initialize the adapter with the mock instance
-    final adapter = ConnectivityPlusAdapter(mockConnectivity);
+    final adapter = ConnectivityServiceImpl(mockConnectivity);
 
     // Call the isConnected method to check network connectivity
     final isConnected = await adapter.isConnected();

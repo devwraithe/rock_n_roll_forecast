@@ -1,16 +1,8 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme/app_colors.dart';
+import '../theme/app_colors.dart';
 
-class MiscHelper {
-  static Future<bool> hasInternetConnection() async {
-    final Connectivity connectivity = Connectivity();
-    final ConnectivityResult connectivityResult =
-        await connectivity.checkConnectivity();
-    return connectivityResult != ConnectivityResult.none;
-  }
-
+class WeatherHelper {
   static String getCustomIcon(String weatherConditionCode) {
     switch (weatherConditionCode) {
       case '01d' || '01n':

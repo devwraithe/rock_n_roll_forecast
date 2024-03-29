@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'failure.dart';
 
-// Remote Datasource Exceptions
+// Remote datasource exceptions
 class ServerException extends Equatable implements Exception {
   final Failure failure;
   const ServerException(this.failure);
@@ -19,7 +19,21 @@ class NetworkException extends Equatable implements IOException {
   List<Object?> get props => [failure];
 }
 
-// Local Datasource Exceptions
+class HttpException extends Equatable implements Exception {
+  final Failure failure;
+  const HttpException(this.failure);
+  @override
+  List<Object?> get props => [failure];
+}
+
+class NoConnectionException extends Equatable implements Exception {
+  final Failure failure;
+  const NoConnectionException(this.failure);
+  @override
+  List<Object?> get props => [failure];
+}
+
+// Local datasource exceptions
 class CacheException extends Equatable implements Exception {
   final Failure failure;
   const CacheException(this.failure);
@@ -34,7 +48,7 @@ class HiveException extends Equatable implements Exception {
   List<Object?> get props => [failure];
 }
 
-// Misc Exceptions
+// Misc exceptions
 class UnexpectedException extends Equatable implements Exception {
   final Failure failure;
   const UnexpectedException(this.failure);
