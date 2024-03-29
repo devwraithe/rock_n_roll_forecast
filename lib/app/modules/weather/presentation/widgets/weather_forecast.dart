@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/misc_helper.dart';
 
+import '../../../../shared/helpers/weather_helper.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/theme/text_theme.dart';
 import '../../../../shared/utilities/constants.dart';
-import '../../../../shared/utilities/helpers/responsive_helper.dart';
+import '../../../../shared/utilities/responsive.dart';
 import '../../domain/entities/forecast_entity.dart';
 
 class WeatherForecast extends StatelessWidget {
@@ -61,7 +61,7 @@ class WeatherForecast extends StatelessWidget {
             .map((forecast) => forecast.dailyMaxTemp.round())
             .reduce((max, temp) => temp > max ? temp : max);
 
-        final icon = MiscHelper.getCustomIcon(
+        final icon = WeatherHelper.getCustomIcon(
           forecastList.first.dailyIcon,
         );
 
@@ -126,8 +126,8 @@ class WeatherForecast extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
           gradient: LinearGradient(
             colors: [
-              MiscHelper.getColorForTemp(minTemp),
-              MiscHelper.getColorForTemp(maxTemp),
+              WeatherHelper.getColorForTemp(minTemp),
+              WeatherHelper.getColorForTemp(maxTemp),
             ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,

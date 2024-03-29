@@ -5,7 +5,6 @@ class Constants {
   static String fontFamily = 'Satoshi';
   static String weatherServerError = "Error retrieving weather";
   static String forecastsServerError = "Error retrieving forecasts";
-  static String gatheringCoordinates = "Gathering coordinates";
   static String coordRetrieveError = "Error getting coordinates";
   static String failedCoordinates = "Failed to get coordinates";
   static String clickForMore = "View";
@@ -40,5 +39,15 @@ class Constants {
       city: "Monte Carlo",
       country: "Monaco",
     ),
+    LocationEntity(
+      city: "Arizona",
+      country: "United States",
+    ),
   ];
+
+  // Maps
+  static final headers = {
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json',
+  };
 }

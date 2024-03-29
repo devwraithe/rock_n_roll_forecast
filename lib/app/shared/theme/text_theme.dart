@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/responsive_helper.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/responsive.dart';
 
 @immutable
 class AppTextTheme {

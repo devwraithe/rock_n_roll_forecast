@@ -6,7 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:rock_n_roll_forecast/app/core/errors/failure.dart';
 import 'package:rock_n_roll_forecast/app/core/utilities/constants.dart';
 import 'package:rock_n_roll_forecast/app/data/models/weather_model.dart';
-import 'package:rock_n_roll_forecast/app/domain/repositories/remote_repository.dart';
+import 'package:rock_n_roll_forecast/app/domain/repositories/forecast_repository.dart';
 import 'package:rock_n_roll_forecast/app/modules/weather/data/models/forecast_model.dart';
 import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/remote_repository_impl.dart';
 import 'package:rock_n_roll_forecast/app/shared/errors/exceptions.dart';

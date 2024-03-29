@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rock_n_roll_forecast/app/modules/weather/presentation/widgets/concerts_list.dart';
+import 'package:rock_n_roll_forecast/app/shared/helpers/widget_helper.dart';
 import 'package:rock_n_roll_forecast/app/shared/theme/text_theme.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/responsive_helper.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/widget_helper.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/responsive.dart';
 
-import '../../../../shared/services/location_service.dart';
 import '../../../../shared/utilities/constants.dart';
 
 class ConcertsScreen extends StatefulWidget {
@@ -19,19 +18,11 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   late TextEditingController searchController;
   List filteredLocations = [];
 
-  // Instantiate the LocationService
-  final LocationService locationService = const LocationServiceImpl();
-
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
     filteredLocations = Constants.concertCities;
-
-    // Initialize loading states for each city
-    for (final location in Constants.concertCities) {
-      loadingStates[location.city] = ValueNotifier<bool>(false);
-    }
   }
 
   @override
@@ -49,11 +40,6 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                 location.country.toLowerCase().contains(query.toLowerCase());
         return searchQuery;
       }).toList();
-
-      // Reset the loading states for each city
-      for (final location in Constants.concertCities) {
-        loadingStates[location.city]?.value = false;
-      }
     });
   }
 
@@ -101,11 +87,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
               SizedBox(height: isMobile ? 26 : 46),
               filteredLocations.isEmpty
                   ? WidgetHelper.error("Concert city is not found!")
-                  : ConcertsList(
-                      locations: filteredLocations,
-                      loadingStates: loadingStates,
-                      locationService: locationService,
-                    ),
+                  : ConcertsList(locations: filteredLocations),
             ],
           ),
         ),

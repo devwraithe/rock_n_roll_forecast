@@ -1,10 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
-import 'connectivity_adapter.dart';
+abstract class ConnectivityService {
+  Future<bool> isConnected();
+}
 
-class ConnectivityPlusAdapter implements ConnectivityAdapter {
+class ConnectivityServiceImpl implements ConnectivityService {
   final Connectivity _connectivity;
-  ConnectivityPlusAdapter(this._connectivity);
+  ConnectivityServiceImpl(this._connectivity);
 
   @override
   Future<bool> isConnected() async {

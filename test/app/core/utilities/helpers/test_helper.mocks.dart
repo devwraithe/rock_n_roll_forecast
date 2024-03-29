@@ -24,7 +24,7 @@ import 'package:mockito/src/dummies.dart' as _i19;
 import 'package:rock_n_roll_forecast/app/core/errors/failure.dart' as _i14;
 import 'package:rock_n_roll_forecast/app/core/utilities/adapters/connectivity_adapter/connectivity_adapter.dart'
     as _i39;
-import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/local_storage_adapter.dart'
+import 'package:rock_n_roll_forecast/app/core/utilities/adapters/local_storage_adapter/hive_service.dart'
     as _i9;
 import 'package:rock_n_roll_forecast/app/core/utilities/helpers/location_helper.dart'
     as _i46;
@@ -50,10 +50,12 @@ import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/local
     as _i33;
 import 'package:rock_n_roll_forecast/app/modules/weather/data/repositories/remote_repository_impl.dart'
     as _i35;
-import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/local_repository.dart'
-    as _i34;
-import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/remote_repository.dart'
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/forecast_repository.dart'
     as _i36;
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/repositories/weather_repository.dart'
+    as _i34;
+import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/forecast_usecase.dart'
+    as _i28;
 import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/cache_forecast_usecase.dart'
     as _i24;
 import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/cache_weather_usecase.dart'
@@ -62,8 +64,6 @@ import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_u
     as _i26;
 import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/local_usecases/offline_weather_usecase.dart'
     as _i27;
-import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/remote_usecases/forecast_usecase.dart'
-    as _i28;
 import 'package:rock_n_roll_forecast/app/modules/weather/domain/usecases/remote_usecases/weather_usecase.dart'
     as _i29;
 import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/forecast/forecast_cubit.dart'
@@ -77,7 +77,7 @@ import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_s
 import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_state.dart'
     as _i4;
 import 'package:rock_n_roll_forecast/app/shared/errors/exceptions.dart' as _i38;
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/misc_helper.dart'
+import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/weather_helper.dart'
     as _i45;
 
 // ignore_for_file: type=lint
@@ -2198,12 +2198,12 @@ class MockCacheException extends _i2.Mock implements _i38.CacheException {
       ) as List<Object?>);
 }
 
-/// A class which mocks [ConnectivityAdapter].
+/// A class which mocks [ConnectivityService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockConnectivityAdapter extends _i2.Mock
-    implements _i39.ConnectivityAdapter {
-  MockConnectivityAdapter() {
+class MockConnectivityService extends _i2.Mock
+    implements _i39.ConnectivityService {
+  MockConnectivityService() {
     _i2.throwOnMissingStub(this);
   }
 

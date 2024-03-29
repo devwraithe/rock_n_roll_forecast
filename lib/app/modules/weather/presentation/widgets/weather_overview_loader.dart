@@ -3,7 +3,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/theme/text_theme.dart';
-import '../../../../shared/utilities/helpers/responsive_helper.dart';
+import '../../../../shared/utilities/responsive.dart';
 
 class WeatherOverviewLoader extends StatelessWidget {
   const WeatherOverviewLoader({super.key});

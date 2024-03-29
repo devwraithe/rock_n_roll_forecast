@@ -14,19 +14,19 @@ void main() {
   late MockWeatherUsecase mockWeatherUsecase;
   late MockCacheWeatherUsecase mockCacheWeatherUseCase;
   late MockOfflineWeatherUsecase mockOfflineWeatherUsecase;
-  late MockConnectivityAdapter mockConnectivityAdapter;
+  late MockConnectivityService mockConnectivityService;
 
   setUp(() {
     mockWeatherUsecase = MockWeatherUsecase();
     mockCacheWeatherUseCase = MockCacheWeatherUsecase();
     mockOfflineWeatherUsecase = MockOfflineWeatherUsecase();
-    mockConnectivityAdapter = MockConnectivityAdapter();
+    mockConnectivityService = MockConnectivityService();
 
     cubit = WeatherCubit(
       mockWeatherUsecase,
       mockCacheWeatherUseCase,
       mockOfflineWeatherUsecase,
-      mockConnectivityAdapter,
+      mockConnectivityService,
     );
   });
 
@@ -63,7 +63,7 @@ void main() {
   blocTest<WeatherCubit, WeatherState>(
     'Should emit WeatherError when an error occurs',
     setUp: () {
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => true,
       );
       when(mockWeatherUsecase.execute(any, any)).thenAnswer(
@@ -87,7 +87,7 @@ void main() {
       when(mockCacheWeatherUseCase.execute(any, any)).thenAnswer(
         (_) async => const Right(null),
       );
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => true,
       );
     },
@@ -105,7 +105,7 @@ void main() {
       when(mockOfflineWeatherUsecase.execute(any)).thenAnswer(
         (_) async => const Right(weatherEntity),
       );
-      when(mockConnectivityAdapter.isConnected()).thenAnswer(
+      when(mockConnectivityService.isConnected()).thenAnswer(
         (_) async => false,
       );
     },

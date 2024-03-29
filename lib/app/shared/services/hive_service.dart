@@ -1,8 +1,15 @@
 import 'package:hive/hive.dart';
 
-import 'local_storage_adapter.dart';
+abstract class HiveService {
+  Future<Box<dynamic>> openBox(String name);
+  Future<void> put(String key, dynamic value);
+  Future<dynamic> get(String key);
+  Future<void> delete(String key);
+  Future<bool> containsKey(String key);
+  Future<void> close();
+}
 
-class HiveLocalStorageAdapter implements LocalStorageAdapter {
+class HiveServiceImpl implements HiveService {
   @override
   Future<Box<dynamic>> openBox(String name) async {
     return await Hive.openBox(name);

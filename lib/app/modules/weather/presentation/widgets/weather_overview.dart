@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/misc_helper.dart';
-import 'package:rock_n_roll_forecast/app/shared/utilities/helpers/responsive_helper.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/responsive.dart';
 
+import '../../../../shared/helpers/text_helper.dart';
+import '../../../../shared/helpers/weather_helper.dart';
 import '../../../../shared/theme/app_colors.dart';
 import '../../../../shared/theme/text_theme.dart';
 import '../../../../shared/utilities/constants.dart';
-import '../../../../shared/utilities/helpers/text_helper.dart';
 
 class WeatherOverview extends StatelessWidget {
   const WeatherOverview({
@@ -49,7 +49,7 @@ class WeatherOverview extends StatelessWidget {
             ),
             SizedBox(width: isMobile ? 4 : 10),
             Image.asset(
-              MiscHelper.getCustomIcon(icon),
+              WeatherHelper.getCustomIcon(icon),
               width: isMobile ? 30 : 48,
               height: isMobile ? 30 : 48,
             ),

@@ -13,5 +13,6 @@ class AppTheme {
     inputDecorationTheme: AppInputDecorationTheme.inputDecoration,
     scaffoldBackgroundColor: AppColorScheme.dark.background,
     useMaterial3: true,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }

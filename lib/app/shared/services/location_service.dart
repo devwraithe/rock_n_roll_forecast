@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 
+import '../helpers/print_helper.dart';
 import '../utilities/constants.dart';
 
 abstract class LocationService {
@@ -22,7 +22,7 @@ class LocationServiceImpl implements LocationService {
         };
       }
     } catch (e) {
-      debugPrint('${Constants.coordRetrieveError} - $e');
+      securePrint('${Constants.coordRetrieveError} - $e');
       throw Exception("${Constants.coordRetrieveError} for $city");
     }
     throw Exception('${Constants.failedCoordinates} for $city');
