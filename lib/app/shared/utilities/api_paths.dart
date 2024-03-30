@@ -1,17 +1,17 @@
-import '../../../env/env.dart';
+import 'package:rock_n_roll_forecast/app/shared/utilities/env_config.dart';
 
 class ApiUrls {
-  static const String baseUrl = 'https://api.openweathermap.org/data/2.5';
-  static const String apiKey = '&appid=${Env.openWeatherApiKey}';
+  static String baseUrl = '${EnvConfig.baseUrl}/data/2.5';
+  static String appId = '&appid=${EnvConfig.appId}';
   static const String units = '&units=metric';
 
   static String weather(String lat, String lon) {
-    final url = "$baseUrl/weather?lat=$lat&lon=$lon$units$apiKey";
+    final url = "$baseUrl/weather?lat=$lat&lon=$lon$units$appId";
     return url;
   }
 
   static String forecast(String lat, String lon) {
-    final url = "$baseUrl/forecast?lat=$lat&lon=$lon$units$apiKey";
+    final url = "$baseUrl/forecast?lat=$lat&lon=$lon$units$appId";
     return url;
   }
 }

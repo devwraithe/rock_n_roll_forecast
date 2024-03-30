@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:rock_n_roll_forecast/app/shared/helpers/print_helper.dart';
-import 'package:rock_n_roll_forecast/app/shared/helpers/text_helper.dart';
 import 'package:rock_n_roll_forecast/app/shared/services/hive_service.dart';
 
 import '../errors/exceptions.dart';
@@ -33,9 +31,7 @@ class LocalStorageServiceImpl implements LocalStorageService {
     final storage = await hiveService.openBox(boxName);
 
     try {
-      debugPrint("Storing weathers for offline...");
       storage.put(city, data);
-      debugPrint("Weathers stored in offline cache!");
     } on HiveError catch (e) {
       debugPrint("Hive error occurred: $e");
       throw HiveException(Failure(e.toString()));
@@ -47,10 +43,9 @@ class LocalStorageServiceImpl implements LocalStorageService {
       throw UnexpectedException(Failure(e.toString()));
     } finally {
       try {
-        await storage.close();
-        debugPrint("Forecasts box closed!");
+        storage.close();
       } catch (e) {
-        debugPrint("Error closing weathers box: $e");
+        debugPrint("Error closing $boxName box: $e");
       }
     }
   }
@@ -66,9 +61,7 @@ class LocalStorageServiceImpl implements LocalStorageService {
       final hasLocation = storage.containsKey(city);
 
       if (hasLocation) {
-        securePrint("Gathering resources...");
         final response = await storage.get(city);
-        debugPrint("Response from service - $response");
         return response;
       } else {
         debugPrint("$city's $boxName are not found offline!");
@@ -85,8 +78,7 @@ class LocalStorageServiceImpl implements LocalStorageService {
       throw UnexpectedException(Failure(e.toString()));
     } finally {
       try {
-        await storage.close();
-        debugPrint("${TextHelper.capitalizeLetter(boxName)} box closed!");
+        storage.close();
       } catch (e) {
         debugPrint("Error closing $boxName box: $e");
       }
