@@ -60,9 +60,9 @@ lib
 │    │          │    ├── repositories
 │    │          │    ├── usecases
 │    │          └── presentation
-│    │          │    ├── entities
-│    │          │    ├── repositories
-│    │          └── └── usecases
+│    │          │    ├── cubits
+│    │          │    ├── screens
+│    │          └── └── widgets
 │    ├── shared
 │    │    ├── errors
 │    │    ├── helpers
