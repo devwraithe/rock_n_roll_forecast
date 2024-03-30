@@ -45,7 +45,3 @@ app.*.map.json
 
 # Environment variables
 .env
-
-# Hive test keys
-testbox.hive
-testkey.hive
