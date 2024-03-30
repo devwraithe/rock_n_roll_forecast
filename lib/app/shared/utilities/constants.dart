@@ -39,10 +39,6 @@ class Constants {
       city: "Monte Carlo",
       country: "Monaco",
     ),
-    LocationEntity(
-      city: "Arizona",
-      country: "United States",
-    ),
   ];
 
   // Maps
