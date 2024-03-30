@@ -59,37 +59,38 @@ class _ConcertInfoScreenState extends State<ConcertInfoScreen> {
               SizedBox(height: isMobile ? 26 : 46),
               BlocBuilder<WeatherCubit, WeatherState>(
                 builder: (context, state) {
-                  if (state is WeatherLoading) {
-                    return const WeatherOverviewLoader();
-                  } else if (state is WeatherLoaded) {
-                    final weather = state.result;
-
-                    return WeatherOverview(
-                      icon: weather.iconCode,
-                      condition: weather.description,
-                      temperature: weather.temperature.toString(),
-                      humidity: weather.humidity.toString(),
-                      wind: weather.wind,
-                      feelsLike: weather.feelsLike,
-                    );
-                  } else if (state is WeatherError) {
-                    return WidgetHelper.error(state.message);
-                  } else {
-                    return WidgetHelper.error(Constants.unknownError);
+                  switch (state) {
+                    case WeatherLoading():
+                      return const WeatherOverviewLoader();
+                    case WeatherLoaded():
+                      final weather = state.result;
+                      return WeatherOverview(
+                        icon: weather.iconCode,
+                        condition: weather.description,
+                        temperature: weather.temperature.toString(),
+                        humidity: weather.humidity.toString(),
+                        wind: weather.wind,
+                        feelsLike: weather.feelsLike,
+                      );
+                    case WeatherError():
+                      return WidgetHelper.error(state.message);
+                    default:
+                      return WidgetHelper.error(Constants.unknownError);
                   }
                 },
               ),
               SizedBox(height: isMobile ? 32 : 48),
               BlocBuilder<ForecastCubit, ForecastState>(
                 builder: (context, state) {
-                  if (state is ForecastLoading) {
-                    return const WeatherForecastLoader();
-                  } else if (state is ForecastLoaded) {
-                    return WeatherForecast(forecast: state.result);
-                  } else if (state is ForecastError) {
-                    return WidgetHelper.error(state.message);
-                  } else {
-                    return WidgetHelper.error(Constants.unknownError);
+                  switch (state) {
+                    case ForecastLoading():
+                      return const WeatherForecastLoader();
+                    case ForecastLoaded():
+                      return WeatherForecast(forecast: state.result);
+                    case ForecastError():
+                      return WidgetHelper.error(state.message);
+                    default:
+                      return WidgetHelper.error(Constants.unknownError);
                   }
                 },
               ),
