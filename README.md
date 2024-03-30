@@ -7,6 +7,7 @@
 ## Table of Contents
 - [Features](#features)
 - [Screenshots](#screenshots)
+- [App Architecture & Folder Structure](#app-architecture-and-folder-structure)
 - [Requirements](#requirements)
 - [Configure Environment Variables](#configure-environment-variables)
 - [Getting Started](#getting-started)
@@ -40,6 +41,45 @@ This application has the following features
     <img src="assets/images/github/ios_2.png" alt="Image 2" width="32%"/>
 </div>
 
+## App Architecture and Folder Structure
+
+The project adopts Clean Architecture principles to segregate the Presentation, Domain, and Data layers, and also employing a feature-first approach to folder structuring facilitates maintenance.
+
+```
+lib
+├── app
+│   ├── modules
+│   │   └── weathers
+│   │       ├── data
+│   │       │   ├── datasources
+│   │       │   ├── models
+│   │       │   ├── repositories
+│   │       ├── domain
+│   │       │   ├── adapters
+│   │       │   ├── entities
+│   │       │   ├── repositories
+│   │       │   ├── usecases
+│   │       └── presentation
+│   │           ├── cubits
+│   │           ├── screens
+│   │           └── widgets
+│   ├── shared
+│   │   ├── errors
+│   │   ├── helpers
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── theme
+│   │   └── utilities
+│   └── app.dart
+└── main.dart
+```
+- `main.dart` file serves as the app's entry point, initializing the app's components and configurations.
+- `modules` folder organizes the codebase into feature-specific modules, each containing it's own `data`, `domain`, and `presentation` layers.
+- `shared` folder hosts reusable components and utilities utilized across features.
+    - `helpers` folder contains specific utility functions, classes, or modules designed to assist with particular tasks.
+    - `services` folder encompasses modules responsible for providing various application-wide services, such as networking.
+    - `utilities` folder houses general-purpose utility functions, classes, or modules that serve a wide range of functionalities.
+
 ## Requirements
 - Operating System (Windows, Linux, or MacOS)
 - IDE with Flutter SDK installed (Visual Studio Code, Android Studio, etc.)
@@ -60,10 +100,12 @@ To get your OpenWeather APP ID, visit [this link](https://home.openweathermap.or
 **Create a `.env` file in the base of your project**
 
 ```
-├── rock_n_roll_forecast
-│   ├── ...
-│   ├── ...
-│   ├── .env
+rock_n_roll_forecast
+├── ...
+├── ...
+├── .env
+├── ...
+└── ...
 ```
 
 **Add the following to the `.env` file**
