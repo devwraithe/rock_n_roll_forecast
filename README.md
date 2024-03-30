@@ -2,7 +2,7 @@
 
 **Rock 'n' Roll Band Weather Track** is a cross-platform mobile application (Android and iOS) to track the weather fashionably for a rock'n'roll band staff. Note that the `develop` branch is the most up-to-date, I've been making regular changes to improve the product.
 
-🧪 **Unit & Widget Tests! (90% coverage!)**
+![90% Tests Coverage](https://img.shields.io/badge/Tests_Coverage-90%25-green)
 
 ## Table of Contents
 - [Features](#features)
