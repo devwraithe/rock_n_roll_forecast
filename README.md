@@ -8,8 +8,18 @@
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Requirements](#requirements)
-- [Configuring Environment Variables](#configuring-environment-variables)
+- [Configure Environment Variables](#configure-environment-variables)
 - [Getting Started](#getting-started)
+
+## Features
+This application has the following features
+- A list of cities for upcoming concerts
+- Search functionality (Find by city name)
+- Offline support using Hive (works with airplane mode)
+- Cross-platform (tested on Pixel 6a, iPhone 15 Pro and iPad Pro)
+- Support for multiple resolutions and sizes (tested on Pixel 4 and Pixel C Tab)
+- Shows current weather info for each city
+- Shows the next 5 days forecast for each city
 
 ## Screenshots
 ### Android
@@ -24,41 +34,40 @@
     <img src="assets/images/github/ios_2.png" alt="Image 2" width="32%"/>
 </div>
 
-## Features
-
-This application has the following features
-- A list of cities for upcoming concerts
-- Search functionality (Find by city name)
-- Offline support using Hive (works with airplane mode)
-- Cross-platform (tested on Pixel 6a, iPhone 15 Pro and iPad Pro)
-- Support for multiple resolutions and sizes (tested on Pixel 4 and Pixel C Tab)
-- Shows current weather info for each city
-- Shows the next 5 days forecast for each city
-
 ## Requirements
-
 - Operating System (Windows, Linux, or MacOS)
-- IDE with Flutter SDK installed (Visual Studio Code, Android Studio etc.)
+- IDE with Flutter SDK installed (Visual Studio Code, Android Studio, etc.)
 - Knowledge of Dart and Flutter
 - Emulator or Mobile Device
-- Knowledge of Environment Variables (particularly [envied](https://pub.dev/packages/envied))
+- Knowledge of environment variables
 - Hands to code :smile:
 
 
-## Configuring Environment Variables
+## Configure Environment Variables
 
-This project utilizes environment variables to manage configuration settings. I use [Envied](https://pub.dev/packages/envied) to handle environment variable management.
+**NOTE:** This project uses Flutter `version 3.13.8`
 
-To set up the required environment variables for this project, please refer to the Envied documentation:
+You will need to have the environment configured for the project to function properly, if you don't you will encounter errors. Fear not though, the bulk of the work has been done already, all you need is to get your OpenWeather APP ID (or API KEY) that will be used to get the weather information and create a `.env` file.
 
-Visit the [Envied](https://pub.dev/packages/envied) package documentation on [pub.dev](https://www.pub.dev).
-Follow the instructions provided in the documentation to install and configure Envied for your development environment.
-Envied simplifies the management of environment variables and ensures consistent and secure handling of sensitive information. Make sure to set the required environment variables as specified in the project's configuration files.
+To get an OpenWeather APP ID, visit [this link](https://home.openweathermap.org/api_keys).
 
-For more information on how to work with environment variables in this project, please consult the documentation provided by Envied.
+Please note that if you do not have an OpenWeather account yet, you will need to create one.
 
-**NOTE**: You need to set up Envied before running the project else you'll get errors.
+**Create a `.env` file in the base of your project**
 
+```
+├── rock_n_roll_forecast
+│   ├── ...
+│   ├── ...
+│   ├── .env
+```
+
+**Add the following to the .env file**
+
+```env
+APP_ID=APP ID from OpenWeather API
+BASE_URL=https://api.openweathermap.org
+```
 
 ## Getting Started
 
@@ -89,6 +98,18 @@ To run and use the application, ensure you have either an emulator or a mobile d
 ```sh
 $ flutter run
 ```
+
+### Running the project
+
+**Option 1:** If you intend to run the project via the command line using `flutter run`, you will need to attach additional arguments to the code to be able to pull the environment variables from the `.env` file and include it in the project at compile-time.
+
+```yaml
+flutter run --dart-define-from-file=.env
+```
+
+**Option 2:** If you'd prefer to run the project on Android Studio, you should edit your configuration to avoid running **Option 1** every time, the image below shows how you can configure your `main.dart` on Android Studio to include your `.env` at compile-time.
+
+<img width="1058" alt="Screenshot 2024-03-30 at 10 27 44 AM" src="https://github.com/devwraithe/rock_n_roll_forecast/assets/39105147/22c09f26-48aa-40a0-a089-59b4ebaac1d8">
 
 
 ### Testing
