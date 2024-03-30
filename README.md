@@ -48,29 +48,29 @@ The project adopts Clean Architecture principles to segregate the Presentation, 
 ```
 lib
 ├── app
-│    ├── modules
-│    │    └── weathers
-│    │          ├── data
-│    │          │    ├── datasources
-│    │          │    ├── models
-│    │          │    ├── repositories
-│    │          ├── domain
-│    │          │    ├── adapters
-│    │          │    ├── entities
-│    │          │    ├── repositories
-│    │          │    ├── usecases
-│    │          └── presentation
-│    │          │    ├── cubits
-│    │          │    ├── screens
-│    │          └── └── widgets
-│    ├── shared
-│    │    ├── errors
-│    │    ├── helpers
-│    │    ├── routes
-│    │    ├── services
-│    │    ├── theme
-│    │    └── utilities
-│    └── app.dart
+│   ├── modules
+│   │   └── weathers
+│   │       ├── data
+│   │       │   ├── datasources
+│   │       │   ├── models
+│   │       │   ├── repositories
+│   │       ├── domain
+│   │       │   ├── adapters
+│   │       │   ├── entities
+│   │       │   ├── repositories
+│   │       │   ├── usecases
+│   │       └── presentation
+│   │           ├── cubits
+│   │           ├── screens
+│   │           └── widgets
+│   ├── shared
+│   │   ├── errors
+│   │   ├── helpers
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── theme
+│   │   └── utilities
+│   └── app.dart
 └── main.dart
 ```
 - `main.dart` file serves as the app's entry point, initializing the app's components and configurations.
@@ -101,7 +101,7 @@ To get your OpenWeather APP ID, visit [this link](https://home.openweathermap.or
 
 ```
 rock_n_roll_forecast
-├── ...
+...
 ├── ...
 ├── .env
 ├── ...
