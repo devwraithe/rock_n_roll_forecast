@@ -9,9 +9,16 @@ import 'app/app.dart';
 import 'app/modules/weather/domain/adapters/forecast_adapter.dart';
 import 'app/modules/weather/domain/adapters/weather_adapter.dart';
 import 'app/shared/services/di_service.dart' as di;
+import 'app/shared/utilities/env_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load and init environment variables
+  const baseUrl = String.fromEnvironment("BASE_URL");
+  const appId = String.fromEnvironment("APP_ID");
+
+  EnvConfig.initialize(baseUrl: baseUrl, appId: appId);
 
   // Initialize dependency injectors
   await di.init();
