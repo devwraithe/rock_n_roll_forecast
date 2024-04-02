@@ -35,13 +35,7 @@ class ForecastRepositoryImpl implements ForecastRepository {
       return Left(e.failure);
     } on NetworkException catch (e) {
       return Left(e.failure);
-    } on HttpException catch (e) {
-      return Left(e.failure);
     } on CacheException catch (e) {
-      return Left(e.failure);
-    } on HiveException catch (e) {
-      return Left(e.failure);
-    } on UnexpectedException catch (e) {
       return Left(e.failure);
     } catch (e) {
       return Left(Failure(e.toString()));

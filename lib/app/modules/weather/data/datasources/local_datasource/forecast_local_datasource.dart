@@ -43,7 +43,7 @@ class ForecastLocalDatasourceImpl implements ForecastLocalDatasource {
     if (result is List<dynamic>) {
       return result.map((e) => e as ForecastEntity).toList();
     } else {
-      throw HiveException(Failure(Constants.invalidError));
+      throw CacheException(Failure(Constants.invalidError));
     }
   }
 }

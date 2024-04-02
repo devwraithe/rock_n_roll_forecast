@@ -19,7 +19,7 @@ class Constants {
   static String forecastsBox = "forecasts";
 
   // Doubles
-  static double inputRadius = 8;
+  static double inputRadius = 8.0;
 
   // Lists
   static const List concertCities = [

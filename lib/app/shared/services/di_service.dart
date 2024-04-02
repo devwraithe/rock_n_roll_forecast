@@ -23,10 +23,6 @@ import 'local_storage_service.dart';
 // Service locator(sl)
 final sl = GetIt.instance;
 
-void regFactory<T extends Object>(T Function() factFunc) {
-  sl.registerFactory(factFunc);
-}
-
 void regSingleton<T extends Object>(T Function() factFunc) {
   sl.registerLazySingleton(factFunc);
 }
