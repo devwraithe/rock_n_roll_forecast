@@ -41,11 +41,11 @@ class HttpServiceImpl implements HttpService {
     } on TimeoutException {
       throw NetworkException(Failure(Constants.connectionTimeout));
     } on http.ClientException catch (e) {
-      throw HttpException(Failure(e.message));
+      throw NetworkException(Failure(e.message));
     } on ServerException catch (_) {
       rethrow;
     } catch (e) {
-      throw UnexpectedException(Failure(e.toString()));
+      throw Exception(Failure(e.toString()));
     }
   }
 }

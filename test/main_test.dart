@@ -16,7 +16,7 @@ void main() {
 
     // Pump the widget tree
     await tester.pumpWidget(
-      const RockAndRoll(),
+      const RockBand(),
     );
   });
 }

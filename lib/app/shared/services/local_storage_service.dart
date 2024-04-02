@@ -34,13 +34,13 @@ class LocalStorageServiceImpl implements LocalStorageService {
       storage.put(city, data);
     } on HiveError catch (e) {
       debugPrint("Hive error occurred: $e");
-      throw HiveException(Failure(e.toString()));
+      throw CacheException(Failure(e.toString()));
     } on CacheException catch (e) {
       debugPrint("Cache error occurred: $e");
       rethrow;
     } on Exception catch (e) {
       debugPrint("Unexpected error occurred: $e");
-      throw UnexpectedException(Failure(e.toString()));
+      throw CacheException(Failure(e.toString()));
     } finally {
       try {
         storage.close();
@@ -69,13 +69,13 @@ class LocalStorageServiceImpl implements LocalStorageService {
       }
     } on HiveError catch (e) {
       debugPrint("Hive error occurred: $e");
-      throw HiveException(Failure(e.toString()));
+      throw CacheException(Failure(e.toString()));
     } on CacheException catch (e) {
       debugPrint("Cache error occurred: $e");
       rethrow;
     } on Exception catch (e) {
       debugPrint("Unexpected error occurred: $e");
-      throw UnexpectedException(Failure(e.toString()));
+      throw CacheException(Failure(e.toString()));
     } finally {
       try {
         storage.close();

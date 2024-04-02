@@ -40,18 +40,3 @@ class CacheException extends Equatable implements Exception {
   @override
   List<Object?> get props => [failure];
 }
-
-class HiveException extends Equatable implements Exception {
-  final Failure failure;
-  const HiveException(this.failure);
-  @override
-  List<Object?> get props => [failure];
-}
-
-// Misc exceptions
-class UnexpectedException extends Equatable implements Exception {
-  final Failure failure;
-  const UnexpectedException(this.failure);
-  @override
-  List<Object?> get props => [failure];
-}

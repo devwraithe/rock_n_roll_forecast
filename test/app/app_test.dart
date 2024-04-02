@@ -7,12 +7,12 @@ import 'package:rock_n_roll_forecast/app/modules/weather/presentation/screens/co
 import 'package:rock_n_roll_forecast/app/shared/services/di_service.dart' as di;
 
 void main() {
-  testWidgets('Should build RockAndRoll widget', (WidgetTester tester) async {
+  testWidgets('Should build RockBand widget', (WidgetTester tester) async {
     di.init();
 
     // pump the widget tree
     await tester.pumpWidget(
-      const RockAndRoll(),
+      const RockBand(),
     );
 
     await tester.pumpAndSettle();
