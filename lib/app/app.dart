@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rock_n_roll_forecast/app/core/routes/routes_builder.dart';
-import 'package:rock_n_roll_forecast/app/presentation/cubits/forecast/forecast_cubit.dart';
-import 'package:rock_n_roll_forecast/app/presentation/cubits/weather/weather_cubit.dart';
-import 'package:rock_n_roll_forecast/app/presentation/screens/concerts_screen.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/forecast/forecast_cubit.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/cubits/weather/weather_cubit.dart';
+import 'package:rock_n_roll_forecast/app/modules/weather/presentation/screens/concerts_screen.dart';
+import 'package:rock_n_roll_forecast/app/shared/routes/routes_builder.dart';
 
-import 'core/theme/app_theme.dart';
-import 'core/utilities/di_service.dart';
+import 'shared/services/di_service.dart';
+import 'shared/theme/app_theme.dart';
 
-class RockAndRoll extends StatelessWidget {
-  const RockAndRoll({super.key});
+class RockBand extends StatelessWidget {
+  const RockBand({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class RockAndRoll extends StatelessWidget {
         builder: (context, child) {
           ScreenUtil.init(context);
           return MaterialApp(
-            title: 'Rock And Roll',
+            title: 'Rock Band',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.theme,
             themeMode: ThemeMode.dark,
